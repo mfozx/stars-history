@@ -140,8 +140,11 @@ button.primary:hover { filter: brightness(1.08); }
 
 @media (max-width: 640px) {
   .brand span { display: none; }
-  #topbar { padding: calc(8px + env(safe-area-inset-top)) 10px 8px; }
-  #search { width: 130px; font-size: 16px; } /* 16px: iOS otomatik zoom'u engeller */
+  .brand { font-size: 17px; flex: none; }
+  #topbar { padding: calc(8px + env(safe-area-inset-top)) 10px 8px; gap: 8px; }
+  .top-actions { flex: 1 1 auto; flex-wrap: nowrap; gap: 6px; min-width: 0; }
+  #search { flex: 1 1 auto; width: auto; min-width: 0; font-size: 16px; padding: 7px 12px; } /* 16px: iOS otomatik zoom'u engeller */
+  .chip-btn { flex: none; padding: 7px 11px; }
   #btn-natal span { display: none; }
   #layers { font-size: 11.5px; padding: 8px 10px; bottom: calc(60px + env(safe-area-inset-bottom)); }
   #hint { bottom: calc(14px + env(safe-area-inset-bottom)); font-size: 11px; max-width: 92vw; white-space: normal; text-align: center; }
@@ -962,41 +965,66 @@ function projectToScreen(vec) {
   return [(_pv.x + 1) / 2 * innerWidth, (1 - _pv.y) / 2 * innerHeight];
 }
 const _cv = new THREE.Vector3();
+// Ekran uzayında etiket çakışma kontrolü — üst üste binenler gizlenir
+const _placed = [];
+function _claim(x, y, w, h, pad = 3) {
+  for (const r of _placed) {
+    if (x - pad < r.x + r.w && x + w + pad > r.x && y - pad < r.y + r.h && y + h + pad > r.y) return false;
+  }
+  _placed.push({ x, y, w, h });
+  return true;
+}
 function updateLabels() {
   camera.getWorldDirection(_camDir);
+  _placed.length = 0;
   const showLabels = document.getElementById("toggle-labels").checked;
   const showLines = document.getElementById("toggle-lines").checked;
+  const small = innerWidth < 640;
+  const wpp = worldPerPixel();
+
+  // 1) Gezegenler (en yüksek öncelik)
+  const planetsOn = planetsGroup.visible;
+  for (const p of planets) {
+    p.sprite.scale.setScalar(p.sprite.userData.px * wpp * 2.2);
+    if (!planetsOn || !showLabels) { p.el.style.display = "none"; continue; }
+    const s = projectToScreen(p.vec);
+    if (!s) { p.el.style.display = "none"; continue; }
+    const w = p.el.textContent.length * 6.5 + 12, h = 15;
+    if (!_claim(s[0] + 8, s[1] - h / 2, w, h)) { p.el.style.display = "none"; continue; }
+    p.el.style.display = "";
+    p.el.style.left = s[0] + "px";
+    p.el.style.top = s[1] + "px";
+  }
+
+  // 2) Takımyıldız adları
+  const conFs = small ? 10 : 12;
   for (const [id, el] of conLabelEls) {
     if (!showLabels || !showLines) { el.style.display = "none"; continue; }
     const c = conMeta.get(id).center;
     lonlatToVec(c[0], c[1], R, _cv);
     const p = projectToScreen(_cv);
     if (!p) { el.style.display = "none"; continue; }
+    const w = el.textContent.length * conFs * 0.72, h = conFs + 5;
+    if (!_claim(p[0] - w / 2, p[1] - h / 2, w, h)) { el.style.display = "none"; continue; }
     el.style.display = "";
     el.style.left = p[0] + "px";
     el.style.top = p[1] + "px";
     el.style.opacity = view.fov > 75 ? 0.5 : 0.9;
   }
-  const starLabelsOn = showLabels && view.fov < 70;
+
+  // 3) Yıldız adları (en düşük öncelik; parlaklık sırasına göre)
+  const starLabelsOn = showLabels && view.fov < (small ? 60 : 70);
   for (const { el, s } of starLabelEls) {
     if (!starLabelsOn) { el.style.display = "none"; continue; }
     radecToVec(s.ra, s.dec, R, _cv);
     const p = projectToScreen(_cv);
     if (!p) { el.style.display = "none"; continue; }
+    const fs = small ? 10 : 11;
+    const w = el.textContent.length * fs * 0.62 + 10, h = fs + 4;
+    if (!_claim(p[0] + 8, p[1] - h / 2, w, h)) { el.style.display = "none"; continue; }
     el.style.display = "";
     el.style.left = p[0] + "px";
     el.style.top = p[1] + "px";
-  }
-  const planetsOn = planetsGroup.visible;
-  const wpp = worldPerPixel();
-  for (const p of planets) {
-    p.sprite.scale.setScalar(p.sprite.userData.px * wpp * 2.2);
-    if (!planetsOn || !showLabels) { p.el.style.display = "none"; continue; }
-    const s = projectToScreen(p.vec);
-    if (!s) { p.el.style.display = "none"; continue; }
-    p.el.style.display = "";
-    p.el.style.left = s[0] + "px";
-    p.el.style.top = s[1] + "px";
   }
 }
 
