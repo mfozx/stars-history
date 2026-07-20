@@ -383,7 +383,7 @@ const SIGNS = [
   { sym: "♒", tr: "Kova", en: "Aquarius" },
   { sym: "♓", tr: "Balık", en: "Pisces" },
 ];
-const PLANET_SYM = { Sun: "☉", Moon: "☾", Mercury: "☿", Venus: "♀", Mars: "♂",
+const NATAL_PLANET_SYM = { Sun: "☉", Moon: "☾", Mercury: "☿", Venus: "♀", Mars: "♂",
   Jupiter: "♃", Saturn: "♄", Uranus: "♅", Neptune: "♆", Pluto: "♇" };
 const BODIES = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"];
 
@@ -450,7 +450,7 @@ function drawWheel(svg, positions, asc) {
   for (const p of positions) {
     const [x, y] = toXY(p.elon, rPl);
     html += `<circle cx="${x}" cy="${y}" r="11" fill="#141a33" stroke="#232b4d"/>`;
-    html += `<text x="${x}" y="${y}" fill="#e8ecff" font-size="13" text-anchor="middle" dominant-baseline="central">${PLANET_SYM[p.body]}</text>`;
+    html += `<text x="${x}" y="${y}" fill="#e8ecff" font-size="13" text-anchor="middle" dominant-baseline="central">${NATAL_PLANET_SYM[p.body]}</text>`;
   }
   svg.innerHTML = html;
 }
@@ -492,7 +492,7 @@ function initNatal() {
       `<tr><th>${t("planet")}</th><th>${t("sign")}</th><th>${t("degree")}</th></tr>`,
       `<tr><td>↑ ${t("ascendant")}</td><td class="sign">${ascPos.sign.sym} ${ascPos.sign[lang]}</td><td>${ascPos.text}</td></tr>`,
       ...positions.map((p) =>
-        `<tr><td>${PLANET_SYM[p.body]} ${t("bodies")[p.body]}</td><td class="sign">${p.sign.sym} ${p.sign[lang]}</td><td>${p.text}</td></tr>`),
+        `<tr><td>${NATAL_PLANET_SYM[p.body]} ${t("bodies")[p.body]}</td><td class="sign">${p.sign.sym} ${p.sign[lang]}</td><td>${p.text}</td></tr>`),
     ];
     document.getElementById("natal-table").innerHTML = rows.join("");
     document.getElementById("natal-result").classList.remove("hidden");
