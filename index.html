@@ -867,21 +867,18 @@ function buildPlanets() {
       sprite.position.copy(vec);
       sprite.userData.px = px;
       planetsGroup.add(sprite);
-      const el = document.createElement("div");
-      el.className = "star-label planet-label";
-      el.style.color = color;
-      labelWrap.appendChild(el);
-      planets.push({
+      const p = {
         body, sym: PLANET_SYM[body], ra: eq.ra, dec: eq.dec,
         distAU: Math.sqrt(gv.x * gv.x + gv.y * gv.y + gv.z * gv.z),
-        elon: ecl.elon, sprite, el, vec,
-      });
+        elon: ecl.elon, sprite, vec, label: null,
+      };
+      planets.push(p);
+      attachPlanetLabel(p);
     } catch (e) { /* gövde hesaplanamadıysa atla */ }
   }
-  updatePlanetLabels();
 }
 function updatePlanetLabels() {
-  for (const p of planets) p.el.textContent = `${p.sym} ${t("bodies")[p.body]}`;
+  for (const p of planets) attachPlanetLabel(p);
 }
 function planetSignInfo(elon) {
   const idx = Math.floor(((elon % 360) + 360) % 360 / 30);
@@ -938,28 +935,73 @@ function buildGrid() {
   scene.add(gridObj);
 }
 
-// ---------- DOM etiketleri ----------
-const labelWrap = document.createElement("div");
-document.body.appendChild(labelWrap);
-const conLabelEls = new Map();
-const starLabelEls = [];
+// ---------- Etiketler: WebGL sprite (canvas ile ayni karede cizilir, kaymaz) ----------
+const conLabelsGroup = new THREE.Group();
+const starLabelsGroup = new THREE.Group();
+scene.add(conLabelsGroup);
+scene.add(starLabelsGroup);
+
+function makeTextSprite(text, { color = "rgba(165,180,235,0.95)", px = 12, spacing = 0, padL = 8, bold = false } = {}) {
+  const c = document.createElement("canvas");
+  let x = c.getContext("2d");
+  const font = `${bold ? "600 " : ""}${px * 2}px 'Segoe UI', system-ui, sans-serif`;
+  x.font = font;
+  if (spacing) x.letterSpacing = `${spacing * 2}px`;
+  const tw = Math.ceil(x.measureText(text).width);
+  c.width = tw + padL * 2 + 16;
+  c.height = px * 2 + 16;
+  x = c.getContext("2d");
+  x.font = font;
+  if (spacing) x.letterSpacing = `${spacing * 2}px`;
+  x.textBaseline = "middle";
+  x.shadowColor = "rgba(0,0,0,0.95)";
+  x.shadowBlur = 7;
+  x.fillStyle = color;
+  x.fillText(text, padL * 2, c.height / 2);
+  const tex = new THREE.CanvasTexture(c);
+  tex.minFilter = THREE.LinearFilter;
+  const spr = new THREE.Sprite(new THREE.SpriteMaterial({
+    map: tex, transparent: true, depthTest: false, depthWrite: false,
+  }));
+  spr.renderOrder = 20;
+  spr.userData.pxW = c.width / 2;  // hedef CSS piksel boyutu
+  spr.userData.pxH = c.height / 2;
+  return spr;
+}
+function disposeSprite(spr) {
+  spr.material.map.dispose();
+  spr.material.dispose();
+}
+function clearGroup(g) {
+  while (g.children.length) { const c = g.children.pop(); disposeSprite(c); }
+}
+
 function buildLabels() {
+  clearGroup(conLabelsGroup);
+  clearGroup(starLabelsGroup);
   for (const [id, meta] of conMeta) {
-    const el = document.createElement("div");
-    el.className = "con-label";
-    el.textContent = conDisplayName(id);
-    el.addEventListener("click", () => openConstellation(id));
-    labelWrap.appendChild(el);
-    conLabelEls.set(id, el);
+    const spr = makeTextSprite(conDisplayName(id).toUpperCase(), { px: 11.5, spacing: 1.5, bold: true });
+    lonlatToVec(meta.center[0], meta.center[1], R * 0.99, spr.position);
+    spr.center.set(0.5, 0.5);
+    spr.userData.con = id;
+    conLabelsGroup.add(spr);
   }
   const named = stars.filter((s) => s.dispName && (s.mag < 1.7 || s.myth)).slice(0, 60);
   for (const s of named) {
-    const el = document.createElement("div");
-    el.className = "star-label";
-    el.textContent = s.dispName;
-    labelWrap.appendChild(el);
-    starLabelEls.push({ el, s });
+    const spr = makeTextSprite(s.dispName, { color: "rgba(255,226,165,0.95)", px: 10.5, padL: 10 });
+    radecToVec(s.ra, s.dec, R * 0.995, spr.position);
+    spr.center.set(0, 0.5); // yildizin sagindan baslar
+    starLabelsGroup.add(spr);
   }
+  for (const p of planets) attachPlanetLabel(p);
+}
+function attachPlanetLabel(p) {
+  if (p.label) { planetsGroup.remove(p.label); disposeSprite(p.label); }
+  const [color] = PLANET_STYLE[p.body];
+  p.label = makeTextSprite(`${p.sym} ${t("bodies")[p.body]}`, { color, px: 10.5, padL: 12 });
+  p.label.position.copy(p.vec);
+  p.label.center.set(0, 0.5);
+  planetsGroup.add(p.label);
 }
 function conDisplayName(id) {
   const m = myth?.constellations?.[id];
@@ -991,47 +1033,56 @@ function updateLabels() {
   const showLines = document.getElementById("toggle-lines").checked;
   const small = vw < 640;
   const wpp = worldPerPixel();
+  const scaleK = small ? 0.9 : 1;
 
-  // 1) Gezegenler (en yüksek öncelik)
+  // 1) Gezegen diskleri + etiketleri (en yüksek öncelik)
   const planetsOn = planetsGroup.visible;
   for (const p of planets) {
     p.sprite.scale.setScalar(p.sprite.userData.px * wpp * 2.2);
-    if (!planetsOn || !showLabels) { p.el.style.display = "none"; continue; }
-    const s = projectToScreen(p.vec);
-    if (!s) { p.el.style.display = "none"; continue; }
-    const w = p.el.textContent.length * 6.5 + 12, h = 15;
-    if (!_claim(s[0] + 8, s[1] - h / 2, w, h)) { p.el.style.display = "none"; continue; }
-    p.el.style.display = "";
-    p.el.style.transform = `translate(${s[0]}px,${s[1]}px) translate(8px,-50%)`;
+    const lbl = p.label;
+    if (!lbl) continue;
+    let ok = planetsOn && showLabels;
+    const s = ok ? projectToScreen(p.vec) : null;
+    if (s) {
+      const w = lbl.userData.pxW * scaleK, h = lbl.userData.pxH * scaleK;
+      ok = _claim(s[0], s[1] - h / 2, w, h);
+    } else ok = false;
+    lbl.visible = ok;
+    if (ok) lbl.scale.set(lbl.userData.pxW * scaleK * wpp, lbl.userData.pxH * scaleK * wpp, 1);
   }
 
   // 2) Takımyıldız adları
-  const conFs = small ? 10 : 12;
-  for (const [id, el] of conLabelEls) {
-    if (!showLabels || !showLines) { el.style.display = "none"; continue; }
-    const c = conMeta.get(id).center;
-    lonlatToVec(c[0], c[1], R, _cv);
-    const p = projectToScreen(_cv);
-    if (!p) { el.style.display = "none"; continue; }
-    const w = el.textContent.length * conFs * 0.72, h = conFs + 5;
-    if (!_claim(p[0] - w / 2, p[1] - h / 2, w, h)) { el.style.display = "none"; continue; }
-    el.style.display = "";
-    el.style.transform = `translate(${p[0]}px,${p[1]}px) translate(-50%,-50%)`;
-    el.style.opacity = view.fov > 75 ? 0.5 : 0.9;
+  conLabelsGroup.visible = showLabels && showLines;
+  if (conLabelsGroup.visible) {
+    const op = view.fov > 75 ? 0.55 : 0.95;
+    for (const spr of conLabelsGroup.children) {
+      const s = projectToScreen(spr.position);
+      let ok = !!s;
+      if (ok) {
+        const w = spr.userData.pxW * scaleK, h = spr.userData.pxH * scaleK;
+        ok = _claim(s[0] - w / 2, s[1] - h / 2, w, h);
+      }
+      spr.visible = ok;
+      if (ok) {
+        spr.material.opacity = op;
+        spr.scale.set(spr.userData.pxW * scaleK * wpp, spr.userData.pxH * scaleK * wpp, 1);
+      }
+    }
   }
 
-  // 3) Yıldız adları (en düşük öncelik; parlaklık sırasına göre)
-  const starLabelsOn = showLabels && view.fov < (small ? 60 : 70);
-  for (const { el, s } of starLabelEls) {
-    if (!starLabelsOn) { el.style.display = "none"; continue; }
-    radecToVec(s.ra, s.dec, R, _cv);
-    const p = projectToScreen(_cv);
-    if (!p) { el.style.display = "none"; continue; }
-    const fs = small ? 10 : 11;
-    const w = el.textContent.length * fs * 0.62 + 10, h = fs + 4;
-    if (!_claim(p[0] + 8, p[1] - h / 2, w, h)) { el.style.display = "none"; continue; }
-    el.style.display = "";
-    el.style.transform = `translate(${p[0]}px,${p[1]}px) translate(8px,-50%)`;
+  // 3) Yıldız adları (en düşük öncelik; parlaklık sırasıyla)
+  starLabelsGroup.visible = showLabels && view.fov < (small ? 60 : 70);
+  if (starLabelsGroup.visible) {
+    for (const spr of starLabelsGroup.children) {
+      const s = projectToScreen(spr.position);
+      let ok = !!s;
+      if (ok) {
+        const w = spr.userData.pxW * scaleK, h = spr.userData.pxH * scaleK;
+        ok = _claim(s[0], s[1] - h / 2, w, h);
+      }
+      spr.visible = ok;
+      if (ok) spr.scale.set(spr.userData.pxW * scaleK * wpp, spr.userData.pxH * scaleK * wpp, 1);
+    }
   }
 }
 
@@ -1075,7 +1126,11 @@ function handleTap(x, y) {
     }
     if (best !== null) { openStar(stars[best]); return; }
   }
-  // 2) Takımyıldız çizgileri
+  // 2) Takımyıldız adı etiketleri
+  const lblHits = raycaster.intersectObjects(conLabelsGroup.children.filter((o) => o.visible), false);
+  if (lblHits.length) { openConstellation(lblHits[0].object.userData.con); return; }
+
+  // 3) Takımyıldız çizgileri
   raycaster.params.Line.threshold = linePx * wpp;
   const lh = raycaster.intersectObjects(linesGroup.children, false);
   if (lh.length) { openConstellation(lh[0].object.userData.con); return; }
@@ -1275,12 +1330,10 @@ document.getElementById("toggle-planets").addEventListener("change", (e) => { pl
 // ---------- Dil ----------
 document.getElementById("btn-lang").addEventListener("click", () => {
   setLang(lang === "tr" ? "en" : "tr");
-  for (const [id, el] of conLabelEls) el.textContent = conDisplayName(id);
   for (const s of stars) {
     if (s.myth?.names) s.dispName = s.myth.names[lang] || s.myth.names.tr || s.name;
   }
-  for (const { el, s } of starLabelEls) el.textContent = s.dispName;
-  updatePlanetLabels();
+  buildLabels();
   buildSearch();
   if (current?.type === "star") openStar(current.s);
   else if (current?.type === "con") openConstellation(current.id);
