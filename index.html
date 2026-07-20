@@ -657,9 +657,10 @@ canvas.addEventListener("pointermove", (e) => {
   px = e.clientX; py = e.clientY;
   moved += Math.abs(dx) + Math.abs(dy);
   const dpp = view.fov / vh; // piksel başına derece
-  view.lonDeg = (view.lonDeg - dx * dpp + 360) % 360;
+  // "Gökyüzünü tut ve sürükle": parmak nereye giderse gök oraya gider
+  view.lonDeg = (view.lonDeg + dx * dpp + 360) % 360;
   view.latDeg = Math.max(-89.5, Math.min(89.5, view.latDeg + dy * dpp));
-  vLon = -dx * dpp; vLat = dy * dpp;
+  vLon = dx * dpp; vLat = dy * dpp;
   applyView();
 });
 let lastPointerType = "mouse";
