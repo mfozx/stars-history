@@ -131,11 +131,11 @@ button.primary:hover { filter: brightness(1.08); }
 .disclaimer { font-size: 11.5px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
 
 /* Takımyıldız etiketleri (DOM tabanlı) */
-.con-label { position: fixed; z-index: 5; transform: translate(-50%, -50%); color: rgba(160,175,230,.75);
+.con-label { position: fixed; left: 0; top: 0; z-index: 5; will-change: transform; color: rgba(160,175,230,.75);
   font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; pointer-events: auto; cursor: pointer;
   text-shadow: 0 0 6px #000; user-select: none; white-space: nowrap; }
 .con-label:hover { color: var(--accent); }
-.star-label { position: fixed; z-index: 5; transform: translate(8px, -50%); color: rgba(255,225,160,.9);
+.star-label { position: fixed; left: 0; top: 0; z-index: 5; will-change: transform; color: rgba(255,225,160,.9);
   font-size: 11px; pointer-events: none; text-shadow: 0 0 5px #000; user-select: none; white-space: nowrap; }
 
 @media (max-width: 640px) {
@@ -602,13 +602,23 @@ function applyView() {
   camera.up.set(0, 1, 0);
   camera.lookAt(dir);
 }
+// Görünüm boyutu canvas'ın GERÇEK ölçüsünden alınır — mobilde adres çubuğu
+// gizlenip çıkınca innerHeight kayar; etiketlerin yıldızlarla hizalı kalması
+// için tüm ekran-uzayı hesapları bu değerleri kullanır.
+let vw = 1, vh = 1, vLeft = 0, vTop = 0;
 function resize() {
-  const w = innerWidth, h = innerHeight;
-  renderer.setSize(w, h, false);
-  camera.aspect = w / h;
+  const rect = canvas.getBoundingClientRect();
+  vw = Math.max(1, rect.width);
+  vh = Math.max(1, rect.height);
+  vLeft = rect.left;
+  vTop = rect.top;
+  renderer.setSize(vw, vh, false);
+  camera.aspect = vw / vh;
   camera.updateProjectionMatrix();
 }
-addEventListener("resize", () => { resize(); });
+addEventListener("resize", resize);
+addEventListener("orientationchange", () => setTimeout(resize, 150));
+if (window.visualViewport) visualViewport.addEventListener("resize", resize);
 resize();
 applyView();
 
@@ -626,7 +636,7 @@ canvas.addEventListener("pointermove", (e) => {
   const dx = e.clientX - px, dy = e.clientY - py;
   px = e.clientX; py = e.clientY;
   moved += Math.abs(dx) + Math.abs(dy);
-  const dpp = view.fov / innerHeight; // piksel başına derece
+  const dpp = view.fov / vh; // piksel başına derece
   view.lonDeg = (view.lonDeg - dx * dpp + 360) % 360;
   view.latDeg = Math.max(-89.5, Math.min(89.5, view.latDeg + dy * dpp));
   vLon = -dx * dpp; vLat = dy * dpp;
@@ -962,7 +972,7 @@ function projectToScreen(vec) {
   _pv.copy(vec).project(camera);
   if (_pv.z > 1) return null;
   if (vec.dot(_camDir) < 0) return null;
-  return [(_pv.x + 1) / 2 * innerWidth, (1 - _pv.y) / 2 * innerHeight];
+  return [vLeft + (_pv.x + 1) / 2 * vw, vTop + (1 - _pv.y) / 2 * vh];
 }
 const _cv = new THREE.Vector3();
 // Ekran uzayında etiket çakışma kontrolü — üst üste binenler gizlenir
@@ -979,7 +989,7 @@ function updateLabels() {
   _placed.length = 0;
   const showLabels = document.getElementById("toggle-labels").checked;
   const showLines = document.getElementById("toggle-lines").checked;
-  const small = innerWidth < 640;
+  const small = vw < 640;
   const wpp = worldPerPixel();
 
   // 1) Gezegenler (en yüksek öncelik)
@@ -992,8 +1002,7 @@ function updateLabels() {
     const w = p.el.textContent.length * 6.5 + 12, h = 15;
     if (!_claim(s[0] + 8, s[1] - h / 2, w, h)) { p.el.style.display = "none"; continue; }
     p.el.style.display = "";
-    p.el.style.left = s[0] + "px";
-    p.el.style.top = s[1] + "px";
+    p.el.style.transform = `translate(${s[0]}px,${s[1]}px) translate(8px,-50%)`;
   }
 
   // 2) Takımyıldız adları
@@ -1007,8 +1016,7 @@ function updateLabels() {
     const w = el.textContent.length * conFs * 0.72, h = conFs + 5;
     if (!_claim(p[0] - w / 2, p[1] - h / 2, w, h)) { el.style.display = "none"; continue; }
     el.style.display = "";
-    el.style.left = p[0] + "px";
-    el.style.top = p[1] + "px";
+    el.style.transform = `translate(${p[0]}px,${p[1]}px) translate(-50%,-50%)`;
     el.style.opacity = view.fov > 75 ? 0.5 : 0.9;
   }
 
@@ -1023,8 +1031,7 @@ function updateLabels() {
     const w = el.textContent.length * fs * 0.62 + 10, h = fs + 4;
     if (!_claim(p[0] + 8, p[1] - h / 2, w, h)) { el.style.display = "none"; continue; }
     el.style.display = "";
-    el.style.left = p[0] + "px";
-    el.style.top = p[1] + "px";
+    el.style.transform = `translate(${p[0]}px,${p[1]}px) translate(8px,-50%)`;
   }
 }
 
@@ -1032,11 +1039,11 @@ function updateLabels() {
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 function worldPerPixel() {
-  return (2 * R * Math.tan((view.fov / 2) * DEG)) / innerHeight;
+  return (2 * R * Math.tan((view.fov / 2) * DEG)) / vh;
 }
 function handleTap(x, y) {
   if (!starPoints) return;
-  mouse.set((x / innerWidth) * 2 - 1, -(y / innerHeight) * 2 + 1);
+  mouse.set(((x - vLeft) / vw) * 2 - 1, -((y - vTop) / vh) * 2 + 1);
   raycaster.setFromCamera(mouse, camera);
   const wpp = worldPerPixel();
   const touch = lastPointerType === "touch";
@@ -1402,9 +1409,11 @@ function loop(now) {
     vLon *= 0.94; vLat *= 0.94;
     applyView();
   }
+  // Mobilde adres çubuğu / döndürme ile boyut değişirse aynı karede yakala
+  if (Math.abs(canvas.clientWidth - vw) > 0.5 || Math.abs(canvas.clientHeight - vh) > 0.5) resize();
   if (starPoints) {
     starPoints.material.uniforms.uScale.value =
-      (innerHeight / 900) * (60 / view.fov) * renderer.getPixelRatio();
+      (vh / 900) * (60 / view.fov) * renderer.getPixelRatio();
   }
   updateLabels();
   renderer.render(scene, camera);
