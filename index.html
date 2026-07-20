@@ -1483,6 +1483,36 @@ async function loadAll() {
   loadJSON("mw.json", `${CDN}/mw.json`)
     .then((mw) => { buildMilkyWay(mw); mwPoints.visible = document.getElementById("toggle-mw").checked; })
     .catch(() => {});
+
+  handleDeepLink();
+}
+
+// ---------- Derin bağlantı: ?y=sirius | ?t=Ori | ?g=mars (SEO sayfalarından) ----------
+const TR_SLUG = { "ç": "c", "ğ": "g", "ı": "i", "ö": "o", "ş": "s", "ü": "u" };
+function slugifyName(str) {
+  return str.toLowerCase()
+    .replace(/[çğıöşü]/g, (c) => TR_SLUG[c])
+    .replace(/\(.*?\)/g, "").trim()
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+function handleDeepLink() {
+  const q = new URLSearchParams(location.search);
+  const y = q.get("y"), tAbbr = q.get("t"), g = q.get("g");
+  if (y) {
+    const s = stars.find((s) =>
+      (s.myth?.match?.name && slugifyName(s.myth.match.name) === y) ||
+      (s.name && slugifyName(s.name) === y));
+    if (s) { flyTo(s.ra, s.dec, 35); setTimeout(() => openStar(s), 1000); }
+  } else if (tAbbr && conMeta.has(tAbbr)) {
+    openConstellation(tAbbr);
+  } else if (g) {
+    const tryPlanet = (n = 0) => {
+      const p = planets.find((p) => p.body.toLowerCase() === g);
+      if (p) { flyTo(p.ra, p.dec, 45); setTimeout(() => openPlanet(p), 1000); }
+      else if (n < 25) setTimeout(() => tryPlanet(n + 1), 300);
+    };
+    tryPlanet();
+  }
 }
 
 // ---------- Döngü ----------
