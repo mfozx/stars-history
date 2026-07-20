@@ -2,8 +2,12 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Yıldız Atlası — Etkileşimli Planetaryum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#04060f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Stars History — Etkileşimli Planetaryum</title>
 <style>
 :root {
   --bg: #04060f;
@@ -136,11 +140,21 @@ button.primary:hover { filter: brightness(1.08); }
 
 @media (max-width: 640px) {
   .brand span { display: none; }
-  #search { width: 130px; }
+  #topbar { padding: calc(8px + env(safe-area-inset-top)) 10px 8px; }
+  #search { width: 130px; font-size: 16px; } /* 16px: iOS otomatik zoom'u engeller */
   #btn-natal span { display: none; }
-  #layers { font-size: 11.5px; padding: 8px 10px; bottom: 60px; }
-  #hint { bottom: 16px; font-size: 11px; max-width: 92vw; white-space: normal; text-align: center; }
-  #sheet { max-height: 78vh; }
+  #layers { font-size: 11.5px; padding: 8px 10px; bottom: calc(60px + env(safe-area-inset-bottom)); }
+  #hint { bottom: calc(14px + env(safe-area-inset-bottom)); font-size: 11px; max-width: 92vw; white-space: normal; text-align: center; }
+  #sheet { max-height: 80vh; }
+  #sheet-content { padding: 4px 14px calc(18px + env(safe-area-inset-bottom)); }
+  #sheet-title { font-size: 19px; }
+  .tab-pane { font-size: 14px; }
+  .con-label { font-size: 10px; letter-spacing: 1px; }
+  .star-label { font-size: 10px; }
+  #culture-chips { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .cchip { flex: none; }
+  .info-grid { grid-template-columns: repeat(2, 1fr); }
+  .modal-box { padding: 16px; }
 }
 </style>
 </head>
@@ -149,7 +163,7 @@ button.primary:hover { filter: brightness(1.08); }
 
   <!-- Üst bar -->
   <header id="topbar">
-    <div class="brand">✦ <span data-i18n="title">Yıldız Atlası</span></div>
+    <div class="brand">✦ <span data-i18n="title">Stars History</span></div>
     <div class="top-actions">
       <input id="search" type="search" list="search-list" placeholder="Yıldız / takımyıldız ara..." autocomplete="off">
       <datalist id="search-list"></datalist>
@@ -239,7 +253,7 @@ import * as THREE from "three";
 // Basit TR/EN dil desteği
 const STRINGS = {
   tr: {
-    title: "Yıldız Atlası",
+    title: "Stars History",
     natal: "Doğum Haritası",
     lines: "Takımyıldız çizgileri",
     labels: "İsimler",
@@ -290,7 +304,7 @@ const STRINGS = {
       Jupiter:"Jüpiter", Saturn:"Satürn", Uranus:"Uranüs", Neptune:"Neptün", Pluto:"Plüton" },
   },
   en: {
-    title: "Star Atlas",
+    title: "Stars History",
     natal: "Birth Chart",
     lines: "Constellation lines",
     labels: "Names",
@@ -615,12 +629,16 @@ canvas.addEventListener("pointermove", (e) => {
   vLon = -dx * dpp; vLat = dy * dpp;
   applyView();
 });
+let lastPointerType = "mouse";
 canvas.addEventListener("pointerup", (e) => {
   dragging = false;
   canvas.classList.remove("dragging");
-  if (moved < 7 && Date.now() - downT < 600 && !pinch.was) handleTap(e.clientX, e.clientY);
+  lastPointerType = e.pointerType || "mouse";
+  const tapSlop = lastPointerType === "touch" ? 12 : 7;
+  if (moved < tapSlop && Date.now() - downT < 600 && !pinch.was) handleTap(e.clientX, e.clientY);
   pinch.was = false;
 });
+canvas.addEventListener("contextmenu", (e) => e.preventDefault());
 canvas.addEventListener("wheel", (e) => {
   e.preventDefault();
   view.fov = Math.max(18, Math.min(95, view.fov * (1 + Math.sign(e.deltaY) * 0.08)));
@@ -993,6 +1011,9 @@ function handleTap(x, y) {
   mouse.set((x / innerWidth) * 2 - 1, -(y / innerHeight) * 2 + 1);
   raycaster.setFromCamera(mouse, camera);
   const wpp = worldPerPixel();
+  const touch = lastPointerType === "touch";
+  const starPx = touch ? 20 : 13; // parmak için daha geniş hedef
+  const linePx = touch ? 14 : 9;
 
   // 0) Gezegenler (ekran uzayında en yakın)
   if (planetsGroup.visible) {
@@ -1004,23 +1025,23 @@ function handleTap(x, y) {
       const d = Math.hypot(s[0] - x, s[1] - y);
       if (d < bestD) { bestD = d; bestP = p; }
     }
-    if (bestP && bestD < Math.max(16, bestP.sprite.userData.px + 8)) { openPlanet(bestP); return; }
+    if (bestP && bestD < Math.max(touch ? 24 : 16, bestP.sprite.userData.px + 8)) { openPlanet(bestP); return; }
   }
 
   // 1) Yıldızlar
-  raycaster.params.Points.threshold = 13 * wpp;
+  raycaster.params.Points.threshold = starPx * wpp;
   const hits = raycaster.intersectObject(starPoints, false);
   if (hits.length) {
     let best = null, bestScore = 1e9;
     for (const h of hits) {
       const s = stars[h.index];
-      const score = h.distanceToRay / (13 * wpp) + Math.max(0, s.mag) * 0.09;
+      const score = h.distanceToRay / (starPx * wpp) + Math.max(0, s.mag) * 0.09;
       if (score < bestScore) { bestScore = score; best = h.index; }
     }
     if (best !== null) { openStar(stars[best]); return; }
   }
   // 2) Takımyıldız çizgileri
-  raycaster.params.Line.threshold = 9 * wpp;
+  raycaster.params.Line.threshold = linePx * wpp;
   const lh = raycaster.intersectObjects(linesGroup.children, false);
   if (lh.length) { openConstellation(lh[0].object.userData.con); return; }
 
