@@ -1,0 +1,2074 @@
+{
+  "cultures": {
+    "greek": { "tr": "Yunan", "en": "Greek" },
+    "roman": { "tr": "Roma", "en": "Roman" },
+    "arab": { "tr": "Arap", "en": "Arabic" },
+    "mesopotamian": { "tr": "Mezopotamya", "en": "Mesopotamian" },
+    "egyptian": { "tr": "Mısır", "en": "Egyptian" },
+    "chinese": { "tr": "Çin", "en": "Chinese" },
+    "turkic": { "tr": "Türk", "en": "Turkic" },
+    "norse": { "tr": "İskandinav", "en": "Norse" },
+    "hindu": { "tr": "Hint", "en": "Hindu" },
+    "persian": { "tr": "Pers", "en": "Persian" },
+    "polynesian": { "tr": "Polinezya", "en": "Polynesian" },
+    "modern": { "tr": "Modern dönem", "en": "Modern era" }
+  },
+  "zodiac": {
+    "Ari": { "symbol": "♈", "tr": "Koç", "en": "Aries", "dates": "21 Mar – 19 Nis" },
+    "Tau": { "symbol": "♉", "tr": "Boğa", "en": "Taurus", "dates": "20 Nis – 20 May" },
+    "Gem": { "symbol": "♊", "tr": "İkizler", "en": "Gemini", "dates": "21 May – 20 Haz" },
+    "Cnc": { "symbol": "♋", "tr": "Yengeç", "en": "Cancer", "dates": "21 Haz – 22 Tem" },
+    "Leo": { "symbol": "♌", "tr": "Aslan", "en": "Leo", "dates": "23 Tem – 22 Ağu" },
+    "Vir": { "symbol": "♍", "tr": "Başak", "en": "Virgo", "dates": "23 Ağu – 22 Eyl" },
+    "Lib": { "symbol": "♎", "tr": "Terazi", "en": "Libra", "dates": "23 Eyl – 22 Eki" },
+    "Sco": { "symbol": "♏", "tr": "Akrep", "en": "Scorpio", "dates": "23 Eki – 21 Kas" },
+    "Sgr": { "symbol": "♐", "tr": "Yay", "en": "Sagittarius", "dates": "22 Kas – 21 Ara" },
+    "Cap": { "symbol": "♑", "tr": "Oğlak", "en": "Capricorn", "dates": "22 Ara – 19 Oca" },
+    "Aqr": { "symbol": "♒", "tr": "Kova", "en": "Aquarius", "dates": "20 Oca – 18 Şub" },
+    "Psc": { "symbol": "♓", "tr": "Balık", "en": "Pisces", "dates": "19 Şub – 20 Mar" }
+  },
+  "stars": [
+    {
+      "match": { "name": "Sirius" }, "ra": 6.752, "dec": -16.716, "bayer": "Alp", "con": "CMa", "dist": 8.6,
+      "names": { "tr": "Sirius (Akyıldız)", "en": "Sirius" },
+      "etymology": {
+        "tr": "Yunanca 'Seirios' — 'kavurucu, yakıcı' demektir. Gökyüzünün en parlak yıldızıdır; Türk halk dilinde Akyıldız olarak bilinir.",
+        "en": "From Greek 'Seirios' — 'the scorcher'. The brightest star in the night sky; known as 'Akyıldız' (White Star) in Turkish folk tradition."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Avcı Orion'un sadık av köpeğinin gözüdür. Yazın Güneş'le birlikte doğduğu günlere 'köpek günleri' denirdi; Yunanlar en bunaltıcı sıcakları bu yıldızın 'yakıcı nefesine' bağlardı.",
+          "en": "The eye of Orion's faithful hunting dog. Its dawn rising with the Sun marked the sweltering 'dog days'; the Greeks blamed the worst heat on its scorching breath."
+        },
+        "egyptian": {
+          "tr": "Mısır'ın en kutsal yıldızı Sopdet (Sothis) idi. Şafakta yeniden görünmesi Nil'in taşmasını ve yeni yılın başlangıcını müjdelerdi; tanrıça İsis ile özdeşleştirildi ve takvimin temelini oluşturdu.",
+          "en": "Egypt's most sacred star, Sopdet (Sothis). Its dawn reappearance heralded the Nile flood and the new year; identified with the goddess Isis, it anchored the entire calendar."
+        },
+        "roman": {
+          "tr": "Romalılar ona 'Canicula' (küçük köpek) derdi. Sıcak yaz günlerinde ('dies caniculares') köpeklerin bile çılgına döndüğüne inanılır, yıldızı yatıştırmak için kızıl köpekler kurban edilirdi.",
+          "en": "Romans called it 'Canicula' (little dog). During the 'dies caniculares' even dogs were thought to go mad, and red dogs were sacrificed to appease the star."
+        },
+        "arab": {
+          "tr": "'Aş-Şi'râ' adıyla bilinir ve Kur'an'da adı geçen tek yıldızlardandır (Necm Suresi 49: 'Şi'râ'nın Rabbi O'dur'). İslam öncesi Araplar tarafından tapınılan bir yıldızdı.",
+          "en": "Known as 'ash-Shi'ra', one of the few stars named in the Quran (Surah An-Najm 53:49: 'He is the Lord of Sirius'). It had been worshipped by pre-Islamic Arabs."
+        },
+        "chinese": {
+          "tr": "Çinliler ona Tiānláng, 'Gök Kurdu' derdi. Yay takımyıldızındaki 'Ok' yıldız kümesi bu kurda nişan almış hâlde çizilirdi — kurt istilayı, ok da ona karşı savunmayı simgelerdi.",
+          "en": "The Chinese called it Tiānláng, the 'Celestial Wolf'. A nearby asterism, the 'Bow and Arrow', was drawn aiming at the wolf — invasion held at bay by the archer."
+        }
+      }
+    },
+    {
+      "match": { "name": "Canopus" }, "ra": 6.399, "dec": -52.696, "bayer": "Alp", "con": "Car", "dist": 310,
+      "names": { "tr": "Canopus (Süheyl)", "en": "Canopus" },
+      "etymology": {
+        "tr": "Truva savaşı kahramanı Kral Menelaus'un dümencisi Kanopos'tan gelir. Arapçadaki adı Süheyl, Türk kültüründe erkek ismi olarak da yaşar.",
+        "en": "Named after Canopus, helmsman of King Menelaus of Trojan War fame. Its Arabic name Suhayl survives as a given name in Turkish culture."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Menelaus'un filosunu Mısır'a ulaştıran usta dümenci Kanopos, kıyıda bir yılan sokmasıyla ölür. Kral onun onuruna bir şehir kurar ve güney göğünün en parlak yıldızına adını verir; yıldız hâlâ gemicilere yol gösterir.",
+          "en": "Canopus, the master helmsman who steered Menelaus' fleet to Egypt, died of a snakebite ashore. The king founded a city in his honor and gave his name to the south's brightest star — still a guide for navigators."
+        },
+        "arab": {
+          "tr": "Süheyl, çöl Araplarının en sevdiği yıldızdı; güzelliğin ve asaletin simgesiydi. Bir efsanede Süheyl, kuzeydeki güzel Vega'ya (el-Vâki) âşık olur ama gökyüzünün iki ucuna sürgün edilirler — bir daha asla buluşamazlar.",
+          "en": "Suhayl was the desert Arabs' beloved star, a symbol of beauty and nobility. In one tale Suhayl fell in love with fair Vega in the north, but they were exiled to opposite ends of the sky, never to meet."
+        },
+        "chinese": {
+          "tr": "Çin'de 'Güney Kutbunun Yaşlısı' (Shòuxīng), uzun ömrün tanrısıdır. Bu yıldızın görünmesi barış ve uzun yaşam alameti sayılır, görünmemesi savaş habercisi kabul edilirdi.",
+          "en": "In China it is the 'Old Man of the South Pole' (Shòuxīng), god of longevity. Its appearance omened peace and long life; its absence, war."
+        }
+      }
+    },
+    {
+      "match": { "name": "Arcturus" }, "ra": 14.261, "dec": 19.182, "bayer": "Alp", "con": "Boo", "dist": 37,
+      "names": { "tr": "Arcturus", "en": "Arcturus" },
+      "etymology": {
+        "tr": "Yunanca 'Arktouros' — 'Ayı Bekçisi'. Büyük Ayı'yı gökyüzünde kovalıyormuş gibi göründüğü için bu adı almıştır.",
+        "en": "Greek 'Arktouros' — 'Guardian of the Bear', for the way it seems to chase the Great Bear across the sky."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Zeus ile ayıya dönüştürülen Kallisto'nun oğlu Arkas'tır. Bilmeden annesini avlamak üzereyken Zeus ikisini de göğe alır: Kallisto Büyük Ayı, Arkas ise onu sonsuza dek koruyan bekçi olur.",
+          "en": "Arcas, son of Zeus and Callisto, who had been turned into a bear. About to unknowingly hunt his own mother, both were placed in the sky: Callisto as the Great Bear, Arcas as her eternal guardian."
+        },
+        "polynesian": {
+          "tr": "Hawaii'de Hōkūle'a, 'neşenin yıldızı'dır. Hawaii adalarının tam tepesinden geçtiği için Polinezyalı denizciler binlerce kilometrelik okyanus yolculuklarında bu yıldızla evlerini bulurdu.",
+          "en": "In Hawaii it is Hōkūle'a, 'star of gladness'. Passing directly over the islands, it guided Polynesian voyagers home across thousands of kilometers of open ocean."
+        },
+        "arab": {
+          "tr": "'Es-Simâk er-Râmih' — 'Mızraklı Simâk' olarak bilinirdi; yakınındaki yıldız onun mızrağı sayılırdı. Başak'taki silahsız kardeşi Spica'nın koruyucusu kabul edilirdi.",
+          "en": "Known as 'as-Simak ar-Ramih', 'the Lofty Lancer', with a nearby star as his lance — guardian counterpart to the unarmed Spica in Virgo."
+        }
+      }
+    },
+    {
+      "match": { "name": "Vega" }, "ra": 18.616, "dec": 38.784, "bayer": "Alp", "con": "Lyr", "dist": 25,
+      "names": { "tr": "Vega", "en": "Vega" },
+      "etymology": {
+        "tr": "Arapça 'en-nesr el-vâki' — 'süzülen/alçalan kartal' ifadesinden gelir. Kuzey yaz göğünün en parlak yıldızıdır; 12.000 yıl önce Kutup Yıldızı'ydı ve 13.700 yıl sonra yeniden olacak.",
+        "en": "From Arabic 'an-nasr al-waqi' — 'the swooping eagle'. Brightest star of the northern summer sky; it was the pole star 12,000 years ago and will be again in 13,700 years."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Orfeus'un liridir. Müziğiyle taşları bile ağlatan Orfeus, ölen eşi Eurydike'yi yeraltından geri almayı başaramayınca acı içinde ölür; Zeus, lirini gökyüzüne asar.",
+          "en": "The lyre of Orpheus, whose music moved even stones to tears. After failing to bring his wife Eurydice back from the underworld, he died of grief; Zeus hung his lyre in the sky."
+        },
+        "chinese": {
+          "tr": "Dokumacı Kız Zhīnǚ'dür. Gök İmparatoru'nun kızı, sıradan bir çobana (Altair) âşık olur; ceza olarak Samanyolu nehriyle ayrılırlar. Yılda bir gece, 7. ayın 7'sinde saksağanlar köprü kurar ve kavuşurlar — Qixi (Çin Sevgililer Günü) bu gecedir.",
+          "en": "The Weaver Girl Zhīnǚ, daughter of the Sky Emperor, who loved a mortal cowherd (Altair). Separated by the river of the Milky Way, they reunite one night a year — the 7th day of the 7th month — over a bridge of magpies: the Qixi festival."
+        },
+        "arab": {
+          "tr": "Süzülen kartal, kanatlarını kapamış hâlde pike yapan bir avcı kuş olarak hayal edilirdi; kanatları iki yanındaki zeta ve epsilon yıldızlarıydı.",
+          "en": "Pictured as an eagle diving with folded wings — the wings being the stars zeta and epsilon on either side."
+        }
+      }
+    },
+    {
+      "match": { "name": "Capella" }, "ra": 5.278, "dec": 45.998, "bayer": "Alp", "con": "Aur", "dist": 43,
+      "names": { "tr": "Capella", "en": "Capella" },
+      "etymology": {
+        "tr": "Latince 'küçük keçi' demektir. Arabacı takımyıldızının omzunda taşıdığı keçiyi temsil eder.",
+        "en": "Latin for 'little she-goat', carried on the shoulder of the Charioteer."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Bebek Zeus'u babası Kronos'tan saklandığı mağarada sütüyle besleyen keçi Amaltheia'dır. Zeus büyüyünce minnetle onu göğe koyar; kırılan boynuzu ise sonsuz bereket sunan 'bereket boynuzu' (cornucopia) olur.",
+          "en": "Amaltheia, the goat who suckled the infant Zeus while he hid from his father Cronus. Zeus placed her in the sky in gratitude; her broken horn became the cornucopia, the horn of plenty."
+        }
+      }
+    },
+    {
+      "match": { "name": "Rigel" }, "ra": 5.242, "dec": -8.202, "bayer": "Bet", "con": "Ori", "dist": 860,
+      "names": { "tr": "Rigel", "en": "Rigel" },
+      "etymology": {
+        "tr": "Arapça 'Ricl el-Cevzâ' — 'devin (Orion'un) sol ayağı' ifadesinden gelir. Mavi bir süperdev olan Rigel, Güneş'ten yaklaşık 120.000 kat daha parlaktır.",
+        "en": "From Arabic 'Rijl al-Jauza' — 'the giant's left foot'. A blue supergiant roughly 120,000 times more luminous than the Sun."
+      },
+      "stories": {
+        "arab": {
+          "tr": "Araplar Orion bölgesini 'el-Cevzâ' adında dev bir figür olarak görürdü; Rigel bu devin nehre (Eridanus) basan ayağıydı.",
+          "en": "The Arabs saw the Orion region as a giant figure, 'al-Jauza'; Rigel was the foot stepping into the celestial river Eridanus."
+        },
+        "greek": {
+          "tr": "Avcı Orion'un dizinin altında parlayan ayağıdır; bazı anlatılarda onu sokan Akrep'ten kaçarken ilk bu ayağı ısırılmıştır.",
+          "en": "The gleaming foot of Orion the Hunter; in some tellings it was this foot the Scorpion first stung."
+        }
+      }
+    },
+    {
+      "match": { "name": "Betelgeuse" }, "ra": 5.919, "dec": 7.407, "bayer": "Alp", "con": "Ori", "dist": 550,
+      "names": { "tr": "Betelgeuse", "en": "Betelgeuse" },
+      "etymology": {
+        "tr": "Arapça 'Yed el-Cevzâ' — 'devin eli' ifadesinin yüzyıllar içinde bozulmuş hâlidir. Kızıl bir süperdevdir; yerine konsa Jüpiter'in yörüngesine kadar uzanırdı ve yakın astronomik gelecekte süpernova olarak patlaması beklenir.",
+        "en": "A centuries-long corruption of Arabic 'Yad al-Jauza' — 'the giant's hand'. A red supergiant that would engulf Jupiter's orbit, expected to explode as a supernova in the astronomically near future."
+      },
+      "stories": {
+        "arab": {
+          "tr": "Dev el-Cevzâ'nın kaldırdığı eli ya da omzuydu. Kızıl rengi nedeniyle uğursuz değil, tam tersine güç ve yiğitlik alameti sayılırdı.",
+          "en": "The raised hand or shoulder of the giant al-Jauza; its red hue was read not as an ill omen but as a sign of strength and valor."
+        },
+        "greek": {
+          "tr": "Orion'un sağ omzudur; sopasını kaldıran kolunun kökü. Avcının kalbine en yakın yıldız olduğu için 'yiğidin nabzı' gibi kızıl atar.",
+          "en": "Orion's right shoulder, the root of his club-bearing arm — pulsing red like the hunter's own heartbeat."
+        }
+      }
+    },
+    {
+      "match": { "name": "Procyon" }, "ra": 7.655, "dec": 5.225, "bayer": "Alp", "con": "CMi", "dist": 11.5,
+      "names": { "tr": "Procyon", "en": "Procyon" },
+      "etymology": {
+        "tr": "Yunanca 'köpekten önce' demektir — Sirius'tan (Büyük Köpek) birkaç dakika önce doğduğu için bu adı almıştır.",
+        "en": "Greek for 'before the dog' — it rises a few minutes ahead of Sirius, the Dog Star."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Orion'un küçük av köpeğidir. Başka bir anlatıda, sahibi öldürülünce üzüntüden kendini bırakan sadık köpek Maira'dır; sadakati göğe yazılmıştır.",
+          "en": "Orion's second, smaller hound. In another telling it is Maera, the faithful dog who pined away when her master was killed — loyalty written into the sky."
+        }
+      }
+    },
+    {
+      "match": { "name": "Achernar" }, "ra": 1.629, "dec": -57.237, "bayer": "Alp", "con": "Eri", "dist": 139,
+      "names": { "tr": "Achernar", "en": "Achernar" },
+      "etymology": {
+        "tr": "Arapça 'Âhir en-Nehr' — 'nehrin sonu'. Gök nehri Eridanus'un güneydeki bitiş noktasıdır.",
+        "en": "Arabic 'Akhir an-Nahr' — 'the end of the river', marking the southern terminus of the celestial river Eridanus."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Güneş arabasını kontrol edemeyen Phaethon'un düştüğü nehir Eridanus'un son durağıdır; yıldız, gözyaşlarıyla biten bu yolculuğun mührü sayılır.",
+          "en": "The final reach of Eridanus, the river into which Phaethon fell after losing control of the Sun's chariot — the seal at the end of a journey of tears."
+        }
+      }
+    },
+    {
+      "match": { "name": "Altair" }, "ra": 19.846, "dec": 8.868, "bayer": "Alp", "con": "Aql", "dist": 16.7,
+      "names": { "tr": "Altair", "en": "Altair" },
+      "etymology": {
+        "tr": "Arapça 'en-nesr et-tâir' — 'uçan kartal'. Çok hızlı döndüğü için basık, elips şeklinde bir yıldızdır.",
+        "en": "Arabic 'an-nasr at-ta'ir' — 'the flying eagle'. It spins so fast the star itself is visibly flattened."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Zeus'un yıldırımlarını taşıyan kutsal kartalıdır; Ganymedes'i Olympos'a kaçıran da bu kartaldı.",
+          "en": "The sacred eagle that carried Zeus' thunderbolts — and carried Ganymede up to Olympus."
+        },
+        "chinese": {
+          "tr": "Çoban Niúláng'dır. Dokumacı Kız Vega'ya âşık olan çoban, iki çocuğuyla (yanındaki iki yıldız) Samanyolu'nun öte kıyısında bekler; yılda bir gece saksağan köprüsünde sevdiğine kavuşur.",
+          "en": "The Cowherd Niúláng, in love with the Weaver Girl (Vega). With his two children — the two flanking stars — he waits across the Milky Way, reunited once a year on the magpie bridge."
+        },
+        "arab": {
+          "tr": "Kanatlarını açmış uçan kartal; iki yanındaki yıldızlar açık kanatlarıdır. Süzülen kartal Vega'nın gökteki eşleniğidir.",
+          "en": "The eagle in full flight, wings spread as the two flanking stars — sky-twin to the swooping eagle Vega."
+        }
+      }
+    },
+    {
+      "match": { "name": "Aldebaran" }, "ra": 4.599, "dec": 16.509, "bayer": "Alp", "con": "Tau", "dist": 65,
+      "names": { "tr": "Aldebaran", "en": "Aldebaran" },
+      "etymology": {
+        "tr": "Arapça 'ed-Deberân' — 'takip eden'. Gökyüzünde Ülker (Pleiades) kümesini izlediği için bu adı almıştır. Boğa'nın kızıl gözüdür.",
+        "en": "Arabic 'ad-Dabaran' — 'the follower', for the way it trails the Pleiades across the sky. The red eye of the Bull."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Zeus'un Europa'yı kaçırmak için dönüştüğü boğanın kan çanağı gözüdür; Hyades yağmur perileri kümesinin ortasında parlar.",
+          "en": "The bloodshot eye of the bull Zeus became to carry off Europa, blazing amid the rainy Hyades nymphs."
+        },
+        "persian": {
+          "tr": "Eski Pers astronomisinde göğün dört 'Kraliyet Yıldızı'ndan biriydi (Tascheter); doğuyu bekler, ilkbahar ekinoksunu gözetirdi.",
+          "en": "One of the four 'Royal Stars' of ancient Persia (Tascheter), watcher of the east and guardian of the spring equinox."
+        },
+        "hindu": {
+          "tr": "Hint ay takviminin Rohini'sidir — 'kızıl olan'. Ay tanrısı Chandra'nın 27 eşi arasında en sevdiğidir; Ay her ay ona uğrar.",
+          "en": "Rohini, 'the red one', favourite among the 27 wives of the Moon god Chandra — the Moon visits her every month."
+        }
+      }
+    },
+    {
+      "match": { "name": "Antares" }, "ra": 16.49, "dec": -26.432, "bayer": "Alp", "con": "Sco", "dist": 550,
+      "names": { "tr": "Antares", "en": "Antares" },
+      "etymology": {
+        "tr": "Yunanca 'Anti-Ares' — 'Ares'e (Mars'a) rakip'. Kızıl rengiyle Mars'a o kadar benzer ki ikisi yan yana geldiğinde karıştırılırdı. Akrebin kalbidir.",
+        "en": "Greek 'Anti-Ares' — 'rival of Mars', so red it was mistaken for the planet when they met. The heart of the Scorpion."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Orion'u sokan akrebin atan kalbidir. Tanrılar ikisini göğün zıt uçlarına koydu: Akrep doğarken Orion batar — kovalamaca sonsuza dek sürer.",
+          "en": "The beating heart of the scorpion that stung Orion. The gods set them at opposite ends of the sky: as Scorpius rises, Orion sets, in an eternal chase."
+        },
+        "mesopotamian": {
+          "tr": "Babilliler bölgeyi MUL.GIR.TAB, 'Akrep Yıldızı' olarak bilirdi; akrep-insanlar destanlarda güneşin kapılarını bekleyen muhafızlardı.",
+          "en": "To the Babylonians this was MUL.GIR.TAB, the Scorpion Star; scorpion-men guarded the gates of the sun in their epics."
+        },
+        "chinese": {
+          "tr": "Büyük Ateş (Dàhuǒ) yıldızıydı; mevsimleri ayarlayan gök saatiydi. Bir bakanın görevi sırf bu yıldızı izleyip tarım takvimini duyurmaktı.",
+          "en": "The 'Great Fire' (Dàhuǒ), a celestial clock of the seasons — one minister's sole duty was to watch it and proclaim the farming calendar."
+        }
+      }
+    },
+    {
+      "match": { "name": "Spica" }, "ra": 13.42, "dec": -11.161, "bayer": "Alp", "con": "Vir", "dist": 250,
+      "names": { "tr": "Spica", "en": "Spica" },
+      "etymology": {
+        "tr": "Latince 'başak' demektir — Başak takımyıldızının elindeki buğday başağıdır.",
+        "en": "Latin for 'ear of wheat', held in the hand of Virgo."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Hasat tanrıçası Demeter'in (ya da adalet tanrıçası Astraia'nın) elindeki başaktır. Kızı Persephone yeraltına indiğinde Demeter'in yası kışı getirir; Spica'nın akşam göğünde belirmesi hasat zamanını müjdeler.",
+          "en": "The wheat ear in the hand of Demeter, goddess of harvest (or Astraea, goddess of justice). Its evening appearance signalled harvest time."
+        },
+        "egyptian": {
+          "tr": "Bazı araştırmacılara göre Teb'deki bazı tapınaklar Spica'nın doğuşuna hizalanmıştı; hasat ve bereketle ilişkilendirilirdi.",
+          "en": "Some temples at Thebes appear aligned to Spica's rising; it was tied to harvest and abundance."
+        }
+      }
+    },
+    {
+      "match": { "name": "Pollux" }, "ra": 7.755, "dec": 28.026, "bayer": "Bet", "con": "Gem", "dist": 34,
+      "names": { "tr": "Pollux", "en": "Pollux" },
+      "etymology": {
+        "tr": "Latince; Yunanca Polydeukes'ten. İkizler'in ölümsüz olanıdır.",
+        "en": "Latin, from Greek Polydeuces — the immortal twin."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Zeus'un oğlu ölümsüz ikizdir. Ölümlü kardeşi Kastor ölünce Zeus'a yalvarır: 'Ölümsüzlüğümü paylaşayım.' Zeus ikisini gökyüzüne koyar; kardeşlik sevgisinin sembolü olurlar.",
+          "en": "The immortal twin, son of Zeus. When his mortal brother Castor died, he begged to share his immortality; Zeus placed both in the sky as a symbol of brotherly love."
+        }
+      }
+    },
+    {
+      "match": { "name": "Castor" }, "ra": 7.577, "dec": 31.888, "bayer": "Alp", "con": "Gem", "dist": 51,
+      "names": { "tr": "Castor", "en": "Castor" },
+      "etymology": {
+        "tr": "Yunanca Kastor — usta binici ikiz. Aslında altı yıldızdan oluşan karmaşık bir sistemdir.",
+        "en": "Greek Kastor, the horseman twin. Actually a complex system of six stars."
+      },
+      "stories": {
+        "greek": {
+          "tr": "İkizler'in ölümlü olanı, usta at terbiyecisi. Bir sığır baskınında öldürülünce kardeşi Pollux'un fedakârlığıyla göğe yükselir. Denizciler fırtınada ikizlerden yardım isterdi; St. Elmo ateşi onların işareti sayılırdı.",
+          "en": "The mortal twin, master horseman, slain in a cattle raid and raised to the sky by his brother's sacrifice. Sailors invoked the twins in storms; St. Elmo's fire was their sign."
+        }
+      }
+    },
+    {
+      "match": { "name": "Fomalhaut" }, "ra": 22.961, "dec": -29.622, "bayer": "Alp", "con": "PsA", "dist": 25,
+      "names": { "tr": "Fomalhaut", "en": "Fomalhaut" },
+      "etymology": {
+        "tr": "Arapça 'Fem el-Hût' — 'balığın ağzı'. Güney Balığı'nın, Kova'dan dökülen suyu içen ağzıdır. 'Güneyin yalnız yıldızı' olarak bilinir.",
+        "en": "Arabic 'Fam al-Hut' — 'the fish's mouth', drinking the water poured by Aquarius. Known as the lonely star of the south."
+      },
+      "stories": {
+        "persian": {
+          "tr": "Eski Pers'in dört Kraliyet Yıldızı'ndan biriydi; güneyin bekçisiydi ve kış gündönümünü gözetirdi.",
+          "en": "One of Persia's four Royal Stars, watcher of the south and guardian of the winter solstice."
+        },
+        "greek": {
+          "tr": "Kova'nın testisinden akan yaşam suyunu içen kutsal balıktır; bazı anlatılarda tanrıça Derketo'yu boğulmaktan kurtaran balıktır.",
+          "en": "The sacred fish drinking the water of life from Aquarius' jar; in some tales, the fish that saved the goddess Derceto from drowning."
+        }
+      }
+    },
+    {
+      "match": { "name": "Deneb" }, "ra": 20.69, "dec": 45.28, "bayer": "Alp", "con": "Cyg", "dist": 2600,
+      "names": { "tr": "Deneb", "en": "Deneb" },
+      "etymology": {
+        "tr": "Arapça 'Zeneb ed-Decâce' — 'tavuğun kuyruğu'. Kuğu'nun kuyruk yıldızıdır; bilinen en ışıklı yıldızlardan biridir, ~2600 ışık yılı uzaktan bile bu kadar parlak görünür.",
+        "en": "Arabic 'Dhanab ad-Dajaja' — 'the hen's tail'. The Swan's tail star, one of the most luminous stars known — brilliant even from ~2,600 light-years."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Zeus'un Leda'ya yaklaşmak için dönüştüğü kuğunun kuyruğudur; Samanyolu boyunca süzülen kuğu, Vega ve Altair ile Yaz Üçgeni'ni oluşturur.",
+          "en": "The tail of the swan Zeus became to approach Leda, gliding down the Milky Way — one corner of the Summer Triangle with Vega and Altair."
+        },
+        "chinese": {
+          "tr": "Çin göğünde Tiānjīn — 'Gök Geçidi'dir; Samanyolu nehrinin üzerindeki köprüdür. Kimi anlatılarda Dokumacı Kız ile Çoban'ın kavuştuğu saksağan köprüsünün ta kendisidir.",
+          "en": "Tiānjīn, the 'Celestial Ford' — the bridge over the Milky Way river; in some tellings, the very magpie bridge where the Weaver Girl and Cowherd meet."
+        }
+      }
+    },
+    {
+      "match": { "name": "Regulus" }, "ra": 10.139, "dec": 11.967, "bayer": "Alp", "con": "Leo", "dist": 79,
+      "names": { "tr": "Regulus", "en": "Regulus" },
+      "etymology": {
+        "tr": "Latince 'küçük kral'. Aslanın kalbidir; ekliptiğe en yakın parlak yıldız olduğu için Ay ve gezegenler sık sık önünden geçer.",
+        "en": "Latin for 'little king'. The Lion's heart, and the bright star closest to the ecliptic — often occulted by the Moon and planets."
+      },
+      "stories": {
+        "persian": {
+          "tr": "Dört Kraliyet Yıldızı'nın en önemlisiydi; 'Venant', kuzeyin bekçisi. Kralların yıldızı sayılır, doğum haritalarında hükümdarlık alameti kabul edilirdi.",
+          "en": "Chief of the four Royal Stars — 'Venant', watcher of the north. The star of kings, an omen of sovereignty in birth charts."
+        },
+        "greek": {
+          "tr": "Herakles'in ilk görevi olan yenilmez Nemea Aslanı'nın kalbidir; derisi hiçbir silahla delinemeyen aslanı kahraman çıplak elleriyle boğmuştur.",
+          "en": "The heart of the invincible Nemean Lion, Heracles' first labour — its hide impervious to weapons, strangled by the hero's bare hands."
+        },
+        "arab": {
+          "tr": "'Kalb el-Esed' — Aslanın Kalbi. Araplar için gökyüzündeki dev aslan figürünün atan yüreğiydi.",
+          "en": "'Qalb al-Asad' — the Lion's Heart, the beating core of a vast celestial lion."
+        }
+      }
+    },
+    {
+      "match": { "name": "Polaris" }, "ra": 2.53, "dec": 89.264, "bayer": "Alp", "con": "UMi", "dist": 433,
+      "names": { "tr": "Polaris (Demirkazık)", "en": "Polaris" },
+      "etymology": {
+        "tr": "Latince 'Stella Polaris' — Kutup Yıldızı. Türkçede Demirkazık adıyla bilinir. Gök kutbuna en yakın parlak yıldız olduğu için gece boyunca yerinden kımıldamaz.",
+        "en": "Latin 'Stella Polaris' — the Pole Star; 'Demirkazık' (Iron Stake) in Turkish. Nearly fixed at the celestial pole, it never moves through the night."
+      },
+      "stories": {
+        "turkic": {
+          "tr": "Türk mitolojisinde Demirkazık, gök çadırının direğidir. Gökyüzü bu kazığın etrafında döner; Tanrı Ülgen'in atları (Büyük ve Küçük Ayı) bu kazığa bağlıdır ve sonsuza dek çevresinde dolanır. Göğün kapısının burada açıldığına inanılırdı.",
+          "en": "In Turkic mythology, Demirkazık is the iron stake pinning the tent of the sky, around which the heavens turn. The horses of the god Ülgen (the two Bears) are tethered to it, circling forever; the gate of heaven was believed to open here."
+        },
+        "norse": {
+          "tr": "İskandinavlar onu 'Veraldar Nagli' — 'dünya çivisi' olarak görürdü; evren bu çivinin çevresinde dönerdi.",
+          "en": "The Norse saw it as 'Veraldar Nagli', the World Nail, around which the universe revolves."
+        },
+        "greek": {
+          "tr": "Küçük Ayı'nın kuyruğunun ucudur; Zeus'u bebekken emziren nympha Kynosura ile özdeşleştirilir. 'Kılavuz yıldız' olarak Fenike ve Yunan denizcilerinin pusulasıydı.",
+          "en": "Tip of the Little Bear's tail, identified with Cynosura, the nymph who nursed the infant Zeus — the guiding star of Phoenician and Greek sailors."
+        }
+      }
+    },
+    {
+      "match": { "name": "Rigil Kentaurus" }, "ra": 14.66, "dec": -60.834, "bayer": "Alp", "con": "Cen", "dist": 4.4,
+      "names": { "tr": "Alfa Centauri", "en": "Alpha Centauri" },
+      "etymology": {
+        "tr": "Arapça 'Ricl Kantûris' — 'Erboğa'nın ayağı'. Güneş sistemine en yakın yıldız sistemidir (4,4 ışık yılı); aslında üç yıldızdan oluşur.",
+        "en": "Arabic 'Rijl Qanturis' — 'the Centaur's foot'. The nearest star system to the Sun (4.4 light-years), actually a triple star."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Bilge kentaur Kheiron'un ayağıdır. Herakles'in zehirli okuyla yanlışlıkla yaralanan ölümsüz Kheiron, acıdan kurtulmak için ölümsüzlüğünü Prometheus'a devreder; Zeus onu göğe yerleştirir.",
+          "en": "The foot of Chiron, the wise centaur. Accidentally wounded by Heracles' poisoned arrow, the immortal Chiron traded his immortality to Prometheus to end his pain; Zeus set him in the sky."
+        }
+      }
+    },
+    {
+      "match": { "name": "Mizar" }, "ra": 13.399, "dec": 54.925, "bayer": "Zet", "con": "UMa", "dist": 83,
+      "names": { "tr": "Mizar", "en": "Mizar" },
+      "etymology": {
+        "tr": "Arapça 'mîzer' — 'kuşak, peştamal'. Hemen yanındaki sönük Alcor ile ünlü bir çift oluşturur.",
+        "en": "Arabic 'mi'zar' — 'girdle, apron'. Forms a famous pair with faint Alcor beside it."
+      },
+      "stories": {
+        "arab": {
+          "tr": "Mizar ile Alcor, tarihin en eski 'göz testi'ydi: Alcor'u çıplak gözle seçebilen keskin gözlü sayılırdı. Araplar 'O, Süha'yı görür' deyimini dikkatli insanlar için kullanırdı.",
+          "en": "Mizar and Alcor formed history's oldest eye test: spotting faint Alcor marked keen sight. 'He can see Suha' was said of the sharp-eyed."
+        },
+        "turkic": {
+          "tr": "Türk halk astronomisinde Büyük Ayı 'Yedi Kardeşler'dir; Mizar kardeşlerden biri, minik Alcor ise kimi anlatılarda yanında taşıdığı yavrusu ya da gelinidir.",
+          "en": "In Turkic folk astronomy the Big Dipper is the 'Seven Brothers'; Mizar is one brother, and tiny Alcor his child — or bride — carried at his side."
+        }
+      }
+    },
+    {
+      "match": { "name": "Algol" }, "ra": 3.136, "dec": 40.956, "bayer": "Bet", "con": "Per", "dist": 93,
+      "names": { "tr": "Algol (Şeytan Yıldızı)", "en": "Algol (Demon Star)" },
+      "etymology": {
+        "tr": "Arapça 'Ra's el-Gûl' — 'gulyabaninin başı'. Her 2,87 günde bir gözle görülür şekilde sönükleşir (örten çift yıldız); eskiler bu 'göz kırpmayı' uğursuz sayardı.",
+        "en": "Arabic 'Ra's al-Ghul' — 'the demon's head'. It visibly dims every 2.87 days (an eclipsing binary); the ancients found this 'winking' sinister."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Perseus'un elinde taşıdığı Medusa'nın kesik başıdır. Bakışı taşa çeviren Gorgon'un gözü, yıldızın düzenli sönüp parlamasıyla hâlâ 'göz kırpar'.",
+          "en": "The severed head of Medusa in Perseus' hand. The Gorgon's petrifying eye still 'blinks' as the star regularly dims and brightens."
+        },
+        "arab": {
+          "tr": "Gökyüzünün en uğursuz yıldızı sayılırdı; astrolojide şiddet ve tehlikeyle ilişkilendirilir, savaş başlatmak için bu yıldızın sönük anı beklenirdi.",
+          "en": "Held the most unlucky of stars, tied to violence and danger; battles were timed to its dimming."
+        }
+      }
+    },
+    {
+      "match": { "name": "Alcyone" }, "ra": 3.791, "dec": 24.105, "bayer": "Eta", "con": "Tau", "dist": 440,
+      "names": { "tr": "Alcyone (Ülker'in kalbi)", "en": "Alcyone (heart of the Pleiades)" },
+      "etymology": {
+        "tr": "Ülker (Pleiades) kümesinin en parlak yıldızıdır. Türkçe 'Ülker' adı çok eskidir; Divânu Lügati't-Türk'te de geçer.",
+        "en": "Brightest star of the Pleiades cluster. The Turkish name 'Ülker' is ancient, appearing in the 11th-century Diwan Lughat at-Turk."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Atlas ile Pleione'nin yedi kızından biridir. Avcı Orion yedi kız kardeşi kovalayınca Zeus onları önce güvercine, sonra yıldıza çevirir — Orion gökyüzünde hâlâ peşlerindedir.",
+          "en": "One of the seven daughters of Atlas and Pleione. Pursued by Orion, the sisters were turned to doves, then stars — Orion still chases them across the sky."
+        },
+        "turkic": {
+          "tr": "Ülker, Türk halk takviminin direğiydi: 'Ülker doğdu, yaz geldi' denirdi. Kasım ayında akşam göğünde belirmesi kışın, mayısta kaybolması yazın habercisiydi; 'Ülker karşılama' törenleri yapılırdı.",
+          "en": "Ülker anchored the Turkic folk calendar: its evening rising in November announced winter, its May disappearance summer — greeted with seasonal ceremonies."
+        },
+        "hindu": {
+          "tr": "Krittikalar — savaş tanrısı Kartikeya'yı emziren altı (bazen yedi) hemşiredir; Hint ay takviminin üçüncü durağıdır.",
+          "en": "The Krittikas, the six (or seven) nurses of the war god Kartikeya; third lunar mansion of the Hindu calendar."
+        },
+        "norse": {
+          "tr": "Freyja'nın tavukları olarak bilinirdi; kimi bölgelerde kümes hayvanlarının uyuma-uyanma saati bu kümeyle ayarlanırdı.",
+          "en": "Known as Freyja's hens; in places, the farmyard's clock was set by them."
+        }
+      }
+    },
+    {
+      "match": { "name": "Mira" }, "ra": 2.322, "dec": -2.978, "bayer": "Omi", "con": "Cet", "dist": 300,
+      "names": { "tr": "Mira", "en": "Mira" },
+      "etymology": {
+        "tr": "Latince 'mirabilis' — 'harika, şaşırtıcı'. 11 ayda bir parlayıp neredeyse görünmez olacak kadar sönen ilk keşfedilmiş değişen yıldızdır (1596).",
+        "en": "Latin 'mirabilis' — 'the wonderful'. The first variable star ever recognized (1596), brightening and nearly vanishing on an 11-month cycle."
+      },
+      "stories": {
+        "modern": {
+          "tr": "1596'da David Fabricius'un fark ettiği bu 'yanıp sönen' yıldız, göklerin değişmez olduğu yolundaki antik inancı sarsan kanıtlardan biri oldu.",
+          "en": "Noticed by David Fabricius in 1596, this pulsing star helped shatter the ancient belief in unchanging heavens."
+        }
+      }
+    },
+    {
+      "match": { "name": "Bellatrix" }, "ra": 5.419, "dec": 6.35, "bayer": "Gam", "con": "Ori", "dist": 250,
+      "names": { "tr": "Bellatrix", "en": "Bellatrix" },
+      "etymology": {
+        "tr": "Latince 'kadın savaşçı' demektir. Orion'un sol omzudur; 'Amazon Yıldızı' olarak da anılır.",
+        "en": "Latin for 'female warrior'. Orion's left shoulder, also called the Amazon Star."
+      },
+      "stories": {
+        "modern": {
+          "tr": "Ortaçağ astrologları bu yıldız altında doğan kadınların talihli ve güçlü konuşmacılar olacağına inanırdı.",
+          "en": "Medieval astrologers held that women born under it would be fortunate and powerful of speech."
+        }
+      }
+    },
+    {
+      "match": { "name": "Alnilam" }, "ra": 5.604, "dec": -1.202, "bayer": "Eps", "con": "Ori", "dist": 2000,
+      "names": { "tr": "Alnilam (Kuşak'ın ortası)", "en": "Alnilam (middle of the Belt)" },
+      "etymology": {
+        "tr": "Arapça 'en-Nizâm' — 'inci dizisi'. Orion Kuşağı'nın ortanca yıldızıdır; üçü birden gökyüzünün en tanınmış hizasını oluşturur.",
+        "en": "Arabic 'an-Nizam' — 'the string of pearls'. The middle star of Orion's Belt, the sky's most famous alignment."
+      },
+      "stories": {
+        "turkic": {
+          "tr": "Türk halk astronomisinde Orion Kuşağı 'Üçyıldız' ya da 'Terazi Yıldızları'dır; gece vakti tayini için kullanılırdı. Anadolu'da kuşağın hizası kıble ve yön bulmaya yarardı.",
+          "en": "In Turkic folk astronomy the Belt is 'Üçyıldız' (Three Stars) or the Scales, used to tell time at night and find direction in Anatolia."
+        },
+        "egyptian": {
+          "tr": "Kuşağın üç yıldızı Osiris ile özdeşleştirilirdi; bir kurama göre Giza'nın üç büyük piramidi bu üç yıldızın yerdeki izdüşümü olarak konumlandırıldı.",
+          "en": "The three Belt stars were linked to Osiris; one theory holds the three Giza pyramids mirror their layout on the ground."
+        },
+        "arab": {
+          "tr": "İnci dizisi — devin kuşağına dizilmiş üç eşit inci olarak hayal edilirdi.",
+          "en": "Imagined as three equal pearls strung on the giant's belt."
+        }
+      }
+    },
+    {
+      "match": { "name": "Dubhe" }, "ra": 11.062, "dec": 61.751, "bayer": "Alp", "con": "UMa", "dist": 123,
+      "names": { "tr": "Dubhe", "en": "Dubhe" },
+      "etymology": {
+        "tr": "Arapça 'Zahr ed-Dubb' — 'ayının sırtı'. Merak ile birlikte Kutup Yıldızı'nı gösteren 'işaretçi' yıldızlardan biridir.",
+        "en": "Arabic 'Zahr ad-Dubb' — 'the bear's back'. With Merak, one of the two 'pointers' to the Pole Star."
+      },
+      "stories": {
+        "arab": {
+          "tr": "Araplar bu yedi yıldızı 'Benât Na'ş' — 'tabutun kızları' olarak görürdü: dördü tabut, üçü arkasında yürüyen yaslı kızlardır; cenaze alayı kutbun etrafında sonsuza dek döner.",
+          "en": "The Arabs saw the seven stars as 'Banat Na'sh', the Daughters of the Bier: four form a coffin, three the mourning daughters behind, circling the pole in an endless funeral."
+        }
+      }
+    },
+    {
+      "match": { "name": "Alkaid" }, "ra": 13.792, "dec": 49.313, "bayer": "Eta", "con": "UMa", "dist": 104,
+      "names": { "tr": "Alkaid", "en": "Alkaid" },
+      "etymology": {
+        "tr": "Arapça 'Kâid Benât Na'ş' — 'yas kızlarının önderi'. Büyük Ayı'nın kuyruğunun ucudur.",
+        "en": "Arabic 'Qa'id Banat Na'sh' — 'leader of the mourning daughters'. The tip of the Great Bear's tail."
+      },
+      "stories": {
+        "chinese": {
+          "tr": "Çin'de Kuzey Kepçesi'nin (Běidǒu) yedinci yıldızı Yáoguāng, 'Parıldayan Işık'tır; kepçe imparatorun gök arabası sayılır, mevsimleri onun sapının yönü gösterirdi.",
+          "en": "In China, the seventh star of the Northern Dipper (Běidǒu), Yáoguāng, 'Twinkling Radiance'; the Dipper was the emperor's celestial chariot, its handle pointing out the seasons."
+        }
+      }
+    },
+    {
+      "match": { "name": "Thuban" }, "ra": 14.073, "dec": 64.376, "bayer": "Alp", "con": "Dra", "dist": 300,
+      "names": { "tr": "Thuban", "en": "Thuban" },
+      "etymology": {
+        "tr": "Arapça 'Su'bân' — 'yılan'. M.Ö. 3000 civarında Kutup Yıldızı buydu; presesyon nedeniyle kutup görevi sonradan Polaris'e geçti.",
+        "en": "Arabic 'Thu'ban' — 'serpent'. Around 3000 BC this was the pole star, before precession passed the role to Polaris."
+      },
+      "stories": {
+        "egyptian": {
+          "tr": "Piramitler çağının Kutup Yıldızı'ydı. Keops Piramidi'nin kuzey hava kanalının, firavunun ruhunun bu 'ölümsüz yıldıza' yükselmesi için Thuban'a hizalandığı düşünülür.",
+          "en": "Pole star of the pyramid age. The north shaft of the Great Pyramid is thought to have been aligned to Thuban, so the pharaoh's soul could ascend to the 'imperishable star'."
+        }
+      }
+    },
+    {
+      "match": { "name": "Alphard" }, "ra": 9.46, "dec": -8.659, "bayer": "Alp", "con": "Hya", "dist": 177,
+      "names": { "tr": "Alphard", "en": "Alphard" },
+      "etymology": {
+        "tr": "Arapça 'el-Ferd' — 'yalnız olan'. Çevresinde parlak yıldız bulunmayan bu turuncu dev, Su Yılanı'nın kalbidir.",
+        "en": "Arabic 'al-Fard' — 'the solitary one'. An orange giant with no bright neighbours, the heart of the Water Snake."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Herakles'in ikinci görevi olan çok başlı Hydra canavarının kalbidir; her kesilen başın yerine iki yenisi çıkardı.",
+          "en": "The heart of the many-headed Hydra of Heracles' second labour — two heads regrew for every one cut."
+        }
+      }
+    },
+    {
+      "match": { "name": "Alphecca" }, "ra": 15.578, "dec": 26.715, "bayer": "Alp", "con": "CrB", "dist": 75,
+      "names": { "tr": "Alphecca (Gemma)", "en": "Alphecca (Gemma)" },
+      "etymology": {
+        "tr": "Arapça 'el-Fekke' — 'kırık (halka)' ve Latince 'Gemma' — 'mücevher'. Kuzey Tacı'nın ortasındaki taştır.",
+        "en": "Arabic 'al-Fakka' — 'the broken (ring)' and Latin 'Gemma' — 'the jewel' set in the Northern Crown."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Theseus tarafından Naksos'ta terk edilen Girit prensesi Ariadne'nin düğün tacıdır. Tanrı Dionysos onunla evlenir ve tacı gökyüzüne fırlatır; mücevherleri yıldız olur.",
+          "en": "The wedding crown of Ariadne, abandoned on Naxos by Theseus. Dionysus married her and flung the crown skyward, its jewels becoming stars."
+        }
+      }
+    },
+    {
+      "match": { "name": "Rasalhague" }, "ra": 17.582, "dec": 12.56, "bayer": "Alp", "con": "Oph", "dist": 48,
+      "names": { "tr": "Rasalhague", "en": "Rasalhague" },
+      "etymology": {
+        "tr": "Arapça 'Ra's el-Havvâ' — 'yılancının başı'.",
+        "en": "Arabic 'Ra's al-Hawwa' — 'the head of the serpent-charmer'."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Hekim tanrı Asklepios'un başıdır. Ölüleri diriltecek kadar ustalaşınca Hades şikâyet eder; Zeus onu yıldırımla öldürür ama hekimliğe saygısından göğe, elinde yılanıyla yerleştirir. Tıbbın simgesi yılanlı asa buradan gelir.",
+          "en": "The head of Asclepius, god of healing, struck down by Zeus for raising the dead — yet honored in the sky, serpent in hand. The serpent-staff of medicine descends from him."
+        }
+      }
+    },
+    {
+      "match": { "name": "Albireo" }, "ra": 19.512, "dec": 27.96, "bayer": "Bet", "con": "Cyg", "dist": 430,
+      "names": { "tr": "Albireo", "en": "Albireo" },
+      "etymology": {
+        "tr": "Adı, çeviri hatalarıyla bozulmuş karışık bir geçmişe sahiptir. Kuğu'nun gagasıdır; küçük teleskopla bakınca biri altın sarısı, biri safir mavisi iki yıldıza ayrılır — göğün en güzel çift yıldızı sayılır.",
+        "en": "Its name is a centuries-old chain of mistranslations. The Swan's beak resolves in small telescopes into a golden and a sapphire star — often called the most beautiful double in the sky."
+      },
+      "stories": {
+        "modern": {
+          "tr": "Amatör gökbilimcilerin 'renk dersi' yıldızıdır: sıcak mavi ile serin turuncunun yan yana durduğu bu çift, yıldız sıcaklıklarının renklerini tek bakışta öğretir.",
+          "en": "The amateur astronomer's colour lesson: hot blue beside cool orange, teaching stellar temperature at a glance."
+        }
+      }
+    },
+    {
+      "match": { "name": "Enif" }, "ra": 21.736, "dec": 9.875, "bayer": "Eps", "con": "Peg", "dist": 690,
+      "names": { "tr": "Enif", "en": "Enif" },
+      "etymology": {
+        "tr": "Arapça 'el-Enf' — 'burun'. Kanatlı at Pegasus'un burnudur.",
+        "en": "Arabic 'al-Anf' — 'the nose' of the winged horse Pegasus."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Medusa'nın kanından doğan kanatlı at Pegasus'un burnudur; kahraman Bellerophon onun sırtında Khimaira'yı yendi, ama Olympos'a çıkmaya kalkınca düşürüldü — at tek başına göğe kabul edildi.",
+          "en": "The nose of Pegasus, born of Medusa's blood. Bellerophon slew the Chimera from his back but was cast down for daring to fly to Olympus — the horse alone was welcomed to the sky."
+        }
+      }
+    },
+    {
+      "match": { "name": "Hamal" }, "ra": 2.12, "dec": 23.463, "bayer": "Alp", "con": "Ari", "dist": 66,
+      "names": { "tr": "Hamal", "en": "Hamal" },
+      "etymology": {
+        "tr": "Arapça 'hamel' — 'kuzu'. Koç takımyıldızının en parlak yıldızıdır; antik çağda ilkbahar ekinoksu buradaydı.",
+        "en": "Arabic 'hamal' — 'the lamb'. Brightest star of Aries; in antiquity the spring equinox lay here."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Altın postlu uçan koçun başıdır. Kral çocukları Phriksos ile Helle'yi kurban edilmekten kurtarıp sırtında kaçırdı; Helle denize düştü (Çanakkale Boğazı'nın antik adı Hellespontos buradan gelir), koçun altın postu ise Argonotların efsanevi hedefi oldu.",
+          "en": "Head of the golden-fleeced flying ram that rescued Phrixus and Helle. Helle fell into the strait since called Hellespont; the ram's golden fleece became the quest of the Argonauts."
+        }
+      }
+    },
+    {
+      "match": { "name": "Alpheratz" }, "ra": 0.14, "dec": 29.091, "bayer": "Alp", "con": "And", "dist": 97,
+      "names": { "tr": "Alpheratz", "en": "Alpheratz" },
+      "etymology": {
+        "tr": "Arapça 'Surrat el-Feres' — 'atın göbeği'. Eskiden hem Pegasus'a hem Andromeda'ya sayılırdı; bugün Andromeda'nın başıdır ama Pegasus Karesi'nin de köşesidir.",
+        "en": "Arabic 'Surrat al-Faras' — 'the horse's navel'. Once shared by Pegasus and Andromeda; now Andromeda's head, yet still a corner of the Great Square."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Zincire vurulmuş prenses Andromeda'nın başıdır; annesi Kassiopeia'nın kibri yüzünden deniz canavarına sunulmuş, Perseus tarafından kurtarılmıştır.",
+          "en": "The head of chained Andromeda, offered to the sea monster for her mother Cassiopeia's vanity and saved by Perseus."
+        }
+      }
+    },
+    {
+      "match": { "name": "Schedar" }, "ra": 0.675, "dec": 56.537, "bayer": "Alp", "con": "Cas", "dist": 228,
+      "names": { "tr": "Schedar", "en": "Schedar" },
+      "etymology": {
+        "tr": "Arapça 'sadr' — 'göğüs'. Tahtında oturan Kraliçe Kassiopeia'nın kalbidir.",
+        "en": "Arabic 'sadr' — 'the breast' of Queen Cassiopeia on her throne."
+      },
+      "stories": {
+        "greek": {
+          "tr": "'Ben deniz perilerinden bile güzelim' diyen kibirli kraliçenin göğsündeki yıldızdır. Cezası: tahtına bağlanıp sonsuza dek kutbun etrafında dönmek — yılın yarısında baş aşağı.",
+          "en": "The star at the breast of the queen who boasted she outshone the sea nymphs. Her punishment: bound to her throne, circling the pole forever — half the year upside down."
+        }
+      }
+    },
+    {
+      "match": { "name": "Shaula" }, "ra": 17.56, "dec": -37.104, "bayer": "Lam", "con": "Sco", "dist": 570,
+      "names": { "tr": "Shaula", "en": "Shaula" },
+      "etymology": {
+        "tr": "Arapça 'eş-Şevle' — 'kalkık kuyruk/iğne'. Akrebin zehirli iğnesidir.",
+        "en": "Arabic 'ash-Shawla' — 'the raised sting' of the Scorpion's tail."
+      },
+      "stories": {
+        "polynesian": {
+          "tr": "Polinezya'da akrebin kuyruğu, yarı tanrı Maui'nin okyanustan adaları çekip çıkardığı sihirli oltasıdır (Manaiakalani).",
+          "en": "In Polynesia the scorpion's tail is Maui's magic fishhook, Manaiakalani, with which he hauled islands from the sea."
+        }
+      }
+    },
+    {
+      "match": { "name": "Nunki" }, "ra": 18.921, "dec": -26.297, "bayer": "Sig", "con": "Sgr", "dist": 228,
+      "names": { "tr": "Nunki", "en": "Nunki" },
+      "etymology": {
+        "tr": "Adı Babil/Sümer kökenlidir — muhtemelen kutsal Eridu şehrinin yıldızı. Günümüze ulaşan en eski yıldız adlarından biridir.",
+        "en": "A name of Babylonian/Sumerian origin — likely the star of the holy city Eridu; one of the oldest star names still in use."
+      },
+      "stories": {
+        "mesopotamian": {
+          "tr": "Sümerlerin bilgelik tanrısı Enki'nin şehri Eridu ile ilişkilendirilirdi; okçu tanrı Pabilsag'ın (Yay'ın atası) yayının yıldızlarından biridir.",
+          "en": "Tied to Eridu, city of the wisdom god Enki; one of the bow stars of the archer god Pabilsag, ancestor of Sagittarius."
+        }
+      }
+    },
+    {
+      "match": { "name": "Zubenelgenubi" }, "ra": 14.848, "dec": -16.042, "bayer": "Alp", "con": "Lib", "dist": 75,
+      "names": { "tr": "Zubenelgenubi", "en": "Zubenelgenubi" },
+      "etymology": {
+        "tr": "Arapça 'ez-Zubânâ el-Cenûbî' — 'güney kıskacı'. Terazi'nin yıldızları bir zamanlar Akrep'in kıskaçlarıydı; adlar bu eski sınırı hâlâ hatırlar.",
+        "en": "Arabic 'az-Zubana al-Janubi' — 'the southern claw'. Libra's stars were once the Scorpion's claws, and the names remember."
+      },
+      "stories": {
+        "mesopotamian": {
+          "tr": "Babilliler burayı ZIB.BA.AN.NA — 'göğün terazisi' olarak bilirdi; güneş sonbahar ekinoksunda (gece ile gündüzün eşitlendiği gün) buradan geçtiği için adalet ve denge simgesi oldu.",
+          "en": "To Babylon this was ZIB.BA.AN.NA, 'the balance of heaven' — the sun passed here at the autumn equinox, when day and night stand equal, making it the emblem of justice."
+        }
+      }
+    },
+    {
+      "match": { "name": "Denebola" }, "ra": 11.818, "dec": 14.572, "bayer": "Bet", "con": "Leo", "dist": 36,
+      "names": { "tr": "Denebola", "en": "Denebola" },
+      "etymology": {
+        "tr": "Arapça 'Zeneb el-Esed' — 'aslanın kuyruğu'.",
+        "en": "Arabic 'Dhanab al-Asad' — 'the lion's tail'."
+      },
+      "stories": {
+        "arab": {
+          "tr": "Gökteki dev aslanın kuyruk püskülüydü; astrolojide talihsizlik getirdiğine inanılır, Regulus'un kral yıldızının gölgesinde kalırdı.",
+          "en": "The tuft of the great celestial lion's tail; astrologers deemed it unlucky, forever in royal Regulus' shadow."
+        }
+      }
+    },
+    {
+      "match": { "name": "Acrux" }, "ra": 12.443, "dec": -63.099, "bayer": "Alp", "con": "Cru", "dist": 320,
+      "names": { "tr": "Acrux", "en": "Acrux" },
+      "etymology": {
+        "tr": "Modern bir ad: 'Alpha Crucis'in kısaltması. Güney Haçı'nın en parlak yıldızıdır; Brezilya ve Avustralya gibi güney ülkelerinin bayraklarında yer alır.",
+        "en": "A modern contraction of 'Alpha Crucis'. Brightest star of the Southern Cross, featured on the flags of Brazil, Australia and others."
+      },
+      "stories": {
+        "polynesian": {
+          "tr": "Güney Haçı, Polinezyalı denizcilerin güney pusulasıydı; uzun ekseni gök güney kutbunu gösterir. Yeni Zelanda Maorileri onu 'Te Punga' — kanonun çapası olarak görür.",
+          "en": "The Southern Cross was the Polynesian navigator's southern compass, its long axis pointing to the pole; the Māori call it Te Punga, the anchor of the sky-canoe."
+        },
+        "modern": {
+          "tr": "Avrupalı kâşifler 16. yüzyılda güneye indikçe bu 'yeni' haçı dinî bir işaret saydılar; Dante'nin 'dört kutsal yıldızı' ile özdeşleştirildi.",
+          "en": "Sixteenth-century European voyagers took the 'new' cross as a holy sign, identified with Dante's four sacred stars."
+        }
+      }
+    },
+    {
+      "match": { "name": "Mirfak" }, "ra": 3.405, "dec": 49.861, "bayer": "Alp", "con": "Per", "dist": 590,
+      "names": { "tr": "Mirfak", "en": "Mirfak" },
+      "etymology": {
+        "tr": "Arapça 'mirfak' — 'dirsek'. Kahraman Perseus'un dirseğidir.",
+        "en": "Arabic 'mirfaq' — 'the elbow' of the hero Perseus."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Medusa'yı öldüren ve Andromeda'yı deniz canavarından kurtaran kahraman Perseus'un kılıç tutan kolundaki yıldızdır.",
+          "en": "A star in the sword arm of Perseus, slayer of Medusa and rescuer of Andromeda."
+        }
+      }
+    },
+    {
+      "match": { "name": "Kochab" }, "ra": 14.845, "dec": 74.156, "bayer": "Bet", "con": "UMi", "dist": 130,
+      "names": { "tr": "Kochab", "en": "Kochab" },
+      "etymology": {
+        "tr": "Muhtemelen Arapça 'el-kevkeb' — 'yıldız' sözcüğünden. M.Ö. 1500–500 arasında kutba en yakın parlak yıldızdı.",
+        "en": "Probably from Arabic 'al-kawkab' — 'the star'. It served as the nearest bright pole star from about 1500 to 500 BC."
+      },
+      "stories": {
+        "modern": {
+          "tr": "Polaris'ten önceki 'kutup bekçisi'ydi; yanındaki Pherkad ile birlikte 'Kutbun Muhafızları' diye anılır, ikisi her gece kutbun etrafında nöbet turu atar.",
+          "en": "The pole-keeper before Polaris; with Pherkad it forms the 'Guardians of the Pole', patrolling the celestial pole each night."
+        }
+      }
+    },
+    {
+      "match": { "name": "Etamin" }, "ra": 17.943, "dec": 51.489, "bayer": "Gam", "con": "Dra", "dist": 154,
+      "names": { "tr": "Eltanin", "en": "Eltanin" },
+      "etymology": {
+        "tr": "Arapça 'et-Tinnîn' — 'büyük yılan/ejderha'. Ejderha'nın başındaki en parlak yıldızdır ve Londra'nın tam tepesinden geçer.",
+        "en": "Arabic 'at-Tinnin' — 'the great serpent'. Brightest star in the Dragon's head; it passes directly over London."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Hera'nın altın elmalarını bekleyen yüz başlı ejderha Ladon'un gözlerinden biridir; Herakles tarafından öldürülünce Hera onu göğe, kutbun çevresine sarılmış hâlde yerleştirdi.",
+          "en": "An eye of Ladon, the hundred-headed dragon guarding Hera's golden apples, coiled around the pole after Heracles slew him."
+        }
+      }
+    },
+    {
+      "match": { "name": "Mintaka" }, "ra": 5.533, "dec": -0.299, "bayer": "Del", "con": "Ori", "dist": 900,
+      "names": { "tr": "Mintaka", "en": "Mintaka" },
+      "etymology": { "tr": "Arapça 'mıntaka' — 'kuşak, kemer'. Orion Kuşağı'nın batı ucudur ve gök ekvatorunun neredeyse tam üzerindedir.", "en": "Arabic 'mintaqa' — 'the belt'. Western end of Orion's Belt, sitting almost exactly on the celestial equator." },
+      "stories": { "modern": { "tr": "Gök ekvatorunda olduğu için dünyanın her yerinde tam doğudan doğup tam batıdan batar — denizcilerin doğal pusulasıydı.", "en": "Lying on the celestial equator, it rises due east and sets due west everywhere on Earth — a natural compass." } }
+    },
+    {
+      "match": { "name": "Alnitak" }, "ra": 5.679, "dec": -1.943, "bayer": "Zet", "con": "Ori", "dist": 800,
+      "names": { "tr": "Alnitak", "en": "Alnitak" },
+      "etymology": { "tr": "Arapça 'en-nitâk' — 'kuşak'. Kuşağın doğu ucudur; hemen altında ünlü Atbaşı Bulutsusu bulunur.", "en": "Arabic 'an-nitaq' — 'the girdle'. Eastern end of the Belt, with the famous Horsehead Nebula just below." },
+      "stories": { "egyptian": { "tr": "Kuşağın üç yıldızından biri olarak Osiris'le özdeşleştirilirdi; piramit hizalama kuramının baş kahramanlarındandır.", "en": "One of the Belt three linked to Osiris, a lead actor in the pyramid-alignment theory." } }
+    },
+    {
+      "match": { "name": "Saiph" }, "ra": 5.796, "dec": -9.67, "bayer": "Kap", "con": "Ori", "dist": 650,
+      "names": { "tr": "Saiph", "en": "Saiph" },
+      "etymology": { "tr": "Arapça 'seyf' — 'kılıç'. Adı kılıç olsa da aslında Orion'un sağ dizidir; ad, yüzyıllar içinde yanlış yıldıza kaymıştır.", "en": "Arabic 'saif' — 'sword', though it marks Orion's right knee; the name drifted to the wrong star over centuries." },
+      "stories": { "arab": { "tr": "El-Cevzâ devinin kılıcının adıydı; bugünkü 'kılıç' ise kuşağın altında sarkan, Orion Bulutsusu'nu içeren yıldız dizisidir.", "en": "Once the giant's sword; today's 'sword' is the star-string below the Belt holding the Orion Nebula." } }
+    },
+    {
+      "match": { "name": "Adhara" }, "ra": 6.977, "dec": -28.972, "bayer": "Eps", "con": "CMa", "dist": 430,
+      "names": { "tr": "Adhara", "en": "Adhara" },
+      "etymology": { "tr": "Arapça 'azârâ' — 'bakireler'. Çevresindeki yıldızlarla birlikte bir grup genç kızı temsil ederdi. Morötesi ışınımda gökyüzünün en parlak yıldızıdır.", "en": "Arabic 'adhara' — 'the maidens', once a group with its neighbours. The brightest star in the sky in ultraviolet light." },
+      "stories": { "arab": { "tr": "Süheyl'in (Canopus) peşindeki bakirelerden biri sayılırdı; güney ufkunda ona eşlik eder.", "en": "One of the maidens following Suhayl (Canopus) along the southern horizon." } }
+    },
+    {
+      "match": { "name": "Gacrux" }, "ra": 12.519, "dec": -57.113, "bayer": "Gam", "con": "Cru", "dist": 89,
+      "names": { "tr": "Gacrux", "en": "Gacrux" },
+      "etymology": { "tr": "'Gamma Crucis'in kısaltması. Güney Haçı'nın tepe yıldızı ve en yakın kızıl devlerden biridir.", "en": "Contraction of 'Gamma Crucis' — the top of the Southern Cross and one of the nearest red giants." },
+      "stories": { "polynesian": { "tr": "Haçın uzun ekseninin başlangıcıdır: Acrux ile birleştirip uzatınca gök güney kutbunu bulursun — Polinezya denizcilerinin güney pusulası.", "en": "Start of the pointer line: extend Gacrux through Acrux to find the south celestial pole — the navigator's southern compass." } }
+    },
+    {
+      "match": { "name": "Mimosa" }, "ra": 12.795, "dec": -59.689, "bayer": "Bet", "con": "Cru", "dist": 280,
+      "names": { "tr": "Mimosa", "en": "Mimosa" },
+      "etymology": { "tr": "Latince 'mimosa' çiçeğinden — zarif görünümü nedeniyle. Güney Haçı'nın doğu koludur.", "en": "From the mimosa flower, for its delicacy. The eastern arm of the Southern Cross." },
+      "stories": { "modern": { "tr": "Brezilya bayrağında her yıldız bir eyaleti temsil eder; Mimosa da oradadır. Güney yarımkürenin kimlik yıldızlarındandır.", "en": "On Brazil's flag each star is a state — Mimosa among them; an identity star of the southern hemisphere." } }
+    },
+    {
+      "match": { "name": "Alnair" }, "ra": 22.137, "dec": -46.961, "bayer": "Alp", "con": "Gru", "dist": 101,
+      "names": { "tr": "Alnair", "en": "Alnair" },
+      "etymology": { "tr": "Arapça 'en-neyyir' — 'parlak olan'. Turna takımyıldızının en parlak yıldızıdır.", "en": "Arabic 'an-nayyir' — 'the bright one', chief star of the Crane." },
+      "stories": { "arab": { "tr": "Adı 'balığın kuyruğundaki parlak' idi — bu yıldızlar bir zamanlar Güney Balığı'na aitti; takımyıldız sınırları değişince ad kaldı.", "en": "Once 'the bright one of the fish's tail' — these stars belonged to the Southern Fish before the borders moved." } }
+    },
+    {
+      "match": { "name": "Ankaa" }, "ra": 0.438, "dec": -42.306, "bayer": "Alp", "con": "Phe", "dist": 82,
+      "names": { "tr": "Ankaa (Anka)", "en": "Ankaa" },
+      "etymology": { "tr": "Arapça 'el-anka' — efsanevi Anka kuşundan. Doğu mitolojisinin ölümsüz kuşunun adını taşıyan tek parlak yıldızdır.", "en": "From Arabic 'al-anqa', the legendary phoenix of eastern lore." },
+      "stories": { "modern": { "tr": "Anka/Simurg: küllerinden yeniden doğan kuş. Türk ve Fars masallarında Kaf Dağı'nın ardında yaşar; bilgeliğin ve yeniden doğuşun simgesidir.", "en": "The phoenix reborn from its ashes — the Simurgh beyond Mount Qaf in Turkic and Persian tales, emblem of wisdom and renewal." } }
+    },
+    {
+      "match": { "name": "Atria" }, "ra": 16.811, "dec": -69.028, "bayer": "Alp", "con": "TrA", "dist": 391,
+      "names": { "tr": "Atria", "en": "Atria" },
+      "etymology": { "tr": "'Alpha Trianguli Australis'in kısaltması. Güney Üçgeni'nin köşe taşıdır.", "en": "Contraction of 'Alpha Trianguli Australis', cornerstone of the Southern Triangle." },
+      "stories": { "modern": { "tr": "Üç 'Patrik'ten biridir; derin güney göğünün, kuzeyden asla görülemeyen yıldızlarındandır.", "en": "One of the Three Patriarchs, forever hidden from northern skies." } }
+    },
+    {
+      "match": { "name": "Diphda" }, "ra": 0.726, "dec": -17.987, "bayer": "Bet", "con": "Cet", "dist": 96,
+      "names": { "tr": "Diphda", "en": "Diphda" },
+      "etymology": { "tr": "Arapça 'ed-dıfdı' — 'kurbağa'. 'İkinci Kurbağa' Fomalhaut'un ardından doğar; Balina'nın kuyruğudur.", "en": "Arabic 'ad-difdi' — 'the frog', the second frog rising after Fomalhaut; the Whale's tail." },
+      "stories": { "arab": { "tr": "Araplar bu iki yalnız güney yıldızını iki kurbağa olarak görürdü: birinci kurbağa Fomalhaut, ikincisi Diphda.", "en": "Two lonely southern stars, two frogs: Fomalhaut the first, Diphda the second." } }
+    },
+    {
+      "match": { "name": "Menkar" }, "ra": 3.038, "dec": 4.09, "bayer": "Alp", "con": "Cet", "dist": 250,
+      "names": { "tr": "Menkar", "en": "Menkar" },
+      "etymology": { "tr": "Arapça 'minhar' — 'burun delikleri'. Deniz canavarı Ketus'un burnudur.", "en": "Arabic 'minkhar' — 'the nostrils' of the sea monster Cetus." },
+      "stories": { "greek": { "tr": "Andromeda'yı yutmaya gelen canavarın açık ağzının ucundaki yıldızdır; Perseus'un taşa çevirdiği devin nefesi burada donmuştur.", "en": "The tip of the monster's gaping jaws, frozen mid-breath when Perseus turned it to stone." } }
+    },
+    {
+      "match": { "name": "Unukalhai" }, "ra": 15.738, "dec": 6.426, "bayer": "Alp", "con": "Ser", "dist": 74,
+      "names": { "tr": "Unukalhai", "en": "Unukalhai" },
+      "etymology": { "tr": "Arapça 'unuk el-hayye' — 'yılanın boynu'. Yılancı'nın tuttuğu şifa yılanının kalbidir.", "en": "Arabic 'unuq al-hayya' — 'the serpent's neck', heart of the healing snake." },
+      "stories": { "greek": { "tr": "Asklepios'un asasına sarılan yılanın boynundaki yıldızdır; tıbbın simgesinin gökyüzündeki karşılığıdır.", "en": "The neck of the serpent on Asclepius' staff — medicine's emblem written in stars." } }
+    },
+    {
+      "match": { "name": "Alderamin" }, "ra": 21.31, "dec": 62.585, "bayer": "Alp", "con": "Cep", "dist": 49,
+      "names": { "tr": "Alderamin", "en": "Alderamin" },
+      "etymology": { "tr": "Arapça 'ez-zirâ el-yemîn' — 'sağ kol'. Kral Kefeus'un sağ omzudur. 5.500 yıl sonra Kutup Yıldızı olacaktır.", "en": "Arabic 'adh-dhira al-yamin' — 'the right arm' of King Cepheus. It will be the pole star in 5,500 years." },
+      "stories": { "modern": { "tr": "Presesyon çemberi üzerindedir: Thuban'dan Polaris'e geçen kutup tacı, sırası geldiğinde Alderamin'e konacak.", "en": "It waits on the precession circle — the polar crown that passed from Thuban to Polaris will one day rest here." } }
+    },
+    {
+      "match": { "name": "Caph" }, "ra": 0.153, "dec": 59.15, "bayer": "Bet", "con": "Cas", "dist": 54,
+      "names": { "tr": "Caph", "en": "Caph" },
+      "etymology": { "tr": "Arapça 'kef' — 'el, avuç'. Araplar W'nin yıldızlarını kınalı bir el olarak görürdü.", "en": "Arabic 'kaf' — 'the palm'; the Arabs saw the W as a henna-stained hand." },
+      "stories": { "arab": { "tr": "'Kınalı El'in (el-Kef el-Hadîb) parmak ucuydu; Ülker'e uzanan kutlu bir el hayal edilirdi.", "en": "Fingertip of the Henna-dyed Hand, reaching toward the Pleiades." } }
+    },
+    {
+      "match": { "name": "Ruchbah" }, "ra": 1.43, "dec": 60.235, "bayer": "Del", "con": "Cas", "dist": 99,
+      "names": { "tr": "Ruchbah", "en": "Ruchbah" },
+      "etymology": { "tr": "Arapça 'rukbe' — 'diz'. Tahtında oturan kraliçenin dizidir.", "en": "Arabic 'rukba' — 'the knee' of the enthroned queen." },
+      "stories": { "greek": { "tr": "Kassiopeia'nın W'sinin dördüncü yıldızıdır; kraliçe kutup çevresinde dönerken yılın yarısında baş aşağı asılı kalır — kibrin bedeli dizlerinin üstünde bile duramamaktır.", "en": "Fourth star of the W; as the queen wheels around the pole she hangs upside down half the year — vanity's price." } }
+    },
+    {
+      "match": { "name": "Almach" }, "ra": 2.065, "dec": 42.33, "bayer": "Gam", "con": "And", "dist": 350,
+      "names": { "tr": "Almach", "en": "Almach" },
+      "etymology": { "tr": "Arapça 'el-anak' — bir çöl vaşağının adından. Andromeda'nın ayağıdır; teleskopta altın-mavi muhteşem bir çift yıldıza ayrılır.", "en": "From Arabic 'al-anaq', a desert caracal. Andromeda's foot — a superb gold-and-blue telescopic double." },
+      "stories": { "modern": { "tr": "Albireo ile birlikte 'en güzel çift yıldız' unvanının iki adayından biridir; renk zıtlığı yıldız fiziğinin ders kitabı örneğidir.", "en": "With Albireo, a contender for the sky's most beautiful double — a textbook study in stellar colour." } }
+    },
+    {
+      "match": { "name": "Mirach" }, "ra": 1.162, "dec": 35.621, "bayer": "Bet", "con": "And", "dist": 197,
+      "names": { "tr": "Mirach", "en": "Mirach" },
+      "etymology": { "tr": "Arapça 'mîzer' — 'kuşak'. Andromeda'nın kalçasıdır; hemen üzerinden Andromeda Galaksisi'ne 'atlanır'.", "en": "Arabic 'mi'zar' — 'the girdle'. Andromeda's hip, the hop-off point to the Andromeda Galaxy." },
+      "stories": { "modern": { "tr": "Gökyüzü rehberlerinin yol işaretidir: Mirach'tan iki yıldız yukarı — ve çıplak gözle görülebilen en uzak cisim olan M31 karşındadır.", "en": "The signpost of star-hoppers: two stars up from Mirach lies M31, the farthest object visible to the naked eye." } }
+    },
+    {
+      "match": { "name": "Scheat" }, "ra": 23.063, "dec": 28.083, "bayer": "Bet", "con": "Peg", "dist": 196,
+      "names": { "tr": "Scheat", "en": "Scheat" },
+      "etymology": { "tr": "Arapça 'es-sâk' — 'bacak/incik'. Pegasus Karesi'nin kuzeybatı köşesidir.", "en": "Arabic 'as-saq' — 'the shin'. Northwest corner of the Great Square." },
+      "stories": { "arab": { "tr": "Kanatlı atın ön bacağıydı; kızıl dev oluşu köşedeki diğer beyaz yıldızlarla güzel bir tezat oluşturur.", "en": "The winged horse's foreleg — a red giant in pleasing contrast with its white Square companions." } }
+    },
+    {
+      "match": { "name": "Markab" }, "ra": 23.079, "dec": 15.205, "bayer": "Alp", "con": "Peg", "dist": 133,
+      "names": { "tr": "Markab", "en": "Markab" },
+      "etymology": { "tr": "Arapça 'merkeb' — 'binek, eyer'. Pegasus'un eyeridir; Kare'nin güneybatı köşesi.", "en": "Arabic 'markab' — 'the saddle' of Pegasus; southwest corner of the Square." },
+      "stories": { "greek": { "tr": "Bellerophon'un Khimaira'ya karşı savaşırken oturduğu eyerdir; kahraman düştü, eyer gökte kaldı.", "en": "The saddle Bellerophon rode against the Chimera — the rider fell, the saddle stayed in the sky." } }
+    },
+    {
+      "match": { "name": "Algenib" }, "ra": 0.22, "dec": 15.184, "bayer": "Gam", "con": "Peg", "dist": 390,
+      "names": { "tr": "Algenib", "en": "Algenib" },
+      "etymology": { "tr": "Arapça 'el-cenb' — 'yan, böğür'. Pegasus Karesi'nin güneydoğu köşesidir.", "en": "Arabic 'al-janb' — 'the flank'. Southeast corner of the Great Square." },
+      "stories": { "arab": { "tr": "Kare'nin dört köşesi — Markab, Scheat, Algenib ve Alpheratz — sonbahar göğünün dev çerçevesini kurar; içi şaşırtıcı derecede boştur, eskiler ona 'büyük boşluk' derdi.", "en": "The Square's four corners frame autumn's sky — a frame strikingly empty inside, the ancients' 'great void'." } }
+    },
+    {
+      "match": { "name": "Rasalgethi" }, "ra": 17.244, "dec": 14.39, "bayer": "Alp", "con": "Her", "dist": 360,
+      "names": { "tr": "Rasalgethi", "en": "Rasalgethi" },
+      "etymology": { "tr": "Arapça 'ra's el-câsî' — 'diz çökenin başı'. Herkül'ün başıdır; Güneş'ten 400 kat büyük bir kızıl devdir.", "en": "Arabic 'ra's al-jathi' — 'head of the kneeler'. Hercules' head, a red giant 400 times the Sun's size." },
+      "stories": { "greek": { "tr": "Gökyüzünde Herkül baş aşağı çizilir: başı, komşusu Yılancı'nın başının hemen yanındadır — iki kahraman göklerde alın alına durur.", "en": "Hercules hangs head-down in the sky, his head beside Ophiuchus' — two heroes brow to brow." } }
+    },
+    {
+      "match": { "name": "Kaus Australis" }, "ra": 18.403, "dec": -34.385, "bayer": "Eps", "con": "Sgr", "dist": 143,
+      "names": { "tr": "Kaus Australis", "en": "Kaus Australis" },
+      "etymology": { "tr": "Arapça 'kavs' (yay) + Latince 'australis' (güney) — 'yayın güney ucu'. Okçu'nun yayının alt ucudur.", "en": "Arabic 'qaws' (bow) + Latin 'australis' (southern) — the lower tip of the Archer's bow." },
+      "stories": { "mesopotamian": { "tr": "Okçu tanrı Pabilsag'ın gerili yayının ucudur; ok, Akrep'in kalbi Antares'e nişanlıdır.", "en": "Tip of the archer god Pabilsag's drawn bow, arrow trained on Antares, the Scorpion's heart." } }
+    },
+    {
+      "match": { "name": "Alhena" }, "ra": 6.629, "dec": 16.399, "bayer": "Gam", "con": "Gem", "dist": 109,
+      "names": { "tr": "Alhena", "en": "Alhena" },
+      "etymology": { "tr": "Arapça 'el-han'a' — 'deve boynundaki damga'. İkizlerden Pollux'un ayağıdır.", "en": "Arabic 'al-han'a' — 'the brand' (on a camel's neck). The foot of Pollux the twin." },
+      "stories": { "arab": { "tr": "Develere vurulan kabile damgasının gökteki iziydi; İkizler'in ayak bileğinde parlar.", "en": "The tribal camel-brand written in stars, gleaming at the twins' ankle." } }
+    },
+    {
+      "match": { "name": "Izar" }, "ra": 14.75, "dec": 27.074, "bayer": "Eps", "con": "Boo", "dist": 202,
+      "names": { "tr": "Izar", "en": "Izar" },
+      "etymology": { "tr": "Arapça 'izâr' — 'peştamal, örtü'. Çoban'ın kuşağıdır; teleskopta turuncu-mavi çifte ayrılınca aldığı ikinci ad 'Pulcherrima' — 'en güzeli'.", "en": "Arabic 'izar' — 'the girdle' of the Herdsman; its telescopic orange-blue pair earned it the name 'Pulcherrima' — 'the loveliest'." },
+      "stories": { "modern": { "tr": "Rus gökbilimci Struve onu çözümlediğinde güzelliğine dayanamayıp Latince 'en güzel' adını vermiştir; ad hâlâ kullanılır.", "en": "When Struve first split it, he named it 'the loveliest' on the spot — the name stuck." } }
+    }
+  ],
+  "planets": {
+    "sun": {
+      "etymology": {
+        "tr": "Türkçe 'Güneş' çok eski bir Türkçe sözcüktür; 'kün/gün' kökünden gelir — gün, gündüz ve güneş aynı köktendir.",
+        "en": "The Turkish 'Güneş' descends from the ancient Turkic root 'kün' — day, daylight and sun share one word."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Titan Helios her sabah dört atlı ateş arabasıyla doğudan yükselir, akşam batıda okyanusa dalar ve altın bir kupayla gece boyunca doğuya geri taşınır. Sonradan ışık tanrısı Apollon ile özdeşleştirildi.",
+          "en": "The Titan Helios drives his four-horse chariot of fire across the sky each day, sailing back east by night in a golden cup; later identified with Apollo."
+        },
+        "egyptian": {
+          "tr": "Mısır dininin merkezi Ra'dır: gündüz gök denizinde kayığıyla yol alır, gece yeraltı dünyasından geçerek her sabah yeniden doğar. Firavunlar 'Ra'nın oğlu' unvanını taşırdı.",
+          "en": "Ra, the heart of Egyptian religion, sails his day-boat across the sky and is reborn each dawn after crossing the underworld; pharaohs bore the title 'Son of Ra'."
+        },
+        "turkic": {
+          "tr": "Eski Türklerde Gün Ana güneşi, Ay Ata ayı temsil eder. Güneş kutsaldı; çadırın kapısı doğuya, doğan güneşe açılırdı. Kün, hem 'gün' hem 'halk' anlamına gelir — yaşamın kaynağı sayılırdı.",
+          "en": "In old Turkic belief Gün Ana (Sun Mother) faces Ay Ata (Moon Father); tents opened east to the rising sun, the source of life."
+        },
+        "mesopotamian": {
+          "tr": "Adalet tanrısı Şamaş'tır; her şeyi gören gözüyle yeryüzünü denetler. Hammurabi, kanunlarını Şamaş'tan aldığını yazdırmıştır.",
+          "en": "Shamash, all-seeing god of justice — Hammurabi claimed his laws from him."
+        }
+      }
+    },
+    "moon": {
+      "etymology": {
+        "tr": "'Ay' Türkçenin en eski sözcüklerindendir; takvimin temeli olduğu için 'ay' aynı zamanda zaman birimidir.",
+        "en": "'Ay' is among the oldest Turkic words — moon and month are one, for the Moon was the first calendar."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Ay tanrıçası Selene, gümüş arabasıyla gece göğünü aşar. Güzel çoban Endymion'a âşık olur; Zeus gence sonsuz gençlik ve sonsuz uyku verir — Selene her gece onu uykusunda ziyaret eder.",
+          "en": "Selene crosses the night in her silver chariot, visiting her beloved Endymion, granted eternal youth in eternal sleep."
+        },
+        "turkic": {
+          "tr": "Ay Ata, altıncı kat gökte oturur ve gece göğünü gözetir. Yeni ay görüldüğünde dilek tutulur, önemli işlere ayın büyüme evresinde başlanırdı. Hilal, sonradan bayrağa da geçen kutlu bir simgeydi.",
+          "en": "Ay Ata (Moon Father) watches from the sixth heaven; ventures began under the waxing moon, and the crescent became an enduring sacred emblem."
+        },
+        "chinese": {
+          "tr": "Ay'da tanrıça Chang'e yaşar: ölümsüzlük iksirini içip Ay'a yükselmiştir; yanında sonsuza dek iksir döven Yeşim Tavşan vardır. Sonbahar Ortası Bayramı'nda ona kekler sunulur.",
+          "en": "Chang'e, who drank the elixir of immortality and rose to the Moon, lives there with the Jade Rabbit; mooncakes honour her at Mid-Autumn."
+        },
+        "mesopotamian": {
+          "tr": "Ay tanrısı Sin (Nanna), gök boğasının boynuzları gibi hilaliyle zamanın efendisiydi; Ur ve Harran'ın baş tanrısıydı.",
+          "en": "Sin (Nanna), lord of time, his crescent the horns of the heavenly bull — chief god of Ur and Harran."
+        }
+      }
+    },
+    "mercury": {
+      "etymology": {
+        "tr": "Roma'nın haberci tanrısı Mercurius'tan — Güneş'e en yakın, en hızlı gezegen olduğu için ayağı kanatlı habercinin adını almıştır. Türkçe adı 'Utarit' Arapçadan gelir.",
+        "en": "Named for Mercury, Rome's winged messenger — fitting for the swiftest planet. Its Ottoman-Turkish name 'Utarit' comes from Arabic."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Hermes: tanrıların habercisi, yolcuların, tüccarların ve hırsızların koruyucusu. Doğduğu gün beşiğinden kaçıp Apollon'un sığırlarını çalmış, ceza yerine lir hediye ederek gönlünü almıştır. Ruhları yeraltına o götürür.",
+          "en": "Hermes, messenger of the gods, patron of travellers, merchants and thieves — who stole Apollo's cattle on the day he was born and made peace with the gift of the lyre."
+        },
+        "mesopotamian": {
+          "tr": "Yazının ve bilgeliğin tanrısı Nabu'nun yıldızıydı; kâtiplerin koruyucusuydu, kaderleri o yazardı.",
+          "en": "The star of Nabu, god of writing and wisdom, who inscribed the fates."
+        },
+        "chinese": {
+          "tr": "'Su Yıldızı' (Chénxīng) — beş element sisteminde suyu temsil eder.",
+          "en": "The 'Water Star' (Chénxīng) of the five elements."
+        }
+      }
+    },
+    "venus": {
+      "etymology": {
+        "tr": "Roma aşk tanrıçası Venüs'ten. Türkçede Çoban Yıldızı, Çulpan, Zühre ve Sabah/Akşam Yıldızı adlarıyla bilinir — gökyüzünün Güneş ve Ay'dan sonraki en parlak cismi.",
+        "en": "Named for the Roman goddess of love; in Turkish also Çoban Yıldızı (Shepherd's Star), Çulpan and Zühre — the brightest object after Sun and Moon."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Afrodit — deniz köpüğünden doğan aşk ve güzellik tanrıçası. Sabah ve akşam görünen 'iki yıldızın' (Phosphoros ile Hesperos) aynı gezegen olduğunu anlamak, antik astronominin dönüm noktalarındandır.",
+          "en": "Aphrodite, born of sea-foam. Realising the morning star (Phosphoros) and evening star (Hesperos) were one planet was a turning point of ancient astronomy."
+        },
+        "mesopotamian": {
+          "tr": "Aşkın ve savaşın tanrıçası İştar'ın yıldızıydı — sabah savaşçı, akşam âşıktır. İştar'ın yeraltına inişi ve dönüşü, Venüs'ün kaybolup yeniden belirişiyle okunurdu.",
+          "en": "The star of Ishtar, warrior at dawn and lover at dusk; her descent to the underworld mirrored the planet's vanishing and return."
+        },
+        "turkic": {
+          "tr": "Çoban Yıldızı: çobanlar sürüyü onun doğuşuyla çıkarır, batışıyla toplardı. Çulpan adı bugün de kadın ismi olarak yaşar.",
+          "en": "The Shepherd's Star, timing the flocks' going out and coming in; 'Çulpan' survives as a given name."
+        },
+        "hindu": {
+          "tr": "Şukra — asuraların bilge hocası; ölüleri diriltme bilgisine sahip tek öğretmen. Cuma günü (Şukravar) onun günüdür.",
+          "en": "Shukra, wise teacher of the asuras, keeper of the secret of revival; Friday (Shukravar) is his day."
+        }
+      }
+    },
+    "mars": {
+      "etymology": {
+        "tr": "Roma savaş tanrısı Mars'tan; kızıl rengi kan ve savaşı çağrıştırdığı için hemen her kültürde savaşla ilişkilendirilmiştir. Osmanlıcada 'Merih' denirdi.",
+        "en": "Named for the Roman war god; its blood-red hue linked it to war in nearly every culture. 'Merih' in Ottoman Turkish."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Savaş tanrısı Ares — yanında oğulları Phobos (korku) ile Deimos (dehşet) savaşa girer; iki uydusuna bugün onların adı verilmiştir.",
+          "en": "Ares, god of war, flanked by his sons Phobos (fear) and Deimos (dread) — now the names of the planet's two moons."
+        },
+        "mesopotamian": {
+          "tr": "Veba ve savaş tanrısı Nergal'in yıldızıydı; parlaklaştığı dönemler salgın ve savaş alameti sayılırdı.",
+          "en": "The star of Nergal, god of plague and war; its brightenings were read as omens of both."
+        },
+        "chinese": {
+          "tr": "'Ateş Yıldızı' (Yínghuò) — 'parıldayan şaşırtıcı': geri hareketiyle gökbilimcileri şaşırtan uğursuz sayılan gezegen.",
+          "en": "The 'Fire Star' (Yínghuò), 'the sparkling deluder', notorious for its baffling retrograde loops."
+        }
+      }
+    },
+    "jupiter": {
+      "etymology": {
+        "tr": "Tanrıların kralı Jüpiter'den (Yunan Zeus). Gezegenlerin en büyüğüdür; Osmanlıcada 'Müşteri' denirdi.",
+        "en": "Named for Jupiter, king of the gods (Greek Zeus) — fittingly the largest planet. 'Müşteri' in Ottoman Turkish."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Zeus: göğün ve yıldırımın efendisi, Olympos'un kralı. Babası Kronos'u devirip evreni kardeşleriyle paylaştı — gök ona düştü. Dört büyük uydusu, efsanelerindeki sevdiklerinin adlarını taşır: İo, Europa, Ganymedes, Kallisto.",
+          "en": "Zeus, lord of sky and thunder, king of Olympus. His four great moons bear the names of his loves: Io, Europa, Ganymede, Callisto."
+        },
+        "mesopotamian": {
+          "tr": "Babil'in baş tanrısı Marduk'un yıldızıydı; kaos canavarı Tiamat'ı yenip evrene düzen veren tanrı. 12 yılda zodyakı dolaşması, onu göğün 'düzenleyicisi' yapmıştı.",
+          "en": "The star of Marduk, who slew Tiamat and ordered the cosmos; its 12-year circuit of the zodiac made it heaven's regulator."
+        },
+        "chinese": {
+          "tr": "'Yıl Yıldızı' (Suìxīng): 12 yıllık dolanımı Çin'in 12 hayvanlı takviminin temelidir.",
+          "en": "The 'Year Star' (Suìxīng), whose 12-year path underlies the 12-animal zodiac."
+        }
+      }
+    },
+    "saturn": {
+      "etymology": {
+        "tr": "Roma'nın ekin ve zaman tanrısı Saturnus'tan. Çıplak gözle görülen en uzak, en yavaş gezegendir — bu yüzden zamanla ve yaşlılıkla ilişkilendirildi. Osmanlıcada 'Zühal' denirdi.",
+        "en": "Named for Saturn, Roman god of harvest and time — the slowest visible planet, hence its link to age and time. 'Zühal' in Ottoman Turkish."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Kronos: babası Uranos'u devirdi, çocukları tarafından devrileceği kehanetiyle onları yuttu — ama Zeus kurtuldu ve kehanet gerçekleşti. Roma'da Saturnus'un bayramı Saturnalia, Aralık sonunda kölelerle efendilerin yer değiştirdiği şenlikti.",
+          "en": "Cronus, who devoured his children to cheat prophecy and was overthrown by Zeus. Rome's Saturnalia, his December feast, turned masters and slaves upside down."
+        },
+        "mesopotamian": {
+          "tr": "Babil'de 'Sağlam/Değişmez' (Kayamanu) denirdi; ağırbaşlı yürüyüşüyle adaletin ve düzenin gezegeni sayılırdı.",
+          "en": "Babylon's Kayamanu, 'the steady one' — planet of order for its unhurried march."
+        },
+        "hindu": {
+          "tr": "Şani — karma ve sabrın tanrısı; bakışı ağır sınavlar getirir ama emeğin karşılığını sonunda verir. Cumartesi (Şanivar) onun günüdür.",
+          "en": "Shani, lord of karma and patience, whose gaze brings hard trials and earned rewards; Saturday is his day."
+        }
+      }
+    },
+    "uranus": {
+      "etymology": {
+        "tr": "1781'de William Herschel'in teleskopla keşfettiği ilk gezegendir; Yunan gök tanrısı Uranos'un adı verildi — Satürn'ün (Kronos) babası olduğu için sıradaki 'kuşak' adıydı.",
+        "en": "First planet found by telescope (Herschel, 1781), named for Ouranos, the primal sky — father of Cronus, continuing the family line."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Uranos, Gaia'dan (Yer) doğan ilk gök; Titanların babasıdır. Oğlu Kronos tarafından devrilmiştir — gökyüzü tahtının el değiştirmesi mitolojinin ilk büyük devrimidir.",
+          "en": "Ouranos, the primal sky born of Gaia, father of the Titans, overthrown by his son Cronus — mythology's first great revolution."
+        },
+        "modern": {
+          "tr": "Herschel önce onu kuyruklu yıldız sandı, sonra 'yeni gezegen' ilan etti — Antik Çağ'dan beri bilinen gökyüzü ilk kez genişlemiş oldu.",
+          "en": "Herschel first took it for a comet; its recognition as a planet expanded the sky known since antiquity."
+        }
+      }
+    },
+    "neptune": {
+      "etymology": {
+        "tr": "1846'da önce kalemle keşfedildi: Uranüs'ün yörünge sapmalarından yeri hesaplandı ve tam öngörülen noktada bulundu. Mavi rengi nedeniyle Roma deniz tanrısı Neptunus'un adı verildi.",
+        "en": "Discovered 'by pen' in 1846 — predicted from Uranus' orbital wobbles and found exactly where computed. Named for the sea god for its blue hue."
+      },
+      "stories": {
+        "greek": {
+          "tr": "Poseidon: denizlerin, depremlerin ve atların tanrısı; üç dişli zıpkınıyla denizleri kabartır. Zeus ve Hades ile evreni paylaştığında denizler ona düşmüştü.",
+          "en": "Poseidon, shaker of earth and sea, lord of horses, who drew the oceans when the brothers divided the cosmos."
+        },
+        "modern": {
+          "tr": "Matematiğin zaferi sayılır: Le Verrier'nin hesabı, Newton fiziğinin gücünü tüm dünyaya kanıtladı.",
+          "en": "A triumph of mathematics — Le Verrier's calculation proved the reach of Newtonian physics."
+        }
+      }
+    }
+  },
+  "constellations": {
+    "And": {
+      "name": { "tr": "Andromeda (Zincirli Prenses)", "en": "Andromeda (Chained Princess)" },
+      "stories": {
+        "greek": {
+          "tr": "Etiyopya kraliçesi Kassiopeia'nın kibri yüzünden tanrılar ülkeye deniz canavarı Ketus'u gönderir. Kehanet gereği prenses Andromeda bir kayaya zincirlenir. Tam canavar yaklaşırken Medusa'nın başıyla dönen Perseus onu kurtarır ve evlenirler; tüm aile göğe yerleştirilir.",
+          "en": "For queen Cassiopeia's vanity the gods sent the sea monster Cetus. Princess Andromeda was chained to a rock as sacrifice — until Perseus, returning with Medusa's head, saved and married her. The whole family was set among the stars."
+        },
+        "arab": {
+          "tr": "Araplar bu bölgede zincirli kadın yerine 'el-Hût' — büyük bir balık görürdü; Andromeda Galaksisi'nin bulanık lekesi bu balığın gövdesindeydi.",
+          "en": "Arab astronomers saw here 'al-Hut', a great fish; the hazy patch of the Andromeda Galaxy lay in its body."
+        }
+      }
+    },
+    "Ant": {
+      "name": { "tr": "Hava Pompası (Antlia)", "en": "Antlia (Air Pump)" },
+      "stories": {
+        "modern": {
+          "tr": "1750'lerde Fransız gökbilimci Lacaille'ın güney göğünü haritalarken bilim aletlerine adadığı takımyıldızlardan biridir; fizikçi Denis Papin'in vakum pompasını onurlandırır.",
+          "en": "One of Lacaille's 1750s southern constellations honouring scientific instruments — here, Denis Papin's air pump."
+        }
+      }
+    },
+    "Aps": {
+      "name": { "tr": "Cennet Kuşu (Apus)", "en": "Apus (Bird-of-Paradise)" },
+      "stories": {
+        "modern": {
+          "tr": "16. yüzyıl Hollandalı denizcilerinin Yeni Gine'den getirilen cennet kuşlarına hayranlığıyla göğe çizildi. Adı Yunanca 'ayaksız' demektir — Avrupa'ya ulaşan kuş derilerinin ayakları kesilmiş olduğundan bu kuşların hep uçtuğuna inanılırdı.",
+          "en": "Drawn by 16th-century Dutch navigators after the birds-of-paradise of New Guinea. The name means 'footless' in Greek — trade skins arrived without feet, so the birds were thought to fly forever."
+        }
+      }
+    },
+    "Aqr": {
+      "name": { "tr": "Kova (Su Taşıyıcı)", "en": "Aquarius (Water Bearer)" },
+      "stories": {
+        "greek": {
+          "tr": "Zeus'un kartalıyla Olympos'a kaçırdığı güzel prens Ganymedes'tir; tanrılara ölümsüzlük şarabı sunar. Testisinden dökülen su, Güney Balığı'nın ağzına akar.",
+          "en": "Ganymede, the beautiful prince carried to Olympus by Zeus' eagle to pour the gods' nectar; his jar spills water into the mouth of the Southern Fish."
+        },
+        "mesopotamian": {
+          "tr": "Babil'de bilgelik ve tatlı su tanrısı Ea'nın ta kendisiydi: 'Büyük Olan' (GU.LA), taşan vazosundan Dicle ve Fırat'ı akıtır. Bu bölge, gökyüzünün su dolu 'Deniz' bölgesinin kalbiydi.",
+          "en": "In Babylon this was Ea himself, god of wisdom and fresh water — 'the Great One' (GU.LA) pouring the Tigris and Euphrates from his overflowing vase, at the heart of the watery 'Sea' region of the sky."
+        },
+        "egyptian": {
+          "tr": "Nil'in kaynağı sayılırdı; su taşıyıcının testisini nehre daldırmasıyla taşkın mevsiminin başladığına inanılırdı.",
+          "en": "Seen as the source of the Nile: the flood began when the water bearer dipped his jar into the river."
+        }
+      }
+    },
+    "Aql": {
+      "name": { "tr": "Kartal (Aquila)", "en": "Aquila (Eagle)" },
+      "stories": {
+        "greek": {
+          "tr": "Zeus'un yıldırım taşıyıcısı kutsal kartaldır. Ganymedes'i Olympos'a taşıyan ve Prometheus'un ciğerini her gün yiyen kartal da odur.",
+          "en": "Zeus' sacred thunderbolt-bearer — the eagle that carried Ganymede to Olympus, and that daily tore at Prometheus' liver."
+        },
+        "chinese": {
+          "tr": "Parlak yıldızı Altair, Samanyolu'nun kıyısında sevdiği Dokumacı Kız'ı bekleyen Çoban'dır; iki yanındaki yıldızlar omzunda taşıdığı çocuklarıdır.",
+          "en": "Its bright star Altair is the Cowherd waiting by the Milky Way for his beloved Weaver Girl, his two children on his shoulders."
+        }
+      }
+    },
+    "Ara": {
+      "name": { "tr": "Sunak (Ara)", "en": "Ara (Altar)" },
+      "stories": {
+        "greek": {
+          "tr": "Tanrıların, Titanlara karşı savaşa girmeden önce and içtikleri sunaktır. Zaferden sonra Zeus onu göğe koydu; Samanyolu, sunaktan yükselen kutsal duman sayılırdı.",
+          "en": "The altar on which the gods swore alliance before the war on the Titans; the Milky Way was the sacred smoke rising from it."
+        }
+      }
+    },
+    "Ari": {
+      "name": { "tr": "Koç (Aries)", "en": "Aries (Ram)" },
+      "stories": {
+        "greek": {
+          "tr": "Altın postlu uçan koçtur. Kurban edilmek üzere olan Phriksos ile Helle'yi sırtına alıp kaçırır; Helle boğaza düşer (Hellespontos), Phriksos kurtulur ve koçun altın postu Kolhis'te ejderha korumasına bırakılır — Argonotların büyük seferi bu postu almak içindir.",
+          "en": "The golden-fleeced flying ram that rescued Phrixus and Helle from sacrifice. Helle fell into the Hellespont; the fleece, hung in Colchis under a dragon's guard, became the goal of the Argonauts."
+        },
+        "mesopotamian": {
+          "tr": "Babil'de önceleri 'Tarım İşçisi' (MUL.LU.HUN.GA) idi; sonradan koça dönüştü. İlkbahar ekinoksunun buraya kayması ile zodyakın ilk burcu oldu.",
+          "en": "First the 'Hired Farmhand' (MUL.LU.HUN.GA) in Babylon, later a ram — becoming the first zodiac sign as the spring equinox shifted here."
+        },
+        "egyptian": {
+          "tr": "Koç başlı yaratıcı tanrı Amon-Ra ile özdeşleştirildi; Karnak Tapınağı'na koç başlı sfenks yolları buradan esinlenir.",
+          "en": "Identified with ram-headed Amun-Ra; the ram-sphinx avenues of Karnak echo him."
+        }
+      }
+    },
+    "Aur": {
+      "name": { "tr": "Arabacı (Auriga)", "en": "Auriga (Charioteer)" },
+      "stories": {
+        "greek": {
+          "tr": "Atina'nın topal kralı, dört atlı savaş arabasının mucidi Erikhthonios'tur. Omzunda, bebek Zeus'u emziren keçi Amaltheia'yı (Capella) ve yavrularını taşır.",
+          "en": "Erichthonius, lame king of Athens and inventor of the four-horse chariot, carrying on his shoulder the goat Amaltheia (Capella) who nursed the infant Zeus, with her kids."
+        }
+      }
+    },
+    "Boo": {
+      "name": { "tr": "Çoban (Boötes)", "en": "Boötes (Herdsman)" },
+      "stories": {
+        "greek": {
+          "tr": "Ayı Bekçisi Arkas'tır: ayıya dönüştürülen annesi Kallisto'yu (Büyük Ayı) sonsuza dek gökyüzünde izler. Başka bir anlatıda sabanı (Büyük Kepçe) öküzleriyle süren ilk çiftçidir.",
+          "en": "Arcas the Bear Keeper, forever following his transformed mother Callisto (the Great Bear) — or, in another telling, the first ploughman driving the Plough."
+        }
+      }
+    },
+    "Cae": {
+      "name": { "tr": "Oyma Kalemi (Caelum)", "en": "Caelum (Chisel)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın bilim ve zanaat aletleri serisinden: heykeltıraşın oyma kalemi.",
+          "en": "From Lacaille's instrument series: the sculptor's chisel."
+        }
+      }
+    },
+    "Cam": {
+      "name": { "tr": "Zürafa (Camelopardalis)", "en": "Camelopardalis (Giraffe)" },
+      "stories": {
+        "modern": {
+          "tr": "1613'te Petrus Plancius'un kutup çevresindeki sönük boşluğa yerleştirdiği zürafadır; adı Yunanca 'deve-leopar'dan gelir — uzun boyunlu, benekli hayvan.",
+          "en": "Placed by Petrus Plancius in 1613 in the faint polar void; the name is Greek for 'camel-leopard' — a spotted, long-necked beast."
+        }
+      }
+    },
+    "Cnc": {
+      "name": { "tr": "Yengeç (Cancer)", "en": "Cancer (Crab)" },
+      "stories": {
+        "greek": {
+          "tr": "Herakles Hydra ile boğuşurken Hera'nın gönderdiği dev yengeç Karkinos kahramanın ayağını ısırır; tek tekmeyle ezilir. Hera bu 'fedakâr' yengeci göğe koyar. Ortasındaki yıldız kümesi Praesepe, 'Yemlik' olarak bilinir; iki yanındaki yıldızlar yemlikten yiyen eşeklerdir.",
+          "en": "Karkinos, the crab Hera sent to nip Heracles as he fought the Hydra — crushed by a single kick, rewarded with the sky. Its central cluster is the Manger (Praesepe), flanked by two feeding donkeys."
+        },
+        "egyptian": {
+          "tr": "Mısırlılar burada ölümsüzlüğün simgesi kutsal bok böceği Khepri'yi görürdü — güneşi ufuktan yuvarlayarak doğuran tanrı.",
+          "en": "Egyptians saw the sacred scarab Khepri, who rolls the sun over the horizon into rebirth."
+        }
+      }
+    },
+    "CVn": {
+      "name": { "tr": "Av Köpekleri (Canes Venatici)", "en": "Canes Venatici (Hunting Dogs)" },
+      "stories": {
+        "modern": {
+          "tr": "Hevelius'un 1687'de çizdiği, Çoban'ın tasmasından tuttuğu iki av köpeğidir: Asterion ve Chara. Ayıları kutup etrafında kovalarlar. Parlak yıldızı Cor Caroli, 'Charles'ın Kalbi', idam edilen İngiliz kralı I. Charles'ı anar.",
+          "en": "Hevelius' 1687 pair of hounds, Asterion and Chara, held on leash by Boötes to chase the bears. Its bright star Cor Caroli, 'Charles' Heart', honours the executed English king."
+        }
+      }
+    },
+    "CMa": {
+      "name": { "tr": "Büyük Köpek (Canis Major)", "en": "Canis Major (Great Dog)" },
+      "stories": {
+        "greek": {
+          "tr": "Orion'un büyük av köpeğidir; gözünde göğün en parlak yıldızı Sirius parlar. Bir anlatıda hiçbir avın kaçamadığı köpek Laelaps'tır — asla yakalanamayan tilkiyi kovalarken Zeus ikisini de taşa çevirip köpeği göğe koyar.",
+          "en": "Orion's great hound, Sirius blazing as its eye. In one tale it is Laelaps, the dog no prey escaped, frozen mid-chase after the uncatchable fox and set in the sky."
+        },
+        "egyptian": {
+          "tr": "Sirius'un takımyıldızı olarak Mısır'ın en önemli gök bölgesiydi; tanrıça Sopdet'in (İsis) evi sayılırdı.",
+          "en": "Home of Sirius, Egypt's supreme star region — the house of Sopdet (Isis)."
+        }
+      }
+    },
+    "CMi": {
+      "name": { "tr": "Küçük Köpek (Canis Minor)", "en": "Canis Minor (Little Dog)" },
+      "stories": {
+        "greek": {
+          "tr": "Orion'un ikinci köpeğidir. Başka bir anlatıda, öldürülen sahibi İkarios'un mezarını bulan ve kederinden ölen sadık köpek Maira'dır.",
+          "en": "Orion's second hound — or faithful Maera, who found her murdered master Icarius' grave and died of grief."
+        }
+      }
+    },
+    "Cap": {
+      "name": { "tr": "Oğlak (Capricornus)", "en": "Capricornus (Sea Goat)" },
+      "stories": {
+        "greek": {
+          "tr": "Keçi ayaklı tanrı Pan, canavar Typhon'dan kaçarken Nil'e atlar; suyun üstünde kalan yarısı keçi, altı balık olur. Zeus bu komik ama işe yarar dönüşümü göğe işler.",
+          "en": "Pan, fleeing the monster Typhon, leapt into the Nile: goat above water, fish below. Zeus fixed the odd but effective transformation in the sky."
+        },
+        "mesopotamian": {
+          "tr": "Kökeni çok daha eskidir: Babil'in keçi-balığı SUHUR.MAŠ, bilgelik tanrısı Ea'nın kutsal yaratığıydı — tatlı su okyanusunun derinliklerinde yaşar, kıyıda otlardı.",
+          "en": "Far older in Babylon: the goat-fish SUHUR.MAŠ, sacred beast of Ea, grazing the shore while swimming the deep of the freshwater ocean."
+        }
+      }
+    },
+    "Car": {
+      "name": { "tr": "Omurga (Carina)", "en": "Carina (Keel)" },
+      "stories": {
+        "greek": {
+          "tr": "Argonotların efsanevi gemisi Argo'nun omurgasıdır. Dev gemi takımyıldızı 18. yüzyılda üçe bölündü: Omurga (Carina), Pupa (Puppis) ve Yelken (Vela). En parlak yıldızı Canopus, geminin dümencisidir.",
+          "en": "The keel of Argo, ship of the Argonauts — the giant constellation was split in the 18th century into Keel, Stern and Sails. Its brightest star Canopus is the helmsman."
+        }
+      }
+    },
+    "Cas": {
+      "name": { "tr": "Kassiopeia (Kraliçe)", "en": "Cassiopeia (Queen)" },
+      "stories": {
+        "greek": {
+          "tr": "'Deniz perilerinden bile güzelim' diye övünen Etiyopya kraliçesidir. Cezası ülkesine gönderilen canavar ve kızının kurban edilmesiyle kalmaz: tahtına bağlanıp sonsuza dek kutup etrafında döner — yılın yarısı baş aşağı asılı kalır. W şeklindeki beş yıldızı tahtını çizer.",
+          "en": "The queen who boasted she outshone the sea nymphs. Beyond the monster sent to her land, her punishment endures: bound to her throne, circling the pole, hanging upside down half the year. Her five stars trace the W of the throne."
+        },
+        "arab": {
+          "tr": "Araplar burada 'boyalı ellerin sahibi kadın' (Zât el-Kürsî — taht sahibi) ve kınalı bir el figürü görürdü.",
+          "en": "Arab tradition saw a henna-stained hand and 'the lady of the throne'."
+        }
+      }
+    },
+    "Cen": {
+      "name": { "tr": "Erboğa (Centaurus)", "en": "Centaurus (Centaur)" },
+      "stories": {
+        "greek": {
+          "tr": "Bilge kentaur Kheiron'dur — vahşi hemcinslerinin aksine hekimliğin, müziğin ve okçuluğun öğretmeni; Akhilleus, Asklepios ve İason'un hocası. Zehirli okla yaralanınca ölümsüzlüğünü bırakır ve gökyüzüne yükselir.",
+          "en": "Chiron, the wise centaur — teacher of Achilles, Asclepius and Jason. Wounded by a poisoned arrow, he surrendered his immortality and rose to the sky."
+        }
+      }
+    },
+    "Cep": {
+      "name": { "tr": "Kefeus (Kral)", "en": "Cepheus (King)" },
+      "stories": {
+        "greek": {
+          "tr": "Etiyopya kralı, Kassiopeia'nın kocası ve Andromeda'nın babasıdır. Ailesiyle birlikte göğe yerleştirildi; ev biçimindeki beş yıldızı taçlı başını çizer.",
+          "en": "King of Ethiopia, husband of Cassiopeia and father of Andromeda, set in the sky with his family; his five stars sketch a crowned head — or a little house."
+        }
+      }
+    },
+    "Cet": {
+      "name": { "tr": "Balina / Deniz Canavarı (Cetus)", "en": "Cetus (Sea Monster / Whale)" },
+      "stories": {
+        "greek": {
+          "tr": "Poseidon'un Andromeda'yı yutmak için gönderdiği deniz canavarı Ketus'tur. Tam saldırırken Perseus Medusa'nın başını gösterir ve canavar taş kesilir. Gövdesinde, düzenli sönüp parlayan 'Harika' yıldız Mira bulunur.",
+          "en": "The sea monster sent to devour Andromeda, turned to stone by Medusa's head. In its body pulses Mira, 'the Wonderful', the first known variable star."
+        },
+        "mesopotamian": {
+          "tr": "Babil yaratılış destanının kaos canavarı Tiamat ile ilişkilendirilir — Marduk'un ikiye bölerek gökleri ve yeri yarattığı ilksel deniz.",
+          "en": "Linked to Tiamat, the chaos-sea of the Babylonian creation epic, split by Marduk to form heaven and earth."
+        }
+      }
+    },
+    "Cha": {
+      "name": { "tr": "Bukalemun (Chamaeleon)", "en": "Chamaeleon" },
+      "stories": {
+        "modern": {
+          "tr": "Hollandalı denizcilerin 16. yüzyıl sonunda güney göğüne eklediği egzotik hayvanlardan; hemen yanına avı olarak Sinek (Musca) yerleştirilmiştir.",
+          "en": "One of the Dutch navigators' exotic southern animals, with the Fly (Musca) placed beside it as prey."
+        }
+      }
+    },
+    "Cir": {
+      "name": { "tr": "Pergel (Circinus)", "en": "Circinus (Compasses)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın çizim aletleri serisinden: haritacının pergeli, yanındaki Cetvel (Norma) ile takım oluşturur.",
+          "en": "Lacaille's draughtsman's compasses, paired with the Set Square (Norma) beside it."
+        }
+      }
+    },
+    "Col": {
+      "name": { "tr": "Güvercin (Columba)", "en": "Columba (Dove)" },
+      "stories": {
+        "modern": {
+          "tr": "Nuh'un gemisinden salınan ve zeytin dalıyla dönen güvercindir; 16. yüzyılda, hemen yanındaki gemi (Argo) takımyıldızına yoldaş olarak çizildi. Argonot anlatısında ise Symplegad kayalıklarının arasından ilk geçen keşif güvercinidir.",
+          "en": "Noah's dove returning with the olive branch, drawn beside the celestial ship — or the scout dove the Argonauts sent between the Clashing Rocks."
+        }
+      }
+    },
+    "Com": {
+      "name": { "tr": "Berenike'nin Saçı (Coma Berenices)", "en": "Coma Berenices (Berenice's Hair)" },
+      "stories": {
+        "greek": {
+          "tr": "Mısır kraliçesi II. Berenike, kocası savaştan sağ dönerse saçlarını tanrılara adayacağına yemin eder. Kral döner, saçlar tapınağa sunulur — ertesi gün kaybolur. Saray astronomu krizi dehayla çözer: 'Tanrılar saçı göğe aldı!' Gerçek bir tarihi olaydan doğan tek takımyıldızdır.",
+          "en": "Queen Berenice II vowed her hair to the gods for her husband's safe return from war. The offered locks vanished from the temple — until the court astronomer announced the gods had placed them in the sky. The only constellation born of a documented historical event."
+        }
+      }
+    },
+    "CrA": {
+      "name": { "tr": "Güney Tacı (Corona Australis)", "en": "Corona Australis (Southern Crown)" },
+      "stories": {
+        "greek": {
+          "tr": "Yay'ın ayakları dibindeki defne çelengidir; kimi anlatıda Dionysos'un, yeraltından kurtardığı annesi Semele için göğe bıraktığı taçtır.",
+          "en": "The laurel wreath at the Archer's feet — in one telling, the crown Dionysus set in the sky for his mother Semele, rescued from the underworld."
+        }
+      }
+    },
+    "CrB": {
+      "name": { "tr": "Kuzey Tacı (Corona Borealis)", "en": "Corona Borealis (Northern Crown)" },
+      "stories": {
+        "greek": {
+          "tr": "Girit prensesi Ariadne'nin düğün tacıdır. Minotauros labirentinden Theseus'u ipiyle kurtaran Ariadne, Naksos'ta terk edilir; tanrı Dionysos onunla evlenir ve mücevherli tacını göğe fırlatır.",
+          "en": "The wedding crown of Ariadne, whose thread saved Theseus from the labyrinth. Abandoned on Naxos, she wed Dionysus, who flung her jewelled crown into the sky."
+        },
+        "turkic": {
+          "tr": "Anadolu halk astronomisinde 'Kevser Havuzu' ya da yarım halka biçimiyle 'Cemre' olarak bilinen anlatılar vardır; çukur biçimli bu dizilim kimi yörelerde dilek kuyusu sayılırdı.",
+          "en": "In Anatolian folk tradition the half-ring bowl was seen as a heavenly pool; in some regions a wishing well of the sky."
+        }
+      }
+    },
+    "Crv": {
+      "name": { "tr": "Karga (Corvus)", "en": "Corvus (Crow)" },
+      "stories": {
+        "greek": {
+          "tr": "Apollon'un gümüş tüylü kutsal kargası, su getirmeye gönderilir ama incirlerin olgunlaşmasını bekleyerek oyalanır. Döndüğünde yalan söyler; öfkelenen Apollon onu simsiyah yapar ve göğe, Kupa'daki suya sonsuza dek uzanamayacağı şekilde yerleştirir — Su Yılanı aralarında bekçidir.",
+          "en": "Apollo's silver crow dawdled while figs ripened instead of fetching water, then lied. Apollo burned it black and set it in the sky forever out of reach of the Cup, the Water Snake standing guard between."
+        }
+      }
+    },
+    "Crt": {
+      "name": { "tr": "Kupa (Crater)", "en": "Crater (Cup)" },
+      "stories": {
+        "greek": {
+          "tr": "Apollon'un kadehi — yalancı karganın asla ulaşamayacağı su kabıdır; ceza üçlüsünün (Karga, Kupa, Su Yılanı) ortasında durur.",
+          "en": "Apollo's goblet, forever beyond the lying crow's reach — centrepiece of the punishment trio with Corvus and Hydra."
+        }
+      }
+    },
+    "Cru": {
+      "name": { "tr": "Güney Haçı (Crux)", "en": "Crux (Southern Cross)" },
+      "stories": {
+        "modern": {
+          "tr": "Antik Yunan'da Erboğa'nın bir parçasıydı; presesyon güneye kaydırınca Avrupa'dan görünmez oldu ve 16. yüzyıl kâşifleri onu 'yeniden keşfetti'. Uzun ekseni gök güney kutbunu gösterir; güney yarımkürenin pusulasıdır.",
+          "en": "Part of Centaurus to the Greeks, lost to Europe by precession and 'rediscovered' by 16th-century voyagers. Its long axis points to the south celestial pole — the southern compass."
+        },
+        "polynesian": {
+          "tr": "Maoriler için 'Te Punga' — gök kanosunun çapasıdır; Samoa'da ise yakalanmış dev bir alabalıktır.",
+          "en": "To the Māori, Te Punga — the anchor of the sky canoe; in Samoa, a great speared fish."
+        }
+      }
+    },
+    "Cyg": {
+      "name": { "tr": "Kuğu (Cygnus)", "en": "Cygnus (Swan)" },
+      "stories": {
+        "greek": {
+          "tr": "Zeus'un, Sparta kraliçesi Leda'ya yaklaşmak için büründüğü kuğudur; bu birleşmeden Güzel Helena ile ikizler Kastor ve Polydeukes doğar. Başka bir anlatıda, düşen arkadaşı Phaethon'u nehirde arayan vefalı Kyknos'tur — tanrılar onu kuğuya çevirir.",
+          "en": "The swan Zeus became to approach Leda — from that union came Helen and the twins. Or Cycnus, who dove again and again into the river for his fallen friend Phaethon until the gods made him a swan."
+        },
+        "chinese": {
+          "tr": "Samanyolu'nun üzerine kurulmuş 'Gök Geçidi' Tiānjīn köprüsüdür; Dokumacı Kız ile Çoban'ın kavuşma yolu buradan geçer.",
+          "en": "The Celestial Ford, Tiānjīn — the bridge over the Milky Way on the lovers' path."
+        },
+        "turkic": {
+          "tr": "Samanyolu boyunca uçan bu büyük kuş, kimi Türk boylarında kutlu Hüma kuşu ya da devlet kuşuyla ilişkilendirilir; üzerinden geçtiği Samanyolu 'Kuş Yolu'dur — göçmen kuşların göç yolu.",
+          "en": "For Turkic peoples the Milky Way it flies along is the 'Bird Road' — the migration path of birds; the great bird itself was linked to the auspicious Huma."
+        }
+      }
+    },
+    "Del": {
+      "name": { "tr": "Yunus (Delphinus)", "en": "Delphinus (Dolphin)" },
+      "stories": {
+        "greek": {
+          "tr": "İki hikâyesi vardır: Poseidon'un, kaçan deniz perisi Amphitrite'yi ikna edip evliliğe razı eden elçi yunusu — ödülü gökyüzüdür. Ya da ozan Arion'u soyguncu denizcilerden kurtaran, şarkısına gelen yunustur.",
+          "en": "Either the dolphin that persuaded the fleeing nymph Amphitrite to marry Poseidon, rewarded with the sky — or the one that saved the singer Arion from murderous sailors, drawn by his final song."
+        }
+      }
+    },
+    "Dor": {
+      "name": { "tr": "Kılıç Balığı (Dorado)", "en": "Dorado (Dolphinfish)" },
+      "stories": {
+        "modern": {
+          "tr": "Hollandalı denizcilerin tropik sularda gördüğü altın renkli mahi-mahi balığıdır; gökyüzünde Uçan Balık'ı (Volans) kovalar. Büyük Macellan Bulutu'nun büyük kısmı bu takımyıldızdadır.",
+          "en": "The golden mahi-mahi of tropical seas, chasing the Flying Fish (Volans) across the sky. Most of the Large Magellanic Cloud lies here."
+        }
+      }
+    },
+    "Dra": {
+      "name": { "tr": "Ejderha (Draco)", "en": "Draco (Dragon)" },
+      "stories": {
+        "greek": {
+          "tr": "Hera'nın altın elma bahçesini bekleyen, hiç uyumayan yüz başlı ejderha Ladon'dur. Herakles onbirinci görevinde onu okla öldürür; yasa boğulan Hera ejderhayı kutbun çevresine sarılmış hâlde göğe işler.",
+          "en": "Ladon, the sleepless hundred-headed dragon guarding Hera's golden apples, slain by Heracles — coiled by the grieving goddess around the celestial pole."
+        },
+        "norse": {
+          "tr": "Kuzeyliler kutba sarılan bu yılanı, dünyayı çepeçevre saran Midgard yılanı Jörmungandr'a benzetirdi.",
+          "en": "Norsemen likened the pole-coiled serpent to Jörmungandr, the world-encircling Midgard snake."
+        },
+        "mesopotamian": {
+          "tr": "Babil'in boynuzlu ejderi Mušḫuššu ile ilişkilendirilir — Marduk'un kutsal yaratığı, İştar Kapısı'nın bekçisi.",
+          "en": "Linked to Mušḫuššu, Marduk's horned dragon on the Ishtar Gate."
+        }
+      }
+    },
+    "Equ": {
+      "name": { "tr": "Tay (Equuleus)", "en": "Equuleus (Little Horse)" },
+      "stories": {
+        "greek": {
+          "tr": "Gökyüzünün en küçük ikinci takımyıldızıdır; Pegasus'un küçük kardeşi ya da Hermes'in Kastor'a hediye ettiği hızlı tay Celeris sayılır.",
+          "en": "The second-smallest constellation — Pegasus' little brother, or Celeris, the swift foal Hermes gave to Castor."
+        }
+      }
+    },
+    "Eri": {
+      "name": { "tr": "Irmak (Eridanus)", "en": "Eridanus (River)" },
+      "stories": {
+        "greek": {
+          "tr": "Güneş tanrısının oğlu Phaethon, babasının arabasını bir günlüğüne sürmek ister; atlara söz geçiremez, dünya alev alır. Zeus onu yıldırımla düşürür — düştüğü gök nehri Eridanus'tur. Kız kardeşleri kıyısında ağlaya ağlaya kavağa döner; gözyaşları kehribar olur.",
+          "en": "Phaethon, son of the Sun, lost control of his father's chariot and scorched the earth; Zeus struck him down into this river. His sisters wept themselves into poplars on its banks, their tears turning to amber."
+        },
+        "egyptian": {
+          "tr": "Gökyüzündeki Nil'dir; güney ucundaki parlak Achernar'a kadar kıvrıla kıvrıla akar.",
+          "en": "The Nile in the sky, winding to bright Achernar at its southern end."
+        }
+      }
+    },
+    "For": {
+      "name": { "tr": "Fırın (Fornax)", "en": "Fornax (Furnace)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın kimya fırınıdır; devrimde idam edilen büyük kimyacı Lavoisier'nin anısıyla anılır.",
+          "en": "Lacaille's chemical furnace, remembered with the great chemist Lavoisier."
+        }
+      }
+    },
+    "Gem": {
+      "name": { "tr": "İkizler (Gemini)", "en": "Gemini (Twins)" },
+      "stories": {
+        "greek": {
+          "tr": "Leda'nın ikizleri: ölümlü Kastor (usta binici) ve Zeus'un oğlu ölümsüz Polydeukes (usta boksör). Kastor öldürülünce Polydeukes ölümsüzlüğünü paylaşmak için yalvarır; günlerini yarı yeraltında yarı Olympos'ta birlikte geçirirler. Denizcilerin koruyucusudurlar.",
+          "en": "Leda's twins: mortal Castor the horseman and immortal Polydeuces the boxer, son of Zeus. When Castor was slain, his brother shared his immortality — half their days below, half on Olympus. Patrons of sailors."
+        },
+        "mesopotamian": {
+          "tr": "Babil'de 'Büyük İkizler' MAŠ.TAB.BA.GAL.GAL — yeraltı dünyasının kapısını bekleyen savaşçı ikiz tanrılar Lugalirra ve Meslamtaea idi.",
+          "en": "Babylon's Great Twins, Lugalirra and Meslamtaea, warrior gods guarding the gate of the underworld."
+        }
+      }
+    },
+    "Gru": {
+      "name": { "tr": "Turna (Grus)", "en": "Grus (Crane)" },
+      "stories": {
+        "modern": {
+          "tr": "Hollandalı denizcilerin güney kuşlarından; Mısır'da turna gökbilimcilerin sembolüydü. Yıldızları eskiden Güney Balığı'na aitti.",
+          "en": "A southern bird of the Dutch navigators; in Egypt the crane symbolised astronomers. Its stars once belonged to the Southern Fish."
+        }
+      }
+    },
+    "Her": {
+      "name": { "tr": "Herkül (Hercules)", "en": "Hercules" },
+      "stories": {
+        "greek": {
+          "tr": "On iki görevin kahramanı Herakles'tir — gökyüzünde diz çökmüş, sopası havada, ayağı yendiği Ejderha'nın başındadır. Nemea aslanı, Hydra, Kerberos... görevlerinin izleri tüm gökyüzüne dağılmıştır. Eskiler bu figürü sadece 'Diz Çöken' (Engonasin) diye anardı.",
+          "en": "Heracles of the twelve labours — kneeling in the sky, club raised, foot on the vanquished Dragon's head. His deeds are scattered across the heavens. The ancients knew the figure simply as 'the Kneeler'."
+        }
+      }
+    },
+    "Hor": {
+      "name": { "tr": "Saat (Horologium)", "en": "Horologium (Clock)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın sarkaçlı saati; sarkacın mucidi Huygens'i onurlandırır.",
+          "en": "Lacaille's pendulum clock, honouring Huygens its inventor."
+        }
+      }
+    },
+    "Hya": {
+      "name": { "tr": "Su Yılanı (Hydra)", "en": "Hydra (Water Snake)" },
+      "stories": {
+        "greek": {
+          "tr": "Gökyüzünün en büyük takımyıldızıdır. Herakles'in ikinci görevi olan Lerna bataklığının çok başlı yılanıdır: her kesilen başın yerine iki yenisi çıkar. Kahraman, yeğeni İolaos'un yardımıyla kesilen boyunları ateşle dağlayarak canavarı yener.",
+          "en": "The sky's largest constellation — the many-headed swamp serpent of Heracles' second labour, two heads sprouting for each cut, defeated only by searing the necks with fire."
+        },
+        "mesopotamian": {
+          "tr": "Babil'in kıvrılan yılan-ejderi Bašmu'dur; başında aslan pençeleri ve boynuzlarıyla çizilirdi.",
+          "en": "Babylon's serpent-dragon Bašmu, drawn with horns and lion's forepaws."
+        }
+      }
+    },
+    "Hyi": {
+      "name": { "tr": "Küçük Su Yılanı (Hydrus)", "en": "Hydrus (Little Water Snake)" },
+      "stories": {
+        "modern": {
+          "tr": "Hollandalı denizcilerin iki Macellan Bulutu arasında kıvrılan küçük erkek su yılanıdır — kuzeydeki dişi Hydra'nın güneyli eşi.",
+          "en": "The Dutch navigators' small male water snake winding between the Magellanic Clouds — southern mate to the great female Hydra."
+        }
+      }
+    },
+    "Ind": {
+      "name": { "tr": "Yerli (Indus)", "en": "Indus (Indian)" },
+      "stories": {
+        "modern": {
+          "tr": "Keşif çağı denizcilerinin karşılaştığı yerli halkları temsilen çizilmiş, elinde ok ve mızraklarla bir figürdür.",
+          "en": "A figure with arrows and spears representing the indigenous peoples met by age-of-exploration voyagers."
+        }
+      }
+    },
+    "Lac": {
+      "name": { "tr": "Kertenkele (Lacerta)", "en": "Lacerta (Lizard)" },
+      "stories": {
+        "modern": {
+          "tr": "Hevelius'un 1687'de Kuğu ile Andromeda arasındaki dar boşluğa sığdırdığı zikzaklı küçük kertenkeledir; 'Küçük Kassiopeia' da denir.",
+          "en": "Hevelius' small zigzag lizard squeezed between Cygnus and Andromeda in 1687; nicknamed 'Little Cassiopeia'."
+        }
+      }
+    },
+    "Leo": {
+      "name": { "tr": "Aslan (Leo)", "en": "Leo (Lion)" },
+      "stories": {
+        "greek": {
+          "tr": "Herakles'in ilk görevi olan Nemea Aslanı'dır: derisi silah işlemez, mağarası iki girişlidir. Kahraman bir girişi kapatıp canavarı çıplak elleriyle boğar; postunu pençesiyle yüzüp zırh olarak giyer. Kalbinde 'küçük kral' Regulus parlar.",
+          "en": "The Nemean Lion of Heracles' first labour, its hide proof against weapons — strangled bare-handed, then skinned with its own claw and worn as armour. Royal Regulus burns at its heart."
+        },
+        "mesopotamian": {
+          "tr": "Zodyakın en eski figürlerinden: Babil'in 'Büyük Aslan'ı UR.GU.LA, tam biçimiyle bugüne aynen ulaşan ender takımyıldızlardandır; kraliyetin ve güneşin simgesiydi.",
+          "en": "One of the zodiac's oldest figures: Babylon's Great Lion UR.GU.LA, symbol of kingship and the sun, passed down virtually unchanged."
+        },
+        "egyptian": {
+          "tr": "Güneş, yılın en sıcak günlerinde bu burçtayken Nil taşardı; aslan başlı çeşme geleneğinin buradan doğduğu söylenir.",
+          "en": "The Nile flooded while the sun stood here in high summer — said to be why fountains still pour through lions' mouths."
+        }
+      }
+    },
+    "LMi": {
+      "name": { "tr": "Küçük Aslan (Leo Minor)", "en": "Leo Minor (Little Lion)" },
+      "stories": {
+        "modern": {
+          "tr": "Hevelius'un 1687'de Büyük Aslan ile Büyük Ayı arasındaki boşluğa yerleştirdiği yavru aslandır.",
+          "en": "Hevelius' 1687 lion cub, filling the gap between the Lion and the Great Bear."
+        }
+      }
+    },
+    "Lep": {
+      "name": { "tr": "Tavşan (Lepus)", "en": "Lepus (Hare)" },
+      "stories": {
+        "greek": {
+          "tr": "Avcı Orion'un ayakları dibinde, köpeklerinden sonsuza dek kaçan tavşandır. Hermes'in, hızından ötürü göğe koyduğu söylenir.",
+          "en": "The hare forever fleeing Orion's hounds at his feet, honoured in the sky by Hermes for its speed."
+        }
+      }
+    },
+    "Lib": {
+      "name": { "tr": "Terazi (Libra)", "en": "Libra (Scales)" },
+      "stories": {
+        "mesopotamian": {
+          "tr": "Zodyakta insan ya da hayvan olmayan tek figürdür ve kökeni Babil'dir: ZIB.BA.AN.NA, 'göğün terazisi'. Güneş sonbahar ekinoksunda — gece ile gündüz eşitken — buradan geçtiği için adaletin simgesi oldu; güneş tanrısı Şamaş'ın kutsal sembolüydü.",
+          "en": "The only non-living zodiac figure, Babylonian in origin: ZIB.BA.AN.NA, 'the balance of heaven', where the sun stood at the equinox when day equals night — sacred emblem of the justice-giving sun god Shamash."
+        },
+        "greek": {
+          "tr": "Yunanlar için bu yıldızlar uzun süre Akrep'in kıskaçlarıydı; Roma döneminde adalet tanrıçası Astraia'nın (Başak) terazisi olarak yeniden yorumlandı.",
+          "en": "To the Greeks these stars were long the Scorpion's claws, recast in Roman times as the scales of Astraea, goddess of justice."
+        }
+      }
+    },
+    "Lup": {
+      "name": { "tr": "Kurt (Lupus)", "en": "Lupus (Wolf)" },
+      "stories": {
+        "greek": {
+          "tr": "Erboğa'nın mızrağının ucundaki 'vahşi hayvan'dır — sunağa götürülen kurban. Bir yorumda, Zeus'a insan eti sunduğu için kurda çevrilen Arkadya kralı Lykaon'dur.",
+          "en": "The 'wild beast' on the Centaur's spear, borne toward the Altar — or king Lycaon, turned wolf for serving Zeus human flesh."
+        }
+      }
+    },
+    "Lyn": {
+      "name": { "tr": "Vaşak (Lynx)", "en": "Lynx" },
+      "stories": {
+        "modern": {
+          "tr": "Hevelius'un sönük yıldızlı bölgeye koyduğu takımyıldız; adını, 'onu ancak vaşak gözlüler seçebilir' diye espriyle koymuştur.",
+          "en": "Hevelius named this faint region for the lynx because 'only the lynx-eyed' could make it out."
+        }
+      }
+    },
+    "Lyr": {
+      "name": { "tr": "Lir (Çalgı)", "en": "Lyra (Lyre)" },
+      "stories": {
+        "greek": {
+          "tr": "Hermes'in kaplumbağa kabuğundan yaptığı ve Apollon'a verdiği lir, sonunda büyük ozan Orfeus'a geçer. Orfeus'un müziği vahşi hayvanları uysallaştırır, taşları yerinden oynatır; ölen eşi Eurydike için yeraltına iner, tek şartı ihlal edip arkasına bakınca onu sonsuza dek kaybeder. Ölümünden sonra Zeus liri göğe asar.",
+          "en": "The tortoise-shell lyre of Hermes, passed to Apollo and then Orpheus, whose music tamed beasts and moved stones. He descended to the underworld for Eurydice and lost her with a single backward glance; after his death Zeus hung the lyre in the sky."
+        },
+        "arab": {
+          "tr": "Bölge 'süzülen kartal' en-Nesr el-Vâki olarak görülürdü; parlak Vega bu kartalın ta kendisidir.",
+          "en": "Seen as the swooping eagle, an-Nasr al-Waqi — bright Vega itself."
+        }
+      }
+    },
+    "Men": {
+      "name": { "tr": "Masa Dağı (Mensa)", "en": "Mensa (Table Mountain)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın gözlem yaptığı Cape Town'daki Masa Dağı'nı anar — gökyüzüne taşınan tek coğrafi yer adıdır. Üzerindeki Küçük Macellan Bulutu parçası, dağın meşhur 'masa örtüsü' bulutunu andırır.",
+          "en": "Honours Table Mountain at Cape Town where Lacaille observed — the only landform in the sky. A wisp of the Large Magellanic Cloud drapes it like the mountain's famous tablecloth."
+        }
+      }
+    },
+    "Mic": {
+      "name": { "tr": "Mikroskop (Microscopium)", "en": "Microscopium (Microscope)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın bilim aletlerinden; teleskopla yan yana, bilimin iki gözünü temsil eder.",
+          "en": "Lacaille's microscope, standing beside the Telescope as science's other eye."
+        }
+      }
+    },
+    "Mon": {
+      "name": { "tr": "Tek Boynuz (Monoceros)", "en": "Monoceros (Unicorn)" },
+      "stories": {
+        "modern": {
+          "tr": "1613'te Plancius'un Orion ile köpekleri arasına yerleştirdiği efsane yaratığıdır; sönük ama Samanyolu'nun zengin bir bölgesinden geçer.",
+          "en": "Plancius' 1613 unicorn between Orion and his dogs — faint, but crossing a rich stretch of Milky Way."
+        }
+      }
+    },
+    "Mus": {
+      "name": { "tr": "Sinek (Musca)", "en": "Musca (Fly)" },
+      "stories": {
+        "modern": {
+          "tr": "Güney Haçı'nın hemen altındaki küçük sinek; yanı başındaki Bukalemun'un gökyüzündeki avıdır.",
+          "en": "The little fly beneath the Southern Cross — celestial prey for the neighbouring Chameleon."
+        }
+      }
+    },
+    "Nor": {
+      "name": { "tr": "Cetvel (Norma)", "en": "Norma (Set Square)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın marangoz gönyesi ve cetvelidir; Pergel ile takım hâlinde göğü 'ölçer'.",
+          "en": "Lacaille's carpenter's square and rule, 'measuring' the sky with the Compasses."
+        }
+      }
+    },
+    "Oct": {
+      "name": { "tr": "Sekizlik (Octans)", "en": "Octans (Octant)" },
+      "stories": {
+        "modern": {
+          "tr": "Gök güney kutbunu içeren takımyıldızdır; adını denizcilerin yükseklik ölçme aleti oktanttan alır. Güneyin 'Polaris'i yoktur — kutbu bu sönük takımyıldızın sigma yıldızı gösterir.",
+          "en": "Home of the south celestial pole, named for the navigator's octant. The south has no Polaris — only faint sigma Octantis marks the spot."
+        }
+      }
+    },
+    "Oph": {
+      "name": { "tr": "Yılancı (Ophiuchus)", "en": "Ophiuchus (Serpent Bearer)" },
+      "stories": {
+        "greek": {
+          "tr": "Hekimliğin babası Asklepios'tur. Bir yılanın, öldürdüğü başka bir yılanı otla dirilttiğini görüp ölüleri diriltme sırrını öğrenir. Yeraltı boşalacak diye korkan Hades'in şikâyetiyle Zeus onu yıldırımla vurur — ama saygıyla, elinde yılanıyla göğe koyar. Tıbbın simgesi yılanlı asa ondan kalmadır.",
+          "en": "Asclepius, father of medicine, who learned resurrection from a serpent reviving its mate with a herb. Slain by Zeus at Hades' complaint that the underworld was emptying — yet honoured in the sky, serpent in hand. Medicine's serpent-staff is his."
+        }
+      }
+    },
+    "Ori": {
+      "name": { "tr": "Orion (Avcı)", "en": "Orion (Hunter)" },
+      "stories": {
+        "greek": {
+          "tr": "Dev avcı Orion, 'yeryüzündeki her hayvanı öldürebilirim' diye övününce Toprak Ana bir akrep gönderir; küçücük hayvan devi sokarak öldürür. Tanrılar ikisini göğün zıt uçlarına koyar: Akrep doğarken Orion batar, kovalamaca sonsuzdur. Kuşağındaki üç yıldız dünyanın her yerinden görülür.",
+          "en": "The giant hunter who boasted he could slay every beast on earth — killed by a small scorpion sent by Mother Earth. The gods set them at opposite ends of the sky: Orion sets as Scorpius rises, an endless chase. His three belt stars are seen the world over."
+        },
+        "egyptian": {
+          "tr": "Ölüler ve yeniden doğuş tanrısı Osiris'in gökteki bedenidir; firavunların ruhu ölümden sonra Orion'a yükselirdi. Giza piramitlerinin kuşak yıldızlarına göre dizildiği kuramı hâlâ tartışılır.",
+          "en": "The celestial body of Osiris, god of rebirth; pharaohs' souls ascended to him. The theory that Giza's pyramids mirror the belt stars is still debated."
+        },
+        "turkic": {
+          "tr": "Türk halk astronomisinde kuşağın üç yıldızı 'Üçyıldız'dır; kimi boylarda Orion 'Kambar-ata' — atların koruyucusudur. Gece yola çıkanlar vakti Üçyıldız'ın yüksekliğinden okurdu.",
+          "en": "In Turkic folk tradition the belt is 'Üçyıldız' (Three Stars), a night clock for travellers; in some clans Orion is Kambar-ata, protector of horses."
+        },
+        "mesopotamian": {
+          "tr": "Babil'de 'Göğün Sadık Çobanı' (SIPA.ZI.AN.NA) — tanrıların habercisi Papşukkal ile özdeşti.",
+          "en": "Babylon's 'True Shepherd of Heaven' (SIPA.ZI.AN.NA), herald of the gods."
+        }
+      }
+    },
+    "Pav": {
+      "name": { "tr": "Tavus (Pavo)", "en": "Pavo (Peacock)" },
+      "stories": {
+        "greek": {
+          "tr": "Hollandalı denizcilerin çizdiği bu güney kuşuna Yunan efsanesi sonradan yakıştırıldı: Hera, yüz gözlü bekçisi Argus öldürülünce gözlerini tavusun kuyruğuna işledi.",
+          "en": "A Dutch southern bird later given the Greek tale: Hera set the hundred eyes of her slain watchman Argus into the peacock's tail."
+        }
+      }
+    },
+    "Peg": {
+      "name": { "tr": "Pegasus (Kanatlı At)", "en": "Pegasus (Winged Horse)" },
+      "stories": {
+        "greek": {
+          "tr": "Perseus Medusa'nın başını kestiğinde boynundan fışkıran kanattır. Bellerophon onun sırtında ateş püsküren Khimaira'yı öldürür; ama kibirlenip Olympos'a uçmaya kalkınca Zeus bir at sineğiyle onu düşürür — Pegasus tek başına yükselip Zeus'un yıldırım taşıyıcısı olur. Gövdesi ünlü 'Büyük Kare'yi çizer.",
+          "en": "Sprung from Medusa's severed neck. Bellerophon rode him to slay the fire-breathing Chimera, then presumed to fly to Olympus and was thrown — Pegasus rose alone to bear Zeus' thunder. His body forms the Great Square."
+        }
+      }
+    },
+    "Per": {
+      "name": { "tr": "Perseus (Kahraman)", "en": "Perseus (Hero)" },
+      "stories": {
+        "greek": {
+          "tr": "Bakışı taşa çeviren Medusa'yı, kalkanındaki yansımaya bakarak öldüren kahramandır. Dönüş yolunda canavara sunulan Andromeda'yı kurtarır. Elinde tuttuğu Gorgon başının 'göz kırpan' yıldızı Algol'dür. Her ağustos, ünlü Perseid meteorları bu takımyıldızdan yağar.",
+          "en": "The hero who slew Medusa by her reflection in his shield, then saved Andromeda on the way home. In his hand winks Algol, the Gorgon's eye; every August the Perseid meteors rain from here."
+        }
+      }
+    },
+    "Phe": {
+      "name": { "tr": "Anka (Phoenix)", "en": "Phoenix" },
+      "stories": {
+        "modern": {
+          "tr": "Küllerinden yeniden doğan ölümsüz ateş kuşudur; Mısır'ın Bennu kuşuna ve Doğu'nun Simurg/Anka geleneğine uzanır. Hollandalı denizciler güney göğüne bu evrensel yeniden doğuş simgesini çizdi.",
+          "en": "The immortal firebird reborn from its own ashes — heir to Egypt's Bennu and the eastern Simurgh. Dutch navigators drew this universal symbol of renewal in the southern sky."
+        }
+      }
+    },
+    "Pic": {
+      "name": { "tr": "Ressam (Pictor)", "en": "Pictor (Painter's Easel)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın ressam sehpasıdır; sanatı bilim aletlerinin arasına katar.",
+          "en": "Lacaille's painter's easel, art among the instruments."
+        }
+      }
+    },
+    "Psc": {
+      "name": { "tr": "Balıklar (Pisces)", "en": "Pisces (Fishes)" },
+      "stories": {
+        "greek": {
+          "tr": "Canavar Typhon saldırdığında Afrodit ile oğlu Eros nehre atlar ve balığa dönüşür; kaybolmamak için kuyruklarını bir kurdele ile bağlarlar — iki balığı bağlayan yıldız şeridi bu kurdeledir. Günümüzde ilkbahar ekinoksu bu takımyıldızdadır.",
+          "en": "Aphrodite and Eros leapt into the river as fish to escape the monster Typhon, tying their tails with a ribbon so as not to lose each other — the cord of stars still binds them. The spring equinox now lies here."
+        },
+        "mesopotamian": {
+          "tr": "Kökeni Babil'in 'Kuyruklar' (ZIB.ME) takımyıldızıdır — Dicle ve Fırat'ı simgeleyen iki balık.",
+          "en": "From Babylon's 'Tails' (ZIB.ME) — two fish embodying the Tigris and Euphrates."
+        }
+      }
+    },
+    "PsA": {
+      "name": { "tr": "Güney Balığı (Piscis Austrinus)", "en": "Piscis Austrinus (Southern Fish)" },
+      "stories": {
+        "greek": {
+          "tr": "Kova'nın testisinden dökülen suyu içen büyük balıktır; zodyaktaki Balıklar'ın atası sayılır. Suriye tanrıçası Derketo'yu gölde boğulmaktan kurtaran balık olduğu anlatılır; ağzında yalnız yıldız Fomalhaut parlar.",
+          "en": "The great fish drinking Aquarius' stream, parent of the zodiac's Fishes — said to have saved the Syrian goddess Derceto from drowning. Lonely Fomalhaut shines in its mouth."
+        }
+      }
+    },
+    "Pup": {
+      "name": { "tr": "Pupa (Puppis)", "en": "Puppis (Stern)" },
+      "stories": {
+        "greek": {
+          "tr": "Argo gemisinin kıç güvertesidir. Elli kahramanı Altın Post'a taşıyan geminin pruvası, konuşan kutsal meşeden yapılmıştı; gemi parçalara ayrılıp göğe yerleştirildi.",
+          "en": "The stern of Argo, the ship that bore fifty heroes to the Golden Fleece, its prow cut from a speaking oak — the ship now sails the sky in pieces."
+        }
+      }
+    },
+    "Pyx": {
+      "name": { "tr": "Pusula (Pyxis)", "en": "Pyxis (Compass)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın gemici pusulasıdır; antik Argo gemisinin yanına, çağların denizciliğini birleştirir gibi yerleştirilmiştir.",
+          "en": "Lacaille's mariner's compass, set beside ancient Argo as if bridging the ages of seafaring."
+        }
+      }
+    },
+    "Ret": {
+      "name": { "tr": "Ağcık (Reticulum)", "en": "Reticulum (Reticle)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın teleskop mercek ağıdır — yıldız konumlarını ölçerken kullandığı gözlem ızgarasını anar.",
+          "en": "Lacaille's telescope reticle, the crosshair grid he used to measure star positions."
+        }
+      }
+    },
+    "Sge": {
+      "name": { "tr": "Ok (Sagitta)", "en": "Sagitta (Arrow)" },
+      "stories": {
+        "greek": {
+          "tr": "Gökyüzünün en küçük üçüncü takımyıldızıdır. Kimine göre Herakles'in, Prometheus'un ciğerini yiyen kartalı vurduğu ok; kimine göre Apollon'un, Kykloplara attığı oktur.",
+          "en": "The sky's third-smallest constellation — the arrow Heracles shot at Prometheus' tormenting eagle, or Apollo's shaft against the Cyclopes."
+        }
+      }
+    },
+    "Sgr": {
+      "name": { "tr": "Yay (Okçu)", "en": "Sagittarius (Archer)" },
+      "stories": {
+        "greek": {
+          "tr": "Yayını Akrep'in kalbine (Antares) doğrultmuş okçu kentaurdur — Orion'un intikamını kollar. Yunanlar onu kimi zaman satir Krotos ile özdeşleştirdi: okçuluğu icat eden, ilham perilerinin alkışı icat ettiği dostu. Yayının ucu, galaksimizin merkezini gösterir.",
+          "en": "The centaur archer, bow drawn on the Scorpion's heart to avenge Orion — or the satyr Crotus, inventor of archery and of applause. His arrow points at the very centre of our galaxy."
+        },
+        "mesopotamian": {
+          "tr": "Babil'in okçu tanrısı Pabilsag'dır: kanatlı, çift başlı, akrep kuyruklu bir yaratık — zodyak okçusunun atası.",
+          "en": "Babylon's archer god Pabilsag — winged, twin-headed, scorpion-tailed — ancestor of the zodiac archer."
+        }
+      }
+    },
+    "Sco": {
+      "name": { "tr": "Akrep (Scorpius)", "en": "Scorpius (Scorpion)" },
+      "stories": {
+        "greek": {
+          "tr": "Kibirli avcı Orion'u sokup öldüren akreptir; ödül olarak göğe kondu ama avcıyla ebediyen ayrı tutuldu — biri doğarken öteki batar. Kalbinde kızıl Antares atar, kuyruğu Samanyolu'na kıvrılır.",
+          "en": "The scorpion that slew boastful Orion, rewarded with the sky yet kept forever apart from him — one rises as the other sets. Red Antares beats at its heart, its tail curling into the Milky Way."
+        },
+        "polynesian": {
+          "tr": "Yarı tanrı Maui'nin sihirli oltası Manaiakalani'dir — bu kancayla okyanusun dibinden adaları çekip çıkarmıştır.",
+          "en": "Maui's magic fishhook, Manaiakalani, with which the demigod fished islands up from the ocean floor."
+        },
+        "mesopotamian": {
+          "tr": "MUL.GIR.TAB — Akrep. Gılgamış destanında güneşin geçtiği dağ kapılarını akrep-insanlar bekler.",
+          "en": "MUL.GIR.TAB, the Scorpion; scorpion-people guard the sun's mountain gates in Gilgamesh."
+        }
+      }
+    },
+    "Scl": {
+      "name": { "tr": "Heykeltıraş (Sculptor)", "en": "Sculptor" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın heykeltıraş atölyesidir; gök güney galaktik kutbu bu takımyıldızdadır.",
+          "en": "Lacaille's sculptor's studio; the south galactic pole lies here."
+        }
+      }
+    },
+    "Sct": {
+      "name": { "tr": "Kalkan (Scutum)", "en": "Scutum (Shield)" },
+      "stories": {
+        "modern": {
+          "tr": "Hevelius'un 1684'te, Viyana'yı kuşatmadan kurtaran Polonya kralı Jan Sobieski onuruna çizdiği kalkandır — hâlâ bir siyasi figürü anan tek takımyıldızdır.",
+          "en": "Hevelius' 1684 shield honouring Jan Sobieski, the Polish king who relieved the siege of Vienna — the only constellation still named for a real political figure."
+        }
+      }
+    },
+    "Ser": {
+      "name": { "tr": "Yılan (Serpens)", "en": "Serpens (Serpent)" },
+      "stories": {
+        "greek": {
+          "tr": "Yılancı Asklepios'un iki elinde tuttuğu şifa yılanıdır; gökyüzünün ikiye bölünmüş tek takımyıldızıdır — başı (Caput) bir yanda, kuyruğu (Cauda) öbür yanda. Yılanın deri değiştirmesi, eskiler için yeniden doğuşun ve şifanın simgesiydi.",
+          "en": "The healing serpent held in Ophiuchus' hands — the only constellation split in two: head (Caput) on one side, tail (Cauda) on the other. Its shed skin made it the ancient emblem of renewal."
+        }
+      }
+    },
+    "Sex": {
+      "name": { "tr": "Sekstant (Sextans)", "en": "Sextans (Sextant)" },
+      "stories": {
+        "modern": {
+          "tr": "Hevelius'un, yıldız konumlarını çıplak gözle ölçtüğü büyük sekstantını anar — aleti 1679 yangınında kül olmuş, o da onu göğe 'taşımıştır'.",
+          "en": "Hevelius' great sextant, with which he measured stars by naked eye — destroyed in a 1679 fire, so he 'moved' it to the sky."
+        }
+      }
+    },
+    "Tau": {
+      "name": { "tr": "Boğa (Taurus)", "en": "Taurus (Bull)" },
+      "stories": {
+        "greek": {
+          "tr": "Zeus'un, Fenike prensesi Europa'yı kaçırmak için dönüştüğü kar beyazı boğadır; prensesi sırtında Girit'e taşır — Avrupa kıtasının adı bu yolculuktan gelir. Kızıl gözü Aldebaran, alnında Hyades, omzunda Ülker (Pleiades) taşır.",
+          "en": "The snow-white bull Zeus became to carry off Europa to Crete — the continent bears her name. Red Aldebaran is its eye, the Hyades its brow, the Pleiades ride its shoulder."
+        },
+        "mesopotamian": {
+          "tr": "'Göğün Boğası' GU.AN.NA — İştar'ın, kendisini reddeden Gılgamış'a saldırtmak için gönderdiği boğadır; Gılgamış ile Enkidu onu öldürür. Zodyakın en eski figürlerindendir; M.Ö. 4000'lerde ilkbahar ekinoksu buradaydı.",
+          "en": "The Bull of Heaven, GU.AN.NA, sent by Ishtar against Gilgamesh and slain by him and Enkidu. Among the oldest zodiac figures — the spring equinox stood here around 4000 BC."
+        },
+        "turkic": {
+          "tr": "Omzundaki Ülker kümesi Türk halk takviminin temeliydi; 'Ülker doğdu' sözü mevsim dönümünü bildirirdi. Boğa figürü bolluk ve kuvvetin simgesiydi.",
+          "en": "The Pleiades on its shoulder anchored the Turkic folk calendar; 'Ülker has risen' marked the season's turn."
+        }
+      }
+    },
+    "Tel": {
+      "name": { "tr": "Teleskop (Telescopium)", "en": "Telescopium (Telescope)" },
+      "stories": {
+        "modern": {
+          "tr": "Lacaille'ın, gökbilimi dönüştüren alete saygı duruşudur.",
+          "en": "Lacaille's homage to the instrument that transformed astronomy."
+        }
+      }
+    },
+    "Tri": {
+      "name": { "tr": "Üçgen (Triangulum)", "en": "Triangulum (Triangle)" },
+      "stories": {
+        "greek": {
+          "tr": "Antik kökenli küçük takımyıldız; Yunanlar büyük delta harfi, Nil deltası ya da Sicilya adası olarak yorumladı. İçinde, çıplak gözle görülebilen en uzak cisimlerden Üçgen Galaksisi (M33) bulunur.",
+          "en": "A small but ancient figure — read as the letter delta, the Nile delta, or Sicily. It holds the Triangulum Galaxy (M33), among the farthest naked-eye objects."
+        }
+      }
+    },
+    "TrA": {
+      "name": { "tr": "Güney Üçgeni (Triangulum Australe)", "en": "Triangulum Australe (Southern Triangle)" },
+      "stories": {
+        "modern": {
+          "tr": "Güneyin üç 'Patrik'i de denen parlak üçgeni; denizcilerin güney göğündeki basit ama güvenilir işaretlerindendi.",
+          "en": "The bright southern triangle, its stars nicknamed the Three Patriarchs — a simple, reliable seamark of the southern sky."
+        }
+      }
+    },
+    "Tuc": {
+      "name": { "tr": "Tukan (Tucana)", "en": "Tucana (Toucan)" },
+      "stories": {
+        "modern": {
+          "tr": "Yeni Dünya'nın koca gagalı kuşu; Küçük Macellan Bulutu ve görkemli 47 Tucanae küresel kümesi bu takımyıldızdadır.",
+          "en": "The big-billed bird of the New World, host to the Small Magellanic Cloud and the glorious cluster 47 Tucanae."
+        }
+      }
+    },
+    "UMa": {
+      "name": { "tr": "Büyük Ayı (Ursa Major)", "en": "Ursa Major (Great Bear)" },
+      "stories": {
+        "greek": {
+          "tr": "Zeus'un sevdiği nympha Kallisto, kıskanç Hera tarafından ayıya çevrilir. Yıllar sonra oğlu Arkas onu avlamak üzereyken Zeus ikisini göğe alır. Hera son bir intikamla ayıların denize girip yıkanmasını yasaklar — bu yüzden Büyük Ayı ufkun altına hiç inmez.",
+          "en": "Callisto, beloved of Zeus, was turned into a bear by jealous Hera. As her son Arcas was about to hunt her, Zeus raised both to the sky. Hera's last revenge: the bears may never bathe in the sea — so the Great Bear never sets."
+        },
+        "turkic": {
+          "tr": "Türk halk astronomisinde 'Yedigen' ya da 'Yedi Kardeşler'dir. Bir anlatıda yedi hırsız, Ülker'in yedi kızından birini (küçük Alcor) kaçırmıştır; kutup kazığı Demirkazık'a bağlı atlar gibi onun çevresinde sonsuza dek dönerler.",
+          "en": "The 'Yedigen' or Seven Brothers of Turkic folk astronomy — or seven thieves who stole a daughter of the Pleiades (tiny Alcor), circling the Iron Stake pole star forever like tethered horses."
+        },
+        "arab": {
+          "tr": "'Benât Na'ş' — tabutun kızları: dört yıldız tabut, üç yıldız arkasındaki yaslı kızlardır; cenaze alayı kutbun çevresinde hiç durmadan yürür.",
+          "en": "'Banat Na'sh', the Daughters of the Bier — four stars the coffin, three the mourners, a funeral that never ends."
+        },
+        "hindu": {
+          "tr": "Saptarishi — yedi büyük bilge ermiştir; her biri kepçenin bir yıldızında oturur ve evrenin düzenini gözetir.",
+          "en": "The Saptarishi, seven great sages, each seated on a star, keeping the order of the cosmos."
+        }
+      }
+    },
+    "UMi": {
+      "name": { "tr": "Küçük Ayı (Ursa Minor)", "en": "Ursa Minor (Little Bear)" },
+      "stories": {
+        "greek": {
+          "tr": "Kallisto'nun oğlu Arkas'tır — ya da bebek Zeus'u Girit'te emziren nympha Kynosura. Kuyruğunun ucunda Kutup Yıldızı parlar; tüm gökyüzü onun etrafında döner.",
+          "en": "Arcas, son of Callisto — or Cynosura, the nymph who nursed the infant Zeus. At its tail-tip shines the Pole Star, around which the whole sky turns."
+        },
+        "turkic": {
+          "tr": "Demirkazık'ın (Polaris) takımyıldızıdır: gök çadırının direği buradadır ve Ülgen'in atları bu kazığın çevresinde döner. Kutup Yıldızı, obalara yön gösteren şaşmaz kılavuzdu.",
+          "en": "Home of Demirkazık, the Iron Stake pinning the sky-tent, with Ülgen's horses circling it — the unfailing guide of the steppe."
+        }
+      }
+    },
+    "Vel": {
+      "name": { "tr": "Yelken (Vela)", "en": "Vela (Sails)" },
+      "stories": {
+        "greek": {
+          "tr": "Argo gemisinin rüzgârla dolan yelkenleridir; parçalanmış gök gemisinin Omurga ve Pupa ile birlikte üçüncü parçası.",
+          "en": "The wind-filled sails of Argo — third piece of the dismembered sky-ship with Keel and Stern."
+        }
+      }
+    },
+    "Vir": {
+      "name": { "tr": "Başak (Virgo)", "en": "Virgo (Maiden)" },
+      "stories": {
+        "greek": {
+          "tr": "Elinde buğday başağı (Spica) tutan hasat tanrıçası Demeter — ya da insanlık yozlaşınca dünyayı en son terk eden adalet tanrıçası Astraia'dır: 'bir gün geri dönecek ve altın çağ başlayacak'. Kızı Persephone'nin yeraltına inişi mevsimleri yaratır.",
+          "en": "Demeter of the harvest, wheat-ear (Spica) in hand — or Astraea, goddess of justice, last of the gods to abandon corrupted humanity, who will one day return. Her daughter Persephone's descent creates the seasons."
+        },
+        "egyptian": {
+          "tr": "Nil kıyılarında tanrıça İsis ile özdeşleştirilirdi; Samanyolu, peşindeki Typhon'dan kaçarken saçtığı buğday taneleridir.",
+          "en": "Identified with Isis; the Milky Way was the trail of wheat grains she scattered in flight."
+        },
+        "mesopotamian": {
+          "tr": "Babil'in 'Saban İzi' (AB.SIN) takımyıldızı — tahıl tanrıçası Şala'nın başağıydı.",
+          "en": "Babylon's 'Furrow' (AB.SIN), the grain-ear of the goddess Shala."
+        }
+      }
+    },
+    "Vol": {
+      "name": { "tr": "Uçan Balık (Volans)", "en": "Volans (Flying Fish)" },
+      "stories": {
+        "modern": {
+          "tr": "Tropik denizlerin suyun üstünde süzülen balığıdır; gökyüzünde Kılıç Balığı (Dorado) tarafından kovalanır.",
+          "en": "The gliding fish of tropical seas, chased across the sky by Dorado."
+        }
+      }
+    },
+    "Vul": {
+      "name": { "tr": "Tilki (Vulpecula)", "en": "Vulpecula (Little Fox)" },
+      "stories": {
+        "modern": {
+          "tr": "Hevelius'un 'Kazlı Tilki'sidir — çenesinde bir kaz taşırdı; kaz zamanla düştü, tilki kaldı. İlk pulsar 1967'de bu takımyıldızda keşfedildi.",
+          "en": "Hevelius' 'Fox with the Goose' — the goose has since been dropped. The first pulsar was discovered here in 1967."
+        }
+      }
+    }
+  }
+}

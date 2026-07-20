@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Yıldız Atlası — Etkileşimli Planetaryum</title>
+<style>
+:root {
+  --bg: #04060f;
+  --panel: #0d1226;
+  --panel-2: #141a33;
+  --text: #e8ecff;
+  --muted: #8b93b8;
+  --accent: #ffd76a;
+  --accent-2: #7aa2ff;
+  --line: #232b4d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif; }
+#sky { position: fixed; inset: 0; display: block; touch-action: none; cursor: grab; }
+#sky.dragging { cursor: grabbing; }
+
+/* Üst bar */
+#topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 10px 14px; background: linear-gradient(to bottom, rgba(4,6,15,.9), transparent); }
+.brand { font-size: 18px; font-weight: 600; letter-spacing: .5px; color: var(--accent); white-space: nowrap; }
+.top-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+#search { background: rgba(13,18,38,.85); border: 1px solid var(--line); color: var(--text);
+  padding: 8px 12px; border-radius: 20px; width: 220px; outline: none; font-size: 13px; }
+#search:focus { border-color: var(--accent-2); }
+.chip-btn { background: rgba(13,18,38,.85); border: 1px solid var(--line); color: var(--text);
+  padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 13px; }
+.chip-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Katmanlar */
+#layers { position: fixed; left: 12px; bottom: 12px; z-index: 20; display: flex; flex-direction: column; gap: 6px;
+  background: rgba(13,18,38,.75); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px;
+  font-size: 12.5px; color: var(--muted); backdrop-filter: blur(6px); }
+#layers label { display: flex; gap: 6px; align-items: center; cursor: pointer; }
+#layers input { accent-color: var(--accent); }
+
+#hint { position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 15;
+  font-size: 12.5px; color: var(--muted); background: rgba(13,18,38,.6); padding: 6px 14px;
+  border-radius: 16px; pointer-events: none; transition: opacity 1s; white-space: nowrap; }
+#hint.fade { opacity: 0; }
+
+#loading { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; gap: 14px;
+  align-items: center; justify-content: center; background: var(--bg); font-size: 14px; color: var(--muted); }
+#loading.hidden { display: none; }
+.spin { width: 34px; height: 34px; border: 3px solid var(--line); border-top-color: var(--accent);
+  border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Bottom sheet */
+#sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  background: var(--panel); border-top: 1px solid var(--line); border-radius: 18px 18px 0 0;
+  max-height: 72vh; display: flex; flex-direction: column;
+  box-shadow: 0 -10px 40px rgba(0,0,0,.55);
+  transform: translateY(0); transition: transform .28s cubic-bezier(.3,.9,.3,1); }
+#sheet.hidden { transform: translateY(110%); }
+#sheet-handle { padding: 8px 0 2px; display: flex; justify-content: center; cursor: grab; }
+#sheet-handle span { width: 42px; height: 4px; border-radius: 2px; background: var(--line); }
+#sheet-close { position: absolute; top: 10px; right: 12px; background: var(--panel-2); border: 1px solid var(--line);
+  color: var(--muted); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+#sheet-content { overflow-y: auto; padding: 6px 18px 22px; }
+#sheet-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding-right: 34px; }
+#sheet-title { font-size: 22px; color: var(--accent); font-weight: 600; }
+#sheet-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+#sheet-swatch { width: 26px; height: 26px; border-radius: 50%; flex: none; margin-top: 4px;
+  box-shadow: 0 0 14px 2px currentColor; }
+
+#sheet-tabs { display: flex; gap: 6px; margin: 14px 0 10px; border-bottom: 1px solid var(--line); }
+.tab { background: none; border: none; color: var(--muted); padding: 8px 12px; cursor: pointer;
+  font-size: 14px; border-bottom: 2px solid transparent; }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-pane { display: none; font-size: 14.5px; line-height: 1.65; }
+.tab-pane.active { display: block; }
+
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 6px; }
+.info-item { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.info-item .k { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
+.info-item .v { font-size: 15px; margin-top: 3px; }
+.zodiac-badge { display: inline-block; margin-top: 12px; background: rgba(255,215,106,.12); color: var(--accent);
+  border: 1px solid rgba(255,215,106,.4); padding: 6px 12px; border-radius: 16px; font-size: 13px; }
+
+#culture-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.cchip { background: var(--panel-2); border: 1px solid var(--line); color: var(--muted);
+  padding: 5px 12px; border-radius: 15px; font-size: 12.5px; cursor: pointer; }
+.cchip.active { background: rgba(122,162,255,.15); border-color: var(--accent-2); color: var(--accent-2); }
+.myth-block { margin-bottom: 16px; }
+.myth-block p + p { margin-top: 8px; }
+.myth-block h4 { color: var(--accent-2); font-size: 13px; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+.etym { background: var(--panel-2); border-left: 3px solid var(--accent); padding: 8px 12px;
+  border-radius: 0 8px 8px 0; margin-bottom: 12px; font-size: 13.5px; color: var(--muted); }
+.etym b { color: var(--text); }
+.no-myth { color: var(--muted); font-style: italic; }
+
+/* Modal */
+.modal { position: fixed; inset: 0; z-index: 40; background: rgba(2,3,8,.7); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
+.modal.hidden { display: none; }
+.modal-box { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+  width: min(460px, 100%); max-height: 92vh; overflow-y: auto; padding: 22px; }
+.modal-box h2 { color: var(--accent); font-size: 19px; margin-bottom: 14px; }
+.modal-close { position: absolute; top: 12px; right: 12px; background: var(--panel-2); border: 1px solid var(--line);
+  color: var(--muted); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+.form-row { margin-bottom: 12px; }
+.form-row label { display: block; font-size: 12.5px; color: var(--muted); margin-bottom: 5px; }
+.form-row input { width: 100%; background: var(--panel-2); border: 1px solid var(--line); color: var(--text);
+  padding: 9px 11px; border-radius: 9px; font-size: 14px; outline: none; color-scheme: dark; }
+.form-row input:focus { border-color: var(--accent-2); }
+.latlon { display: flex; gap: 8px; }
+.place-note { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+button.primary { width: 100%; background: var(--accent); color: #1a1200; font-weight: 600; border: none;
+  padding: 11px; border-radius: 10px; font-size: 15px; cursor: pointer; margin-top: 4px; }
+button.primary:hover { filter: brightness(1.08); }
+
+#natal-result { margin-top: 16px; }
+#natal-result.hidden { display: none; }
+#natal-wheel { width: 100%; height: auto; }
+#natal-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13.5px; }
+#natal-table td, #natal-table th { padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+#natal-table th { color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: .6px; }
+#natal-table .sign { color: var(--accent); }
+.disclaimer { font-size: 11.5px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
+
+/* Takımyıldız etiketleri (DOM tabanlı) */
+.con-label { position: fixed; z-index: 5; transform: translate(-50%, -50%); color: rgba(160,175,230,.75);
+  font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; pointer-events: auto; cursor: pointer;
+  text-shadow: 0 0 6px #000; user-select: none; white-space: nowrap; }
+.con-label:hover { color: var(--accent); }
+.star-label { position: fixed; z-index: 5; transform: translate(8px, -50%); color: rgba(255,225,160,.9);
+  font-size: 11px; pointer-events: none; text-shadow: 0 0 5px #000; user-select: none; white-space: nowrap; }
+
+@media (max-width: 640px) {
+  .brand span { display: none; }
+  #search { width: 130px; }
+  #btn-natal span { display: none; }
+  #layers { font-size: 11.5px; padding: 8px 10px; bottom: 60px; }
+  #hint { bottom: 16px; font-size: 11px; max-width: 92vw; white-space: normal; text-align: center; }
+  #sheet { max-height: 78vh; }
+}
+</style>
+</head>
+<body>
+  <canvas id="sky"></canvas>
+
+  <!-- Üst bar -->
+  <header id="topbar">
+    <div class="brand">✦ <span data-i18n="title">Yıldız Atlası</span></div>
+    <div class="top-actions">
+      <input id="search" type="search" list="search-list" placeholder="Yıldız / takımyıldız ara..." autocomplete="off">
+      <datalist id="search-list"></datalist>
+      <button id="btn-natal" class="chip-btn" title="Doğum haritası">☉ <span data-i18n="natal">Doğum Haritası</span></button>
+      <button id="btn-lang" class="chip-btn" title="Dil">TR</button>
+    </div>
+  </header>
+
+  <!-- Katman kontrolleri -->
+  <div id="layers">
+    <label><input type="checkbox" id="toggle-lines" checked> <span data-i18n="lines">Takımyıldız çizgileri</span></label>
+    <label><input type="checkbox" id="toggle-labels" checked> <span data-i18n="labels">İsimler</span></label>
+    <label><input type="checkbox" id="toggle-mw" checked> <span data-i18n="mw">Samanyolu</span></label>
+    <label><input type="checkbox" id="toggle-planets" checked> <span data-i18n="planets">Gezegenler</span></label>
+    <label><input type="checkbox" id="toggle-grid"> <span data-i18n="grid">Gök ızgarası</span></label>
+  </div>
+
+  <div id="hint" data-i18n="hint">Sürükleyerek gökyüzünde gez • Yıldıza veya takımyıldıza dokun</div>
+  <div id="loading"><div class="spin"></div><span data-i18n="loading">Gökyüzü yükleniyor...</span></div>
+
+  <!-- Bottom sheet: yıldız / takımyıldız bilgi paneli -->
+  <div id="sheet" class="hidden">
+    <div id="sheet-handle"><span></span></div>
+    <button id="sheet-close" aria-label="Kapat">✕</button>
+    <div id="sheet-content">
+      <div id="sheet-head">
+        <div>
+          <h2 id="sheet-title"></h2>
+          <div id="sheet-sub"></div>
+        </div>
+        <div id="sheet-swatch" title=""></div>
+      </div>
+      <div id="sheet-tabs">
+        <button class="tab active" data-tab="info" data-i18n="tab_info">Bilgi</button>
+        <button class="tab" data-tab="myth" data-i18n="tab_myth">Mitoloji & Hikâye</button>
+      </div>
+      <div id="tab-info" class="tab-pane active"></div>
+      <div id="tab-myth" class="tab-pane">
+        <div id="culture-chips"></div>
+        <div id="myth-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Doğum haritası modalı -->
+  <div id="natal-modal" class="modal hidden">
+    <div class="modal-box">
+      <button class="modal-close" id="natal-close">✕</button>
+      <h2 data-i18n="natal_title">Doğum Haritası</h2>
+      <form id="natal-form">
+        <div class="form-row">
+          <label data-i18n="birth_date">Doğum tarihi</label>
+          <input type="date" id="n-date" required value="2000-01-01">
+        </div>
+        <div class="form-row">
+          <label data-i18n="birth_time">Saat</label>
+          <input type="time" id="n-time" required value="12:00">
+        </div>
+        <div class="form-row">
+          <label data-i18n="birth_place">Yer (enlem, boylam)</label>
+          <div class="latlon">
+            <input type="number" id="n-lat" step="0.0001" min="-90" max="90" value="39.92" placeholder="Enlem">
+            <input type="number" id="n-lon" step="0.0001" min="-180" max="180" value="32.85" placeholder="Boylam">
+          </div>
+          <div class="place-note" data-i18n="place_note">Varsayılan: Ankara. Şehrinin koordinatını yazabilirsin.</div>
+        </div>
+        <div class="form-row">
+          <label data-i18n="tz">Saat dilimi (UTC farkı)</label>
+          <input type="number" id="n-tz" step="0.5" min="-12" max="14" value="3">
+        </div>
+        <button type="submit" class="primary" data-i18n="calc">Haritayı Hesapla</button>
+      </form>
+      <div id="natal-result" class="hidden">
+        <svg id="natal-wheel" viewBox="0 0 400 400"></svg>
+        <table id="natal-table"></table>
+        <div class="disclaimer" data-i18n="natal_disclaimer">Gezegen konumları astronomy-engine ile astronomik olarak hesaplanır; yorumlar kültürel/eğlence amaçlıdır.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js" defer></script>
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+  <script type="module">
+import * as THREE from "three";
+// Basit TR/EN dil desteği
+const STRINGS = {
+  tr: {
+    title: "Yıldız Atlası",
+    natal: "Doğum Haritası",
+    lines: "Takımyıldız çizgileri",
+    labels: "İsimler",
+    grid: "Gök ızgarası",
+    mw: "Samanyolu",
+    planets: "Gezegenler",
+    planet: "Gezegen",
+    sign_pos: "Burçtaki konumu",
+    today_note: "Konumlar bugünün gökyüzüne göre hesaplandı.",
+    au: "AB (Güneş-Dünya uzaklığı)",
+    km: "km",
+    hint: "Sürükleyerek gökyüzünde gez • Yıldıza veya takımyıldıza dokun",
+    loading: "Gökyüzü yükleniyor...",
+    tab_info: "Bilgi",
+    tab_myth: "Mitoloji & Hikâye",
+    search_ph: "Yıldız / takımyıldız ara...",
+    natal_title: "Doğum Haritası",
+    birth_date: "Doğum tarihi",
+    birth_time: "Saat",
+    birth_place: "Yer (enlem, boylam)",
+    place_note: "Varsayılan: Ankara. Şehrinin koordinatını yazabilirsin.",
+    tz: "Saat dilimi (UTC farkı)",
+    calc: "Haritayı Hesapla",
+    natal_disclaimer: "Gezegen konumları astronomy-engine ile astronomik olarak hesaplanır; yorumlar kültürel/eğlence amaçlıdır.",
+    constellation: "Takımyıldız",
+    magnitude: "Parlaklık (kadir)",
+    distance: "Uzaklık",
+    color: "Renk / Tayf",
+    ly: "ışık yılı",
+    visibility: "Görünürlük",
+    best_month: "En iyi ay",
+    both_hemi: "Her iki yarımküre",
+    north_hemi: "Kuzey yarımküre",
+    south_hemi: "Güney yarımküre",
+    all_cultures: "Hepsi",
+    no_myth_star: "Bu yıldız için kayıtlı bir hikâye yok. Bağlı olduğu takımyıldızın hikâyesine göz atabilirsin:",
+    open_con_story: "takımyıldızının hikâyesi →",
+    etymology: "İsmin kökeni",
+    unnamed: "İsimsiz yıldız",
+    planet: "Gezegen",
+    sign: "Burç",
+    degree: "Derece",
+    ascendant: "Yükselen",
+    months: ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"],
+    bv_names: ["Mavi","Mavi-beyaz","Beyaz","Sarı-beyaz","Sarı","Turuncu","Kırmızı"],
+    zodiac_badge: "burcunun takımyıldızı",
+    bodies: { Sun:"Güneş", Moon:"Ay", Mercury:"Merkür", Venus:"Venüs", Mars:"Mars",
+      Jupiter:"Jüpiter", Saturn:"Satürn", Uranus:"Uranüs", Neptune:"Neptün", Pluto:"Plüton" },
+  },
+  en: {
+    title: "Star Atlas",
+    natal: "Birth Chart",
+    lines: "Constellation lines",
+    labels: "Names",
+    grid: "Celestial grid",
+    mw: "Milky Way",
+    planets: "Planets",
+    planet: "Planet",
+    sign_pos: "Position in zodiac",
+    today_note: "Positions computed for today's sky.",
+    au: "AU (Sun–Earth distance)",
+    km: "km",
+    hint: "Drag to explore the sky • Tap a star or constellation",
+    loading: "Loading the sky...",
+    tab_info: "Info",
+    tab_myth: "Mythology & Story",
+    search_ph: "Search star / constellation...",
+    natal_title: "Birth Chart",
+    birth_date: "Birth date",
+    birth_time: "Time",
+    birth_place: "Place (latitude, longitude)",
+    place_note: "Default: Ankara. Enter your city's coordinates.",
+    tz: "Time zone (UTC offset)",
+    calc: "Calculate Chart",
+    natal_disclaimer: "Planet positions are computed astronomically with astronomy-engine; interpretations are cultural/for fun.",
+    constellation: "Constellation",
+    magnitude: "Brightness (mag)",
+    distance: "Distance",
+    color: "Color / Spectrum",
+    ly: "light-years",
+    visibility: "Visibility",
+    best_month: "Best month",
+    both_hemi: "Both hemispheres",
+    north_hemi: "Northern hemisphere",
+    south_hemi: "Southern hemisphere",
+    all_cultures: "All",
+    no_myth_star: "No recorded story for this star. Check its constellation's story:",
+    open_con_story: "constellation story →",
+    etymology: "Name origin",
+    unnamed: "Unnamed star",
+    planet: "Planet",
+    sign: "Sign",
+    degree: "Degree",
+    ascendant: "Ascendant",
+    months: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+    bv_names: ["Blue","Blue-white","White","Yellow-white","Yellow","Orange","Red"],
+    zodiac_badge: "zodiac constellation",
+    bodies: { Sun:"Sun", Moon:"Moon", Mercury:"Mercury", Venus:"Venus", Mars:"Mars",
+      Jupiter:"Jupiter", Saturn:"Saturn", Uranus:"Uranus", Neptune:"Neptune", Pluto:"Pluto" },
+  },
+};
+
+let lang = localStorage.getItem("atlas-lang") || "tr";
+const t = (key) => STRINGS[lang][key] ?? key;
+
+function setLang(l) {
+  lang = l;
+  localStorage.setItem("atlas-lang", l);
+  applyStatic();
+}
+
+// data-i18n özniteliği olan tüm öğeleri güncelle
+function applyStatic() {
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    el.textContent = t(el.dataset.i18n);
+  });
+  const search = document.getElementById("search");
+  if (search) search.placeholder = t("search_ph");
+  const btn = document.getElementById("btn-lang");
+  if (btn) btn.textContent = lang.toUpperCase();
+  document.documentElement.lang = lang;
+}
+
+/**
+ * Doğum haritası — astronomy-engine ile tamamen tarayıcıda hesaplanır.
+ * Gezegenlerin ekliptik boylamı -> burç + derece; yükselen (Ascendant) dahil.
+ */
+
+
+const SIGNS = [
+  { sym: "♈", tr: "Koç", en: "Aries" },
+  { sym: "♉", tr: "Boğa", en: "Taurus" },
+  { sym: "♊", tr: "İkizler", en: "Gemini" },
+  { sym: "♋", tr: "Yengeç", en: "Cancer" },
+  { sym: "♌", tr: "Aslan", en: "Leo" },
+  { sym: "♍", tr: "Başak", en: "Virgo" },
+  { sym: "♎", tr: "Terazi", en: "Libra" },
+  { sym: "♏", tr: "Akrep", en: "Scorpio" },
+  { sym: "♐", tr: "Yay", en: "Sagittarius" },
+  { sym: "♑", tr: "Oğlak", en: "Capricorn" },
+  { sym: "♒", tr: "Kova", en: "Aquarius" },
+  { sym: "♓", tr: "Balık", en: "Pisces" },
+];
+const PLANET_SYM = { Sun: "☉", Moon: "☾", Mercury: "☿", Venus: "♀", Mars: "♂",
+  Jupiter: "♃", Saturn: "♄", Uranus: "♅", Neptune: "♆", Pluto: "♇" };
+const BODIES = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"];
+
+function eclipticLongitude(body, time) {
+  const A = window.Astronomy;
+  if (body === "Sun") {
+    // Güneş'in görünen ekliptik boylamı = jeosantrik
+    const gv = A.GeoVector(A.Body.Sun, time, true);
+    return A.Ecliptic(gv).elon;
+  }
+  const gv = A.GeoVector(A.Body[body], time, true);
+  return A.Ecliptic(gv).elon;
+}
+
+// Yükselen burç: yerel yıldız zamanı + enlemden standart formül
+function ascendant(time, latDeg, lonDeg) {
+  const A = window.Astronomy;
+  const gst = A.SiderealTime(time); // saat
+  const lstDeg = (gst * 15 + lonDeg + 360) % 360;
+  const eps = 23.4367 * Math.PI / 180;
+  const th = lstDeg * Math.PI / 180;
+  const phi = latDeg * Math.PI / 180;
+  let asc = Math.atan2(Math.cos(th), -(Math.sin(th) * Math.cos(eps) + Math.tan(phi) * Math.sin(eps)));
+  asc = asc * 180 / Math.PI;
+  if (asc < 0) asc += 360;
+  // atan2 çözümü bazen 180° kayar; MC'ye göre doğrula: Asc, DSC'nin doğusunda olmalı
+  const mc = Math.atan2(Math.sin(th), Math.cos(th) * Math.cos(eps)) * 180 / Math.PI;
+  let mcn = (mc + 360) % 360;
+  let diff = (asc - mcn + 360) % 360;
+  if (diff > 180) asc = (asc + 180) % 360;
+  return asc;
+}
+
+function fmtPos(elon) {
+  const sign = SIGNS[Math.floor(elon / 30) % 12];
+  const deg = elon % 30;
+  const d = Math.floor(deg);
+  const m = Math.floor((deg - d) * 60);
+  return { sign, text: `${d}°${String(m).padStart(2, "0")}′` };
+}
+
+function drawWheel(svg, positions, asc) {
+  const cx = 200, cy = 200, rOut = 190, rIn = 150, rPl = 120;
+  let html = "";
+  html += `<circle cx="${cx}" cy="${cy}" r="${rOut}" fill="none" stroke="#232b4d" stroke-width="1.5"/>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="${rIn}" fill="none" stroke="#232b4d" stroke-width="1"/>`;
+  // Yükselen solda (astroloji geleneği): açı -> ekran
+  const toXY = (elon, r) => {
+    const a = (180 + (elon - asc)) * Math.PI / 180; // asc solda
+    return [cx + r * Math.cos(a), cy - r * Math.sin(a)];
+  };
+  for (let i = 0; i < 12; i++) {
+    const [x1, y1] = toXY(i * 30, rIn);
+    const [x2, y2] = toXY(i * 30, rOut);
+    html += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#232b4d" stroke-width="1"/>`;
+    const [tx, ty] = toXY(i * 30 + 15, (rIn + rOut) / 2);
+    html += `<text x="${tx}" y="${ty}" fill="#ffd76a" font-size="17" text-anchor="middle" dominant-baseline="central">${SIGNS[i].sym}</text>`;
+  }
+  // Yükselen çizgisi
+  const [ax, ay] = toXY(asc, rOut);
+  html += `<line x1="${cx}" y1="${cy}" x2="${ax}" y2="${ay}" stroke="#7aa2ff" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+  html += `<text x="${ax < cx ? ax + 14 : ax - 14}" y="${ay - 8}" fill="#7aa2ff" font-size="11" text-anchor="middle">ASC</text>`;
+  // Gezegenler
+  for (const p of positions) {
+    const [x, y] = toXY(p.elon, rPl);
+    html += `<circle cx="${x}" cy="${y}" r="11" fill="#141a33" stroke="#232b4d"/>`;
+    html += `<text x="${x}" y="${y}" fill="#e8ecff" font-size="13" text-anchor="middle" dominant-baseline="central">${PLANET_SYM[p.body]}</text>`;
+  }
+  svg.innerHTML = html;
+}
+
+function initNatal() {
+  const modal = document.getElementById("natal-modal");
+  document.getElementById("btn-natal").addEventListener("click", () => modal.classList.remove("hidden"));
+  document.getElementById("natal-close").addEventListener("click", () => modal.classList.add("hidden"));
+  modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
+
+  document.getElementById("natal-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!window.Astronomy) {
+      alert(lang === "tr" ? "astronomy-engine henüz yüklenmedi, bir saniye sonra tekrar dene." : "astronomy-engine not loaded yet, try again in a second.");
+      return;
+    }
+    const date = document.getElementById("n-date").value;
+    const time = document.getElementById("n-time").value;
+    const lat = parseFloat(document.getElementById("n-lat").value);
+    const lon = parseFloat(document.getElementById("n-lon").value);
+    const tz = parseFloat(document.getElementById("n-tz").value) || 0;
+
+    const [Y, M, D] = date.split("-").map(Number);
+    const [h, m] = time.split(":").map(Number);
+    // Yerel saat -> UTC
+    const utc = new Date(Date.UTC(Y, M - 1, D, h, m) - tz * 3600 * 1000);
+    const at = window.Astronomy.MakeTime(utc);
+
+    const positions = BODIES.map((body) => {
+      const elon = eclipticLongitude(body, at);
+      return { body, elon, ...fmtPos(elon) };
+    });
+    const asc = ascendant(at, lat, lon);
+    const ascPos = fmtPos(asc);
+
+    drawWheel(document.getElementById("natal-wheel"), positions, asc);
+
+    const rows = [
+      `<tr><th>${t("planet")}</th><th>${t("sign")}</th><th>${t("degree")}</th></tr>`,
+      `<tr><td>↑ ${t("ascendant")}</td><td class="sign">${ascPos.sign.sym} ${ascPos.sign[lang]}</td><td>${ascPos.text}</td></tr>`,
+      ...positions.map((p) =>
+        `<tr><td>${PLANET_SYM[p.body]} ${t("bodies")[p.body]}</td><td class="sign">${p.sign.sym} ${p.sign[lang]}</td><td>${p.text}</td></tr>`),
+    ];
+    document.getElementById("natal-table").innerHTML = rows.join("");
+    document.getElementById("natal-result").classList.remove("hidden");
+  });
+}
+
+/**
+ * Yıldız Atlası — Three.js planetaryum
+ * Kamera küre merkezinde; yıldızlar iç yüzeyde. Raycasting ile tıklama.
+ */
+
+
+
+
+const R = 100;                 // gök küresi yarıçapı
+const DEG = Math.PI / 180;
+
+// ---------- Yardımcılar ----------
+function radecToVec(raHours, decDeg, radius = R, target = new THREE.Vector3()) {
+  const a = raHours * 15 * DEG, d = decDeg * DEG;
+  return target.set(
+    radius * Math.cos(d) * Math.cos(a),
+    radius * Math.sin(d),
+    -radius * Math.cos(d) * Math.sin(a)
+  );
+}
+// d3-celestial GeoJSON: lon = RA*15 (−180..180], lat = Dec
+const lonlatToVec = (lon, lat, radius = R, tgt) => radecToVec(lon / 15, lat, radius, tgt);
+
+// B-V renk indeksi -> RGB (yaklaşık kara cisim rengi)
+function bvToRGB(bv) {
+  bv = Math.max(-0.4, Math.min(2.0, bv ?? 0.5));
+  let r = 1, g = 1, b = 1, tt;
+  if (bv < 0) { tt = (bv + 0.4) / 0.4; r = 0.61 + 0.11 * tt + 0.1 * tt * tt; g = 0.7 + 0.07 * tt + 0.1 * tt * tt; b = 1; }
+  else if (bv < 0.4) { tt = bv / 0.4; r = 0.83 + 0.17 * tt; g = 0.87 + 0.11 * tt; b = 1; }
+  else if (bv < 1.6) { tt = (bv - 0.4) / 1.2; r = 1; g = 0.98 - 0.16 * tt; b = 1 - 0.47 * tt; }
+  else { tt = (bv - 1.6) / 0.4; r = 1; g = 0.82 - 0.5 * tt * tt; b = 0.53 - 0.6 * tt; }
+  return [r, g, Math.max(0, b)];
+}
+function bvColorName(bv) {
+  const names = t("bv_names");
+  if (bv < 0) return names[0];
+  if (bv < 0.3) return names[1];
+  if (bv < 0.58) return names[2];
+  if (bv < 0.81) return names[3];
+  if (bv < 1.15) return names[4];
+  if (bv < 1.5) return names[5];
+  return names[6];
+}
+// RA'dan gece yarısı doruk yaptığı en iyi gözlem ayı
+function bestMonth(raHours) {
+  let day = (80 + ((raHours - 12) / 24) * 365.25 + 3 * 365.25) % 365.25;
+  const cum = [31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 366];
+  for (let i = 0; i < 12; i++) if (day < cum[i]) return i;
+  return 11;
+}
+function hemisphere(dec) {
+  if (dec > 35) return t("north_hemi");
+  if (dec < -35) return t("south_hemi");
+  return t("both_hemi");
+}
+const GREEK = { Alp: "α", Bet: "β", Gam: "γ", Del: "δ", Eps: "ε", Zet: "ζ", Eta: "η", The: "θ",
+  Iot: "ι", Kap: "κ", Lam: "λ", Mu: "μ", Nu: "ν", Xi: "ξ", Omi: "ο", Pi: "π", Rho: "ρ",
+  Sig: "σ", Tau: "τ", Ups: "υ", Phi: "φ", Chi: "χ", Psi: "ψ", Ome: "ω" };
+const greekBayer = (b) => (b ? (GREEK[b.replace(/[-\d].*$/, "")] || b) + (b.match(/-?\d+$/)?.[0]?.replace("-", "") ?? "") : "");
+
+// ---------- Durum ----------
+let stars = [];               // {ra,dec,mag,bv,name?,bayer?,con?,spect?,dist?,myth?}
+let myth = null;              // mythology.json içeriği
+let conLines = new Map();     // conId -> THREE.LineSegments (grup)
+let conMeta = new Map();      // conId -> {center:[lon,lat], label}
+let selectedCon = null;
+let preferredCulture = localStorage.getItem("atlas-culture") || "all";
+
+// ---------- Sahne ----------
+const canvas = document.getElementById("sky");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x04060f);
+const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 500);
+camera.position.set(0, 0, 0);
+
+// Görüş yönü (RA saat cinsinden azimut değil; gök koordinatı)
+const view = { lonDeg: 80, latDeg: 25, fov: 60 };
+function applyView() {
+  camera.fov = view.fov;
+  camera.updateProjectionMatrix();
+  const dir = radecToVec(view.lonDeg / 15, view.latDeg, 1);
+  camera.up.set(0, 1, 0);
+  camera.lookAt(dir);
+}
+function resize() {
+  const w = innerWidth, h = innerHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+addEventListener("resize", () => { resize(); });
+resize();
+applyView();
+
+// ---------- Kontroller: sürükle + tekerlek + pinch ----------
+let dragging = false, moved = 0, px = 0, py = 0, downT = 0;
+let vLon = 0, vLat = 0; // atalet
+canvas.addEventListener("pointerdown", (e) => {
+  dragging = true; moved = 0; px = e.clientX; py = e.clientY; downT = Date.now();
+  vLon = vLat = 0;
+  canvas.classList.add("dragging");
+  canvas.setPointerCapture(e.pointerId);
+});
+canvas.addEventListener("pointermove", (e) => {
+  if (!dragging || pinch.active) return;
+  const dx = e.clientX - px, dy = e.clientY - py;
+  px = e.clientX; py = e.clientY;
+  moved += Math.abs(dx) + Math.abs(dy);
+  const dpp = view.fov / innerHeight; // piksel başına derece
+  view.lonDeg = (view.lonDeg - dx * dpp + 360) % 360;
+  view.latDeg = Math.max(-89.5, Math.min(89.5, view.latDeg + dy * dpp));
+  vLon = -dx * dpp; vLat = dy * dpp;
+  applyView();
+});
+canvas.addEventListener("pointerup", (e) => {
+  dragging = false;
+  canvas.classList.remove("dragging");
+  if (moved < 7 && Date.now() - downT < 600 && !pinch.was) handleTap(e.clientX, e.clientY);
+  pinch.was = false;
+});
+canvas.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  view.fov = Math.max(18, Math.min(95, view.fov * (1 + Math.sign(e.deltaY) * 0.08)));
+  applyView();
+}, { passive: false });
+
+// Pinch zoom (iki parmak)
+const pinch = { active: false, dist: 0, was: false };
+canvas.addEventListener("touchstart", (e) => {
+  if (e.touches.length === 2) {
+    pinch.active = true; pinch.was = true;
+    pinch.dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+  }
+}, { passive: true });
+canvas.addEventListener("touchmove", (e) => {
+  if (pinch.active && e.touches.length === 2) {
+    const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+    view.fov = Math.max(18, Math.min(95, view.fov * (pinch.dist / d)));
+    pinch.dist = d;
+    applyView();
+  }
+}, { passive: true });
+canvas.addEventListener("touchend", (e) => { if (e.touches.length < 2) pinch.active = false; }, { passive: true });
+
+// ---------- Yıldız katmanı ----------
+let starPoints = null;
+const starVerts = [];
+function buildStarLayer() {
+  const n = stars.length;
+  const pos = new Float32Array(n * 3);
+  const col = new Float32Array(n * 3);
+  const size = new Float32Array(n);
+  const v = new THREE.Vector3();
+  for (let i = 0; i < n; i++) {
+    const s = stars[i];
+    radecToVec(s.ra, s.dec, R, v);
+    pos.set([v.x, v.y, v.z], i * 3);
+    starVerts.push(v.clone());
+    const [r, g, b] = bvToRGB(s.bv);
+    // parlak yıldızlar daha doygun, sönükler grimsi
+    const w = Math.max(0, Math.min(1, (6.8 - s.mag) / 6));
+    col.set([r * (0.55 + 0.45 * w) + 0.15, g * (0.55 + 0.45 * w) + 0.15, b * (0.55 + 0.45 * w) + 0.15], i * 3);
+    size[i] = Math.max(1.4, 9.6 - s.mag * 1.25);
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+  geo.setAttribute("aSize", new THREE.BufferAttribute(size, 1));
+  const mat = new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    uniforms: { uScale: { value: 1 } },
+    vertexShader: `
+      attribute float aSize;
+      attribute vec3 color;
+      varying vec3 vColor;
+      varying float vSize;
+      uniform float uScale;
+      void main() {
+        vColor = color;
+        vec4 mv = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = aSize * uScale;
+        vSize = aSize;
+        gl_Position = projectionMatrix * mv;
+      }`,
+    fragmentShader: `
+      varying vec3 vColor;
+      varying float vSize;
+      void main() {
+        vec2 c = gl_PointCoord - 0.5;
+        float d = length(c) * 2.0;
+        float core = smoothstep(0.9, 0.0, d);
+        float glow = smoothstep(1.0, 0.25, d) * 0.35;
+        float a = core + glow * step(3.0, vSize);
+        if (a < 0.02) discard;
+        gl_FragColor = vec4(vColor, a);
+      }`,
+  });
+  starPoints = new THREE.Points(geo, mat);
+  starPoints.frustumCulled = false;
+  scene.add(starPoints);
+}
+
+// ---------- Takımyıldız çizgileri ----------
+const linesGroup = new THREE.Group();
+scene.add(linesGroup);
+const LINE_BASE = new THREE.Color(0x3d4d85);
+const LINE_HI = new THREE.Color(0xffd76a);
+function buildLines(geojson) {
+  const v = new THREE.Vector3();
+  for (const f of geojson.features) {
+    const id = f.id || f.properties?.id;
+    const pts = [];
+    const geom = f.geometry;
+    const polys = geom.type === "MultiLineString" ? geom.coordinates : [geom.coordinates];
+    for (const line of polys) {
+      for (let i = 0; i < line.length - 1; i++) {
+        lonlatToVec(line[i][0], line[i][1], R * 0.995, v); pts.push(v.x, v.y, v.z);
+        lonlatToVec(line[i + 1][0], line[i + 1][1], R * 0.995, v); pts.push(v.x, v.y, v.z);
+      }
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(pts), 3));
+    const m = new THREE.LineBasicMaterial({ color: LINE_BASE.clone(), transparent: true, opacity: 0.5 });
+    const obj = new THREE.LineSegments(g, m);
+    obj.userData.con = id;
+    obj.frustumCulled = false;
+    linesGroup.add(obj);
+    conLines.set(id, obj);
+  }
+}
+function highlightCon(id) {
+  selectedCon = id;
+  for (const [cid, obj] of conLines) {
+    if (id === null) { obj.material.color.copy(LINE_BASE); obj.material.opacity = 0.5; }
+    else if (cid === id) { obj.material.color.copy(LINE_HI); obj.material.opacity = 1; }
+    else { obj.material.color.copy(LINE_BASE); obj.material.opacity = 0.12; }
+  }
+}
+
+// ---------- Samanyolu (mw.json poligonları -> nokta bulutu) ----------
+let mwPoints = null;
+function buildMilkyWay(geojson) {
+  const W = 1024, H = 512;
+  const cv = document.createElement("canvas");
+  cv.width = W; cv.height = H;
+  const ctx = cv.getContext("2d", { willReadFrequently: true });
+  ctx.fillStyle = "rgba(255,255,255,0.22)"; // 5 katman üst üste -> merkez daha parlak
+  for (const f of geojson.features) {
+    const polys = f.geometry.type === "MultiPolygon" ? f.geometry.coordinates : [f.geometry.coordinates];
+    for (const poly of polys) {
+      ctx.beginPath();
+      for (const ring of poly) {
+        for (let i = 0; i < ring.length; i++) {
+          const x = ((ring[i][0] + 180) / 360) * W;
+          const y = ((90 - ring[i][1]) / 180) * H;
+          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+      }
+      ctx.fill("evenodd");
+    }
+  }
+  const img = ctx.getImageData(0, 0, W, H).data;
+  const pos = [], col = [];
+  const v = new THREE.Vector3();
+  for (let y = 0; y < H; y += 2) {
+    for (let x = 0; x < W; x += 2) {
+      const a = img[(y * W + x) * 4 + 3] / 255;
+      if (a < 0.1) continue;
+      if (Math.random() > a * 0.85) continue;
+      const lon = (x + Math.random() * 2) / W * 360 - 180;
+      const lat = 90 - (y + Math.random() * 2) / H * 180;
+      lonlatToVec(lon, lat, R * 1.02, v);
+      pos.push(v.x, v.y, v.z);
+      const c = 0.26 + a * 0.6 + Math.random() * 0.1;
+      col.push(c * 0.84, c * 0.9, c);
+    }
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(pos), 3));
+  g.setAttribute("color", new THREE.BufferAttribute(new Float32Array(col), 3));
+  mwPoints = new THREE.Points(g, new THREE.PointsMaterial({
+    size: 2.0, sizeAttenuation: false, vertexColors: true,
+    transparent: true, opacity: 0.65, blending: THREE.AdditiveBlending, depthWrite: false,
+  }));
+  mwPoints.frustumCulled = false;
+  mwPoints.renderOrder = -1;
+  scene.add(mwPoints);
+}
+
+// ---------- Gezegenler (astronomy-engine, bugünkü konumlar) ----------
+const PLANET_SYM = { Sun: "☉", Moon: "☾", Mercury: "☿", Venus: "♀", Mars: "♂",
+  Jupiter: "♃", Saturn: "♄", Uranus: "♅", Neptune: "♆" };
+const PLANET_STYLE = {
+  Sun: ["#ffd76a", 15], Moon: ["#e8ecf5", 13], Mercury: ["#b5a891", 7], Venus: ["#f5e9c9", 10],
+  Mars: ["#ff7a5c", 8], Jupiter: ["#e8c9a0", 10], Saturn: ["#e6d9a8", 9],
+  Uranus: ["#9fe3e3", 6.5], Neptune: ["#7aa2ff", 6.5],
+};
+const ZODIAC_ORDER = ["Ari", "Tau", "Gem", "Cnc", "Leo", "Vir", "Lib", "Sco", "Sgr", "Cap", "Aqr", "Psc"];
+let planets = []; // {body, sym, ra, dec, distAU, elon, sprite, el, vec}
+const planetsGroup = new THREE.Group();
+scene.add(planetsGroup);
+
+function makeDiscTexture(color) {
+  const c = document.createElement("canvas");
+  c.width = c.height = 64;
+  const x = c.getContext("2d");
+  const grd = x.createRadialGradient(32, 32, 2, 32, 32, 30);
+  grd.addColorStop(0, "#ffffff");
+  grd.addColorStop(0.25, color);
+  grd.addColorStop(1, "rgba(0,0,0,0)");
+  x.fillStyle = grd;
+  x.fillRect(0, 0, 64, 64);
+  return new THREE.CanvasTexture(c);
+}
+
+function buildPlanets() {
+  if (!window.Astronomy) { setTimeout(buildPlanets, 300); return; }
+  const A = window.Astronomy;
+  const now = A.MakeTime(new Date());
+  for (const body of Object.keys(PLANET_SYM)) {
+    try {
+      const gv = A.GeoVector(A.Body[body], now, true);
+      const eq = A.EquatorFromVector(gv);
+      const ecl = A.Ecliptic(gv);
+      const [color, px] = PLANET_STYLE[body];
+      const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: makeDiscTexture(color), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      }));
+      const vec = radecToVec(eq.ra, eq.dec, R * 0.97);
+      sprite.position.copy(vec);
+      sprite.userData.px = px;
+      planetsGroup.add(sprite);
+      const el = document.createElement("div");
+      el.className = "star-label planet-label";
+      el.style.color = color;
+      labelWrap.appendChild(el);
+      planets.push({
+        body, sym: PLANET_SYM[body], ra: eq.ra, dec: eq.dec,
+        distAU: Math.sqrt(gv.x * gv.x + gv.y * gv.y + gv.z * gv.z),
+        elon: ecl.elon, sprite, el, vec,
+      });
+    } catch (e) { /* gövde hesaplanamadıysa atla */ }
+  }
+  updatePlanetLabels();
+}
+function updatePlanetLabels() {
+  for (const p of planets) p.el.textContent = `${p.sym} ${t("bodies")[p.body]}`;
+}
+function planetSignInfo(elon) {
+  const idx = Math.floor(((elon % 360) + 360) % 360 / 30);
+  const z = myth?.zodiac?.[ZODIAC_ORDER[idx]];
+  const deg = Math.floor(elon % 30);
+  return z ? `${z.symbol} ${z[lang]} ${deg}°` : `${deg}°`;
+}
+function openPlanet(p) {
+  current = { type: "planet", p };
+  sheetTitle.textContent = `${p.sym} ${t("bodies")[p.body]}`;
+  sheetSub.textContent = `${t("planet")} • ${t("today_note")}`;
+  const [color] = PLANET_STYLE[p.body];
+  swatch.style.background = color;
+  swatch.style.color = color;
+  swatch.style.display = "";
+  let html = `<div class="info-grid">`;
+  html += infoItem(t("sign_pos"), planetSignInfo(p.elon));
+  if (p.body === "Moon") {
+    html += infoItem(t("distance"), `${Math.round(p.distAU * 149597870.7).toLocaleString(lang)} ${t("km")}`);
+  } else if (p.body !== "Sun") {
+    html += infoItem(t("distance"), `${p.distAU.toFixed(2)} ${t("au")}`);
+  }
+  html += infoItem(t("visibility"), hemisphere(p.dec));
+  html += `</div>`;
+  tabInfo.innerHTML = html;
+  renderMyth(myth?.planets?.[p.body.toLowerCase()], null);
+  sheet.classList.remove("hidden");
+  selectTab("info");
+  highlightCon(null);
+}
+
+// ---------- Gök ızgarası ----------
+let gridObj = null;
+function buildGrid() {
+  const pts = [];
+  const v = new THREE.Vector3();
+  for (let raH = 0; raH < 24; raH += 2) {
+    for (let d = -80; d < 80; d += 4) {
+      radecToVec(raH, d, R * 0.99, v); pts.push(v.x, v.y, v.z);
+      radecToVec(raH, d + 4, R * 0.99, v); pts.push(v.x, v.y, v.z);
+    }
+  }
+  for (let d = -60; d <= 60; d += 30) {
+    for (let raH = 0; raH < 24; raH += 0.25) {
+      radecToVec(raH, d, R * 0.99, v); pts.push(v.x, v.y, v.z);
+      radecToVec(raH + 0.25, d, R * 0.99, v); pts.push(v.x, v.y, v.z);
+    }
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(pts), 3));
+  gridObj = new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: 0x1a2246, transparent: true, opacity: 0.7 }));
+  gridObj.frustumCulled = false;
+  gridObj.visible = false;
+  scene.add(gridObj);
+}
+
+// ---------- DOM etiketleri ----------
+const labelWrap = document.createElement("div");
+document.body.appendChild(labelWrap);
+const conLabelEls = new Map();
+const starLabelEls = [];
+function buildLabels() {
+  for (const [id, meta] of conMeta) {
+    const el = document.createElement("div");
+    el.className = "con-label";
+    el.textContent = conDisplayName(id);
+    el.addEventListener("click", () => openConstellation(id));
+    labelWrap.appendChild(el);
+    conLabelEls.set(id, el);
+  }
+  const named = stars.filter((s) => s.dispName && (s.mag < 1.7 || s.myth)).slice(0, 60);
+  for (const s of named) {
+    const el = document.createElement("div");
+    el.className = "star-label";
+    el.textContent = s.dispName;
+    labelWrap.appendChild(el);
+    starLabelEls.push({ el, s });
+  }
+}
+function conDisplayName(id) {
+  const m = myth?.constellations?.[id];
+  if (m?.name) return m.name[lang] || m.name.tr;
+  return conMeta.get(id)?.label || id;
+}
+const _pv = new THREE.Vector3();
+const _camDir = new THREE.Vector3();
+function projectToScreen(vec) {
+  _pv.copy(vec).project(camera);
+  if (_pv.z > 1) return null;
+  if (vec.dot(_camDir) < 0) return null;
+  return [(_pv.x + 1) / 2 * innerWidth, (1 - _pv.y) / 2 * innerHeight];
+}
+const _cv = new THREE.Vector3();
+function updateLabels() {
+  camera.getWorldDirection(_camDir);
+  const showLabels = document.getElementById("toggle-labels").checked;
+  const showLines = document.getElementById("toggle-lines").checked;
+  for (const [id, el] of conLabelEls) {
+    if (!showLabels || !showLines) { el.style.display = "none"; continue; }
+    const c = conMeta.get(id).center;
+    lonlatToVec(c[0], c[1], R, _cv);
+    const p = projectToScreen(_cv);
+    if (!p) { el.style.display = "none"; continue; }
+    el.style.display = "";
+    el.style.left = p[0] + "px";
+    el.style.top = p[1] + "px";
+    el.style.opacity = view.fov > 75 ? 0.5 : 0.9;
+  }
+  const starLabelsOn = showLabels && view.fov < 70;
+  for (const { el, s } of starLabelEls) {
+    if (!starLabelsOn) { el.style.display = "none"; continue; }
+    radecToVec(s.ra, s.dec, R, _cv);
+    const p = projectToScreen(_cv);
+    if (!p) { el.style.display = "none"; continue; }
+    el.style.display = "";
+    el.style.left = p[0] + "px";
+    el.style.top = p[1] + "px";
+  }
+  const planetsOn = planetsGroup.visible;
+  const wpp = worldPerPixel();
+  for (const p of planets) {
+    p.sprite.scale.setScalar(p.sprite.userData.px * wpp * 2.2);
+    if (!planetsOn || !showLabels) { p.el.style.display = "none"; continue; }
+    const s = projectToScreen(p.vec);
+    if (!s) { p.el.style.display = "none"; continue; }
+    p.el.style.display = "";
+    p.el.style.left = s[0] + "px";
+    p.el.style.top = s[1] + "px";
+  }
+}
+
+// ---------- Tıklama (raycasting) ----------
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+function worldPerPixel() {
+  return (2 * R * Math.tan((view.fov / 2) * DEG)) / innerHeight;
+}
+function handleTap(x, y) {
+  if (!starPoints) return;
+  mouse.set((x / innerWidth) * 2 - 1, -(y / innerHeight) * 2 + 1);
+  raycaster.setFromCamera(mouse, camera);
+  const wpp = worldPerPixel();
+
+  // 0) Gezegenler (ekran uzayında en yakın)
+  if (planetsGroup.visible) {
+    camera.getWorldDirection(_camDir);
+    let bestP = null, bestD = 1e9;
+    for (const p of planets) {
+      const s = projectToScreen(p.vec);
+      if (!s) continue;
+      const d = Math.hypot(s[0] - x, s[1] - y);
+      if (d < bestD) { bestD = d; bestP = p; }
+    }
+    if (bestP && bestD < Math.max(16, bestP.sprite.userData.px + 8)) { openPlanet(bestP); return; }
+  }
+
+  // 1) Yıldızlar
+  raycaster.params.Points.threshold = 13 * wpp;
+  const hits = raycaster.intersectObject(starPoints, false);
+  if (hits.length) {
+    let best = null, bestScore = 1e9;
+    for (const h of hits) {
+      const s = stars[h.index];
+      const score = h.distanceToRay / (13 * wpp) + Math.max(0, s.mag) * 0.09;
+      if (score < bestScore) { bestScore = score; best = h.index; }
+    }
+    if (best !== null) { openStar(stars[best]); return; }
+  }
+  // 2) Takımyıldız çizgileri
+  raycaster.params.Line.threshold = 9 * wpp;
+  const lh = raycaster.intersectObjects(linesGroup.children, false);
+  if (lh.length) { openConstellation(lh[0].object.userData.con); return; }
+
+  // 3) Boşluk: seçimi kapat
+  closeSheet();
+  highlightCon(null);
+}
+
+// ---------- Kamera animasyonu ----------
+let anim = null;
+function flyTo(raH, dec, fov = null) {
+  const from = { lon: view.lonDeg, lat: view.latDeg, fov: view.fov };
+  let toLon = (raH * 15) % 360;
+  let d = toLon - from.lon;
+  if (d > 180) d -= 360;
+  if (d < -180) d += 360;
+  const to = { lon: from.lon + d, lat: dec, fov: fov ?? Math.min(view.fov, 45) };
+  const t0 = performance.now(), dur = 900;
+  anim = (now) => {
+    const k = Math.min(1, (now - t0) / dur);
+    const e = 1 - Math.pow(1 - k, 3);
+    view.lonDeg = (from.lon + (to.lon - from.lon) * e + 360) % 360;
+    view.latDeg = from.lat + (to.lat - from.lat) * e;
+    view.fov = from.fov + (to.fov - from.fov) * e;
+    applyView();
+    if (k >= 1) anim = null;
+  };
+}
+
+// ---------- Bottom sheet ----------
+const sheet = document.getElementById("sheet");
+const sheetTitle = document.getElementById("sheet-title");
+const sheetSub = document.getElementById("sheet-sub");
+const swatch = document.getElementById("sheet-swatch");
+const tabInfo = document.getElementById("tab-info");
+const mythBody = document.getElementById("myth-body");
+const cultureChips = document.getElementById("culture-chips");
+let current = null; // {type:'star'|'con', ...}
+
+document.getElementById("sheet-close").addEventListener("click", () => { closeSheet(); highlightCon(null); });
+document.querySelectorAll(".tab").forEach((b) =>
+  b.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("active", x === b));
+    document.querySelectorAll(".tab-pane").forEach((p) => p.classList.toggle("active", p.id === "tab-" + b.dataset.tab));
+  })
+);
+function selectTab(name) {
+  document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("active", x.dataset.tab === name));
+  document.querySelectorAll(".tab-pane").forEach((p) => p.classList.toggle("active", p.id === "tab-" + name));
+}
+function closeSheet() { sheet.classList.add("hidden"); current = null; }
+function infoItem(k, v) {
+  return `<div class="info-item"><div class="k">${k}</div><div class="v">${v}</div></div>`;
+}
+
+function openStar(s) {
+  current = { type: "star", s };
+  const name = s.dispName || (s.bayer ? `${greekBayer(s.bayer)} ${s.con}` : t("unnamed"));
+  sheetTitle.textContent = name;
+  const conName = s.con && myth?.constellations?.[s.con] ? conDisplayName(s.con) : s.con || "";
+  sheetSub.textContent = [s.bayer ? `${greekBayer(s.bayer)} ${s.con}` : "", conName].filter(Boolean).join(" • ");
+  const [r, g, b] = bvToRGB(s.bv);
+  const css = `rgb(${(r * 255) | 0},${(g * 255) | 0},${(b * 255) | 0})`;
+  swatch.style.background = css;
+  swatch.style.color = css;
+  swatch.style.display = "";
+
+  let html = `<div class="info-grid">`;
+  if (s.con) html += infoItem(t("constellation"), conName);
+  html += infoItem(t("magnitude"), s.mag.toFixed(2));
+  if (s.dist) html += infoItem(t("distance"), `${s.dist.toLocaleString(lang)} ${t("ly")}`);
+  html += infoItem(t("color"), `${bvColorName(s.bv)}${s.spect ? " · " + s.spect : ""}`);
+  html += infoItem(t("visibility"), hemisphere(s.dec));
+  html += infoItem(t("best_month"), t("months")[bestMonth(s.ra)]);
+  html += `</div>`;
+  const z = s.con && myth?.zodiac?.[s.con];
+  if (z) html += `<div class="zodiac-badge">${z.symbol} ${z[lang]} ${t("zodiac_badge")}</div>`;
+  tabInfo.innerHTML = html;
+
+  renderMyth(s.myth, s.con);
+  sheet.classList.remove("hidden");
+  selectTab("info");
+  if (s.con) highlightCon(s.con);
+}
+
+function openConstellation(id) {
+  const m = myth?.constellations?.[id];
+  current = { type: "con", id };
+  sheetTitle.textContent = conDisplayName(id);
+  const z = myth?.zodiac?.[id];
+  sheetSub.textContent = (conMeta.get(id)?.label || id) + (z ? ` • ${z.symbol} ${z[lang]}` : "");
+  swatch.style.display = "none";
+
+  const c = conMeta.get(id)?.center;
+  let html = `<div class="info-grid">`;
+  if (c) {
+    const raH = ((c[0] + 360) % 360) / 15;
+    html += infoItem(t("visibility"), hemisphere(c[1]));
+    html += infoItem(t("best_month"), t("months")[bestMonth(raH)]);
+  }
+  const nStars = stars.filter((s) => s.con === id).length;
+  if (nStars) html += infoItem("★", nStars + " ✦");
+  html += `</div>`;
+  if (z) html += `<div class="zodiac-badge">${z.symbol} ${z[lang]} ${t("zodiac_badge")} (${z.dates})</div>`;
+  tabInfo.innerHTML = html;
+
+  renderMyth(m, null);
+  sheet.classList.remove("hidden");
+  selectTab("myth"); // hikâye modu
+  highlightCon(id);
+  if (c) flyTo(((c[0] + 360) % 360) / 15, c[1], Math.max(view.fov, 50));
+}
+
+function renderMyth(entry, conFallback) {
+  cultureChips.innerHTML = "";
+  mythBody.innerHTML = "";
+  if (!entry || !entry.stories || !Object.keys(entry.stories).length) {
+    let html = `<p class="no-myth">${t("no_myth_star")}</p>`;
+    if (conFallback && myth?.constellations?.[conFallback]) {
+      html += `<p><a href="#" id="go-con" style="color:var(--accent-2)">${conDisplayName(conFallback)} ${t("open_con_story")}</a></p>`;
+    }
+    mythBody.innerHTML = html;
+    document.getElementById("go-con")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      openConstellation(conFallback);
+    });
+    return;
+  }
+  const cultures = Object.keys(entry.stories);
+  const mkChip = (key, label) => {
+    const b = document.createElement("button");
+    b.className = "cchip" + ((preferredCulture === key || (preferredCulture !== "all" && !cultures.includes(preferredCulture) && key === "all") ) ? " active" : "");
+    b.textContent = label;
+    b.addEventListener("click", () => {
+      preferredCulture = key;
+      localStorage.setItem("atlas-culture", key);
+      renderMyth(entry, conFallback);
+    });
+    cultureChips.appendChild(b);
+  };
+  mkChip("all", t("all_cultures"));
+  for (const ckey of cultures) mkChip(ckey, myth.cultures[ckey]?.[lang] || ckey);
+  if (preferredCulture === "all" || !cultures.includes(preferredCulture)) {
+    cultureChips.firstChild.classList.add("active");
+  }
+
+  let html = "";
+  if (entry.etymology) {
+    html += `<div class="etym"><b>${t("etymology")}:</b> ${entry.etymology[lang] || entry.etymology.tr}</div>`;
+  }
+  const shown = preferredCulture !== "all" && cultures.includes(preferredCulture) ? [preferredCulture] : cultures;
+  for (const ckey of shown) {
+    const story = entry.stories[ckey];
+    const text = story[lang] || story.tr;
+    const paras = text.split("\n\n").map((p) => `<p>${p}</p>`).join("");
+    html += `<div class="myth-block"><h4>${myth.cultures[ckey]?.[lang] || ckey}</h4>${paras}</div>`;
+  }
+  mythBody.innerHTML = html;
+}
+
+// ---------- Arama ----------
+const searchInput = document.getElementById("search");
+const searchList = document.getElementById("search-list");
+let searchIndex = [];
+function buildSearch() {
+  searchIndex = [];
+  for (const s of stars) if (s.dispName) searchIndex.push({ label: s.dispName, type: "star", ref: s });
+  for (const [id] of conMeta) {
+    searchIndex.push({ label: conDisplayName(id), type: "con", ref: id });
+    const la = conMeta.get(id)?.label;
+    if (la && la !== conDisplayName(id)) searchIndex.push({ label: la, type: "con", ref: id });
+  }
+  searchList.innerHTML = searchIndex.map((e) => `<option value="${e.label}">`).join("");
+}
+searchInput.addEventListener("change", () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) return;
+  const hit = searchIndex.find((e) => e.label.toLowerCase() === q) ||
+              searchIndex.find((e) => e.label.toLowerCase().startsWith(q));
+  if (!hit) return;
+  searchInput.blur();
+  if (hit.type === "star") { flyTo(hit.ref.ra, hit.ref.dec, 35); openStar(hit.ref); }
+  else openConstellation(hit.ref);
+});
+
+// ---------- Katman kontrolleri ----------
+document.getElementById("toggle-lines").addEventListener("change", (e) => { linesGroup.visible = e.target.checked; });
+document.getElementById("toggle-grid").addEventListener("change", (e) => {
+  if (!gridObj) buildGrid();
+  gridObj.visible = e.target.checked;
+});
+document.getElementById("toggle-labels").addEventListener("change", updateLabels);
+document.getElementById("toggle-mw").addEventListener("change", (e) => { if (mwPoints) mwPoints.visible = e.target.checked; });
+document.getElementById("toggle-planets").addEventListener("change", (e) => { planetsGroup.visible = e.target.checked; });
+
+// ---------- Dil ----------
+document.getElementById("btn-lang").addEventListener("click", () => {
+  setLang(lang === "tr" ? "en" : "tr");
+  for (const [id, el] of conLabelEls) el.textContent = conDisplayName(id);
+  for (const s of stars) {
+    if (s.myth?.names) s.dispName = s.myth.names[lang] || s.myth.names.tr || s.name;
+  }
+  for (const { el, s } of starLabelEls) el.textContent = s.dispName;
+  updatePlanetLabels();
+  buildSearch();
+  if (current?.type === "star") openStar(current.s);
+  else if (current?.type === "con") openConstellation(current.id);
+  else if (current?.type === "planet") openPlanet(current.p);
+});
+
+// ---------- Veri yükleme ----------
+const CDN = "https://cdn.jsdelivr.net/npm/d3-celestial@0.7.35/data";
+async function loadJSON(local, cdn) {
+  try {
+    const r = await fetch(local);
+    if (r.ok) return await r.json();
+    throw 0;
+  } catch {
+    const r = await fetch(cdn);
+    if (!r.ok) throw new Error("Veri yüklenemedi: " + cdn);
+    return await r.json();
+  }
+}
+function angularDist(ra1, dec1, ra2, dec2) {
+  const a1 = ra1 * 15 * DEG, a2 = ra2 * 15 * DEG, d1 = dec1 * DEG, d2 = dec2 * DEG;
+  return Math.acos(Math.min(1, Math.sin(d1) * Math.sin(d2) + Math.cos(d1) * Math.cos(d2) * Math.cos(a1 - a2))) / DEG;
+}
+
+async function loadAll() {
+  // Mitoloji (yerel, her zaman)
+  myth = await (await fetch("mythology.json")).json();
+
+  // Uzun hikâyeler varsa kısa özetlerin üzerine yaz
+  try {
+    const long = await (await fetch("stories-long.json")).json();
+    for (const [id, cults] of Object.entries(long.constellations || {})) {
+      const e = myth.constellations?.[id];
+      if (e) Object.assign(e.stories, cults);
+    }
+    for (const [name, cults] of Object.entries(long.stars || {})) {
+      const e = myth.stars.find((s) => s.match?.name === name);
+      if (e) Object.assign(e.stories, cults);
+    }
+    for (const [key, cults] of Object.entries(long.planets || {})) {
+      const e = myth.planets?.[key];
+      if (e) Object.assign(e.stories, cults);
+    }
+  } catch { /* uzun hikâye dosyası yoksa sorun değil */ }
+
+  // Yıldızlar: yerel HYG (npm run setup) yoksa CDN stars.6.json
+  let starData;
+  try {
+    const r = await fetch("stars.json");
+    if (!r.ok) throw 0;
+    starData = await r.json();
+    stars = starData;
+  } catch {
+    const gj = await loadJSON("stars.6.json", `${CDN}/stars.6.json`);
+    stars = gj.features.map((f) => {
+      const [lon, lat] = f.geometry.coordinates;
+      return {
+        ra: ((lon + 360) % 360) / 15,
+        dec: lat,
+        mag: parseFloat(f.properties.mag),
+        bv: parseFloat(f.properties.bv) || 0.5,
+        hip: f.id,
+      };
+    }).filter((s) => isFinite(s.mag));
+    stars.sort((a, b) => a.mag - b.mag);
+  }
+
+  // Ünlü yıldız hikâyelerini katalogla eşleştir (isim ya da konum üzerinden)
+  const byName = new Map(stars.filter((s) => s.name).map((s) => [s.name.toLowerCase(), s]));
+  for (const entry of myth.stars) {
+    let s = entry.match?.name ? byName.get(entry.match.name.toLowerCase()) : null;
+    if (!s && entry.ra != null) {
+      let bd = 1e9;
+      for (const c of stars) {
+        if (Math.abs(c.dec - entry.dec) > 1.2) continue;
+        const d = angularDist(entry.ra, entry.dec, c.ra, c.dec);
+        if (d < bd) { bd = d; s = c; }
+      }
+      if (bd > 0.8) s = null;
+    }
+    if (s) {
+      s.myth = entry;
+      if (!s.name && entry.match?.name) s.name = entry.match.name;
+      if (!s.con && entry.con) s.con = entry.con;
+      if (!s.dist && entry.dist) s.dist = entry.dist;
+      if (!s.bayer && entry.bayer) s.bayer = entry.bayer;
+      entry.starRef = s;
+    }
+  }
+  for (const s of stars) {
+    const mythName = s.myth?.names?.[lang] || s.myth?.names?.tr;
+    s.dispName = s.myth ? (s.myth.names ? (mythName || s.name) : s.name) : s.name;
+  }
+
+  // Takımyıldız çizgileri + merkezleri
+  const lines = await loadJSON("constellations.lines.json", `${CDN}/constellations.lines.json`);
+  const cons = await loadJSON("constellations.json", `${CDN}/constellations.json`);
+  for (const f of cons.features) {
+    const id = f.id || f.properties?.id;
+    conMeta.set(id, {
+      center: f.geometry.coordinates,
+      label: f.properties?.name || id,
+    });
+  }
+  buildStarLayer();
+  buildLines(lines);
+  buildLabels();
+  buildSearch();
+  buildPlanets();
+  document.getElementById("loading").classList.add("hidden");
+  setTimeout(() => document.getElementById("hint").classList.add("fade"), 6000);
+
+  // Samanyolu (büyükçe dosya — arka planda yüklensin)
+  loadJSON("mw.json", `${CDN}/mw.json`)
+    .then((mw) => { buildMilkyWay(mw); mwPoints.visible = document.getElementById("toggle-mw").checked; })
+    .catch(() => {});
+}
+
+// ---------- Döngü ----------
+function loop(now) {
+  requestAnimationFrame(loop);
+  if (anim) anim(now);
+  else if (!dragging && (Math.abs(vLon) > 0.001 || Math.abs(vLat) > 0.001)) {
+    view.lonDeg = (view.lonDeg + vLon + 360) % 360;
+    view.latDeg = Math.max(-89.5, Math.min(89.5, view.latDeg + vLat));
+    vLon *= 0.94; vLat *= 0.94;
+    applyView();
+  }
+  if (starPoints) {
+    starPoints.material.uniforms.uScale.value =
+      (innerHeight / 900) * (60 / view.fov) * renderer.getPixelRatio();
+  }
+  updateLabels();
+  renderer.render(scene, camera);
+}
+
+applyStatic();
+initNatal();
+loadAll().catch((e) => {
+  document.querySelector("#loading span").textContent =
+    (lang === "tr" ? "Veri yüklenemedi: " : "Failed to load data: ") + e.message;
+});
+requestAnimationFrame(loop);
+
+</script>
+</body>
+</html>
