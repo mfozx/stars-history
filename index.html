@@ -618,12 +618,23 @@ function resize() {
   camera.aspect = vw / vh;
   camera.updateProjectionMatrix();
 }
-// Telefonda bir hata olursa yükleme ekranında göster (teşhis için)
+// Telefonda bir hata olursa ekranda göster (teşhis için)
+function showErrToast(msg) {
+  let el = document.getElementById("err-toast");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "err-toast";
+    el.style.cssText = "position:fixed;top:70px;left:50%;transform:translateX(-50%);background:#3a1020;color:#ff9aa5;border:1px solid #7c2740;padding:6px 12px;border-radius:8px;z-index:99;font-size:12px;max-width:90vw;";
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  setTimeout(() => el.remove(), 8000);
+}
 addEventListener("error", (e) => {
   const box = document.getElementById("loading");
-  if (box && !box.classList.contains("hidden")) {
-    box.querySelector("span").textContent = "Hata: " + (e.message || e.type);
-  }
+  const msg = "Hata: " + (e.message || e.type);
+  if (box && !box.classList.contains("hidden")) box.querySelector("span").textContent = msg;
+  else showErrToast(msg);
 });
 addEventListener("resize", resize);
 addEventListener("orientationchange", () => setTimeout(resize, 150));
@@ -638,7 +649,7 @@ canvas.addEventListener("pointerdown", (e) => {
   dragging = true; moved = 0; px = e.clientX; py = e.clientY; downT = Date.now();
   vLon = vLat = 0;
   canvas.classList.add("dragging");
-  canvas.setPointerCapture(e.pointerId);
+  try { canvas.setPointerCapture(e.pointerId); } catch { /* bazı WebView'ler desteklemez */ }
 });
 canvas.addEventListener("pointermove", (e) => {
   if (!dragging || pinch.active) return;
@@ -652,13 +663,25 @@ canvas.addEventListener("pointermove", (e) => {
   applyView();
 });
 let lastPointerType = "mouse";
+let lastTapAt = 0;
 canvas.addEventListener("pointerup", (e) => {
   dragging = false;
   canvas.classList.remove("dragging");
   lastPointerType = e.pointerType || "mouse";
-  const tapSlop = lastPointerType === "touch" ? 12 : 7;
-  if (moved < tapSlop && Date.now() - downT < 600 && !pinch.was) handleTap(e.clientX, e.clientY);
+  const tapSlop = lastPointerType === "touch" ? 14 : 7;
+  if (moved < tapSlop && Date.now() - downT < 900 && !pinch.was) {
+    lastTapAt = Date.now();
+    handleTap(e.clientX, e.clientY);
+  }
   pinch.was = false;
+});
+canvas.addEventListener("pointercancel", () => { dragging = false; canvas.classList.remove("dragging"); });
+// Yedek yol: pointer olaylarının tap üretmediği tarayıcılar için click
+canvas.addEventListener("click", (e) => {
+  if (Date.now() - lastTapAt < 450) return; // pointerup zaten işledi
+  if (moved >= 14 || pinch.was) return;
+  lastTapAt = Date.now();
+  handleTap(e.clientX, e.clientY);
 });
 canvas.addEventListener("contextmenu", (e) => e.preventDefault());
 canvas.addEventListener("wheel", (e) => {
