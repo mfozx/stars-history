@@ -605,8 +605,10 @@ function applyView() {
 // Görünüm boyutu canvas'ın GERÇEK ölçüsünden alınır — mobilde adres çubuğu
 // gizlenip çıkınca innerHeight kayar; etiketlerin yıldızlarla hizalı kalması
 // için tüm ekran-uzayı hesapları bu değerleri kullanır.
-let vw = 1, vh = 1, vLeft = 0, vTop = 0;
+let vw = 1, vh = 1, vLeft = 0, vTop = 0, lastCW = -1, lastCH = -1;
 function resize() {
+  lastCW = canvas.clientWidth;
+  lastCH = canvas.clientHeight;
   const rect = canvas.getBoundingClientRect();
   vw = Math.max(1, rect.width);
   vh = Math.max(1, rect.height);
@@ -616,6 +618,13 @@ function resize() {
   camera.aspect = vw / vh;
   camera.updateProjectionMatrix();
 }
+// Telefonda bir hata olursa yükleme ekranında göster (teşhis için)
+addEventListener("error", (e) => {
+  const box = document.getElementById("loading");
+  if (box && !box.classList.contains("hidden")) {
+    box.querySelector("span").textContent = "Hata: " + (e.message || e.type);
+  }
+});
 addEventListener("resize", resize);
 addEventListener("orientationchange", () => setTimeout(resize, 150));
 if (window.visualViewport) visualViewport.addEventListener("resize", resize);
@@ -1462,8 +1471,9 @@ function loop(now) {
     vLon *= 0.94; vLat *= 0.94;
     applyView();
   }
-  // Mobilde adres çubuğu / döndürme ile boyut değişirse aynı karede yakala
-  if (Math.abs(canvas.clientWidth - vw) > 0.5 || Math.abs(canvas.clientHeight - vh) > 0.5) resize();
+  // Mobilde adres çubuğu / döndürme ile boyut değişirse yakala
+  // (clientWidth tam sayıdır; kesirli rect ile kıyaslamak sonsuz döngü yapar)
+  if (canvas.clientWidth !== lastCW || canvas.clientHeight !== lastCH) resize();
   if (starPoints) {
     starPoints.material.uniforms.uScale.value =
       (vh / 900) * (60 / view.fov) * renderer.getPixelRatio();
